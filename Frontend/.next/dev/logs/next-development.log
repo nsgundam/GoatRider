@@ -1,26 +1,636 @@
-[00:00:03.084] Server  LOG      ✓ Ready in 2.3s
-[00:00:11.384] Server  LOG      ○ Compiling / ...
-[00:00:20.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:20.744] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/lpa26uhctlhihia0mkmf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:22.249] Browser LOG     Create room clicked
-[00:00:22.249] Browser LOG     Room created with ID: new-room
-[00:01:04.877] Server  LOG      ✓ Compiled in 79ms
-[00:01:51.442] Server  LOG      ✓ Compiled in 73ms
-[00:01:56.032] Browser LOG     Join friends clicked
-[00:01:56.032] Browser LOG     Room created with ID: friend-room
-[00:01:56.565] Browser LOG     Join friends clicked
-[00:01:56.565] Browser LOG     Room created with ID: friend-room
-[00:01:56.741] Browser LOG     Join friends clicked
-[00:01:56.741] Browser LOG     Room created with ID: friend-room
-[00:01:56.954] Browser LOG     Join friends clicked
-[00:01:56.954] Browser LOG     Room created with ID: friend-room
-[00:02:24.567] Server  LOG      ✓ Compiled in 63ms
-[00:08:11.351] Server  LOG      ✓ Compiled in 135ms
-[00:09:31.674] Server  LOG      ✓ Compiled in 131ms
-[00:10:25.786] Server  LOG      ✓ Compiled in 204ms
-[00:11:27.787] Server  LOG      ✓ Compiled in 81ms
-[00:12:05.148] Server  LOG      ✓ Compiled in 69ms
-[00:12:23.977] Server  LOG      ✓ Compiled in 70ms
-[00:12:36.422] Server  LOG      ✓ Compiled in 73ms
-[00:12:37.584] Server  LOG      ✓ Compiled in 79ms
-[00:15:14.697] Server  LOG      ✓ Compiled in 72ms
+[00:00:02.623] Server  LOG      ✓ Ready in 1995ms
+[00:00:08.011] Server  LOG      ○ Compiling / ...
+[00:01:02.354] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_f8a5589d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.360] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\_8d411302._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.363] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.366] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__1222724e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.386] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.489] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.491] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.507] Server  ERROR    ⨯ Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[00:01:02.511] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_f8a5589d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.512] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\_8d411302._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.513] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.514] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__1222724e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.518] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.523] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.524] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:01:02.528] Server  ERROR    ⨯ Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[00:01:05.590] Server  LOG      ○ Compiling /_error ...
+[00:01:09.646] Browser ERROR   uncaughtError: Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[01:21:42.916] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_f8a5589d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.920] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\_8d411302._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.921] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.923] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__1222724e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.953] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.956] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.965] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.981] Server  ERROR    ⨯ Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[01:21:42.983] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_f8a5589d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.984] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\_8d411302._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.985] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.986] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__1222724e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:42.987] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.015] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.016] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.019] Server  ERROR    ⨯ Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[01:21:43.047] Server  LOG      ✓ Compiled in 2.9s
+[01:21:43.171] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:21:43.171] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./node_modules/next/dist/shared/lib/router/router.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[01:21:43.172] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[01:21:43.421] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_f8a5589d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.422] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\_8d411302._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.422] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.422] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__1222724e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.423] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.429] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.430] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.432] Server  ERROR    ⨯ Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[01:21:43.434] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_f8a5589d._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.435] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\_8d411302._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.435] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.436] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__1222724e._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.436] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.445] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.446] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\trace\tracer.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:21:43.448] Server  ERROR    ⨯ Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[01:21:44.081] Browser ERROR   uncaughtError: Error: Attempted to call getDefaultConfig() from the server but getDefaultConfig is on the client. It's not possible to invoke a client function from the server, it can only be rendered as a Component or passed to props of a Client Component.
+[01:22:00.875] Server  LOG      ○ Compiling /lobby ...
+[01:22:09.867] Server  ERROR    ⨯ ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:22:10.095] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:22:10.312] Browser ERROR   uncaughtError: Error: ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[01:22:10.420] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:22:10.652] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:22:14.055] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:22:28.437] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:22:32.867] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:22:48.639] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:01.878] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:05.175] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:11.775] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:26.127] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:31.658] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:33.855] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:44.828] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:55.892] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:23:59.175] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:24:02.475] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:24:35.568] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:24:44.364] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:25:42.802] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:25:43.899] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:25:48.607] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:26:10.626] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[01:26:19.370] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
