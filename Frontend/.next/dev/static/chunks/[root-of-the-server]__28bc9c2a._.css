@@ -133,8 +133,6 @@
 @layer theme {
   :root, :host {
     --color-red-500: #fb2c36;
-    --color-blue-50: #eff6ff;
-    --color-blue-100: #dbeafe;
     --color-blue-500: #3080ff;
     --color-blue-600: #155dfc;
     --color-blue-700: #1447e6;
@@ -161,7 +159,6 @@
     --text-2xl--line-height: calc(2 / 1.5);
     --text-3xl: 1.875rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
-    --font-weight-normal: 400;
     --font-weight-medium: 500;
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
@@ -179,8 +176,6 @@
   @supports (color: lab(0% 0 0)) {
     :root, :host {
       --color-red-500: lab(55.4814% 75.0732 48.8528);
-      --color-blue-50: lab(96.492% -1.14644 -5.11479);
-      --color-blue-100: lab(92.0301% -2.24757 -11.6453);
       --color-blue-500: lab(54.1736% 13.3369 -74.6839);
       --color-blue-600: lab(44.0605% 29.0279 -86.0352);
       --color-blue-700: lab(36.9089% 35.0961 -85.6872);
@@ -460,28 +455,12 @@
     inset: calc(var(--spacing) * 0);
   }
 
-  .top-140 {
-    top: calc(var(--spacing) * 140);
-  }
-
   .top-\[20\%\] {
     top: 20%;
   }
 
   .top-\[60\%\] {
     top: 60%;
-  }
-
-  .top-\[200px\] {
-    top: 200px;
-  }
-
-  .top-\[300px\] {
-    top: 300px;
-  }
-
-  .right-240 {
-    right: calc(var(--spacing) * 240);
   }
 
   .bottom-10 {
@@ -494,10 +473,6 @@
 
   .left-\[10\%\] {
     left: 10%;
-  }
-
-  .left-\[600px\] {
-    left: 600px;
   }
 
   .z-0 {
@@ -651,10 +626,6 @@
     }
   }
 
-  .bg-blue-50 {
-    background-color: var(--color-blue-50);
-  }
-
   .bg-blue-600 {
     background-color: var(--color-blue-600);
   }
@@ -703,10 +674,6 @@
     padding-inline: calc(var(--spacing) * 16);
   }
 
-  .px-20 {
-    padding-inline: calc(var(--spacing) * 20);
-  }
-
   .py-2 {
     padding-block: calc(var(--spacing) * 2);
   }
@@ -717,10 +684,6 @@
 
   .py-4 {
     padding-block: calc(var(--spacing) * 4);
-  }
-
-  .py-5 {
-    padding-block: calc(var(--spacing) * 5);
   }
 
   .py-32 {
@@ -764,14 +727,6 @@
     font-size: 100px;
   }
 
-  .text-\[120px\] {
-    font-size: 120px;
-  }
-
-  .text-\[150px\] {
-    font-size: 150px;
-  }
-
   .leading-8 {
     --tw-leading: calc(var(--spacing) * 8);
     line-height: calc(var(--spacing) * 8);
@@ -795,11 +750,6 @@
   .font-medium {
     --tw-font-weight: var(--font-weight-medium);
     font-weight: var(--font-weight-medium);
-  }
-
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
 
   .font-semibold {
@@ -905,12 +855,6 @@
       .hover\:bg-black\/\[\.04\]:hover {
         background-color: color-mix(in oklab, var(--color-black) 4%, transparent);
       }
-    }
-  }
-
-  @media (hover: hover) {
-    .hover\:bg-blue-100:hover {
-      background-color: var(--color-blue-100);
     }
   }
 
