@@ -56,30 +56,29 @@ export default function Welcomepage() {
         setname("");
     }
     //-----------------------------------------------------------//
-    return (
-        <div className="w-full h-screen relative">
-            <CldImage
-                src="qy3vo3jhmpocodpavgrf"
-                width={1920}
-                height={1080}
-                className="w-full h-full object-cover"
-                alt="goat rider homepage"
-            />
+   return (
+  <div className="w-full h-screen relative">
+    <CldImage
+      src="qy3vo3jhmpocodpavgrf"
+      width={1920}
+      height={1080}
+      className="w-full h-full object-cover"
+      alt="goat rider homepage"
+    />
 <div className="">
-    <h1 className="text-[150px] font-bold text-white absolute top-[100px] left-[130px]">Goat Ridder </h1>
+    <h1 className="text-[120px] font-bold text-white absolute top-[200px] left-[600px]">Goat </h1>
+    <h1 className="text-[150px] font-bold text-white absolute top-[300px] left-[600px]">Ridder </h1>
 
 </div>
-            {/* ปุ่ม Connect */}
-            <button
-                onClick={handleConnectWallet}
-                disabled={loading || wallet}
-                className="text-[35px] absolute top-[320px] left-[350px] px-[20px] py-[px] 
-                           font-bold  text-[#A52424]  bg-blue-50 rounded-none 
-                           hover:bg-blue-100  transition-colors duration-300 outline-5"
-            >
-                {loading ? "Connecting..." : "Connect Wallet"}
-            </button>
-        </div>
-    );
+    {/* ปุ่ม Connect */}
+    <button
+      onClick={handleConnectWallet}
+      disabled={loading || wallet}
+      className="text-2xl absolute top-140 right-240 px-20 py-5 font-normal  bg-blue-50 text-black rounded none hover:bg-blue-100 transition-colors duration-300"
+    >
+      {loading ? "Connecting..." : "Connect Wallet"}
+    </button>
+  </div>
+);
 
 }

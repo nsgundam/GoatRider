@@ -86,19 +86,29 @@ function Welcomepage() {
             }, void 0, false, {
                 fileName: "[project]/app/homepage/page.js",
                 lineNumber: 61,
-                columnNumber: 13
+                columnNumber: 5
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "",
-                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                    className: "text-[150px] font-bold text-white absolute top-[100px] left-[130px]",
-                    children: "Goat Ridder "
-                }, void 0, false, {
-                    fileName: "[project]/app/homepage/page.js",
-                    lineNumber: 69,
-                    columnNumber: 5
-                }, this)
-            }, void 0, false, {
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        className: "text-[120px] font-bold text-white absolute top-[200px] left-[600px]",
+                        children: "Goat "
+                    }, void 0, false, {
+                        fileName: "[project]/app/homepage/page.js",
+                        lineNumber: 69,
+                        columnNumber: 5
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                        className: "text-[150px] font-bold text-white absolute top-[300px] left-[600px]",
+                        children: "Ridder "
+                    }, void 0, false, {
+                        fileName: "[project]/app/homepage/page.js",
+                        lineNumber: 70,
+                        columnNumber: 5
+                    }, this)
+                ]
+            }, void 0, true, {
                 fileName: "[project]/app/homepage/page.js",
                 lineNumber: 68,
                 columnNumber: 1
@@ -106,18 +116,18 @@ function Welcomepage() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                 onClick: handleConnectWallet,
                 disabled: loading || wallet,
-                className: "text-[35px] absolute top-[320px] left-[350px] px-[20px] py-[px]    font-bold  text-[#A52424]  bg-blue-50 rounded-none    hover:bg-blue-100  transition-colors duration-300 outline-5",
+                className: "text-2xl absolute top-140 right-240 px-20 py-5 font-normal  bg-blue-50 text-black rounded none hover:bg-blue-100 transition-colors duration-300",
                 children: loading ? "Connecting..." : "Connect Wallet"
             }, void 0, false, {
                 fileName: "[project]/app/homepage/page.js",
-                lineNumber: 73,
-                columnNumber: 13
+                lineNumber: 74,
+                columnNumber: 5
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/homepage/page.js",
         lineNumber: 60,
-        columnNumber: 9
+        columnNumber: 3
     }, this);
 }
 }),
