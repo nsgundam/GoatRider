@@ -6,6 +6,9 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
 
+// --- (1) เพิ่มบรรทัดนี้: นำเข้า Route ของระบบ Auth ---
+import authRoutes from './routes/authRoutes'; 
+
 // Load env vars
 dotenv.config();
 
@@ -20,6 +23,9 @@ app.use(cors({
 }));
 app.use(express.json()); // อ่าน JSON body ได้
 
+// --- (2) เพิ่มบรรทัดนี้: เปิดใช้งาน API Login ---
+// ถ้ามีคนยิงมาที่ /api/auth/login มันจะวิ่งไปที่ authRoutes
+app.use('/api/auth', authRoutes);
 
 
 // Setup Socket.IO
