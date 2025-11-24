@@ -1,4 +1,4 @@
-<!-- 1. npm install
+1. npm install
 2. npm install ethers
 3. npm install next-cloudinary 
 4. create foder .env.local  and pass 
@@ -9,4 +9,4 @@
     Obtain the required key/code from the Discord channel.
     add ".env.local" to .gitignore
 
-[if dont have .env.local] na   -->
+[if dont have .env.local] na  
