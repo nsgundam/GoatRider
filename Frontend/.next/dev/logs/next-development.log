@@ -178,3 +178,4 @@ https://nextjs.org/docs/messages/module-not-found
 [00:05:11.772] Browser LOG     Create room clicked
 [00:05:11.772] Browser LOG     Room created with ID: new-room
 [00:13:50.627] Server  LOG      ✓ Compiled in 108ms
+[00:21:36.725] Server  LOG      ✓ Compiled in 200ms
