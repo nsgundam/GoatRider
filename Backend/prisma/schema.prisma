@@ -1,14 +1,120 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// prisma/schema.prisma
 
 generator client {
-  provider = "prisma-client"
-  output   = "../src/generated/prisma"
+  provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// --- ENUMS ---
+enum RoomStatus {
+  WAITING
+  IN_GAME
+  FINISHED
+}
+
+enum CardType {
+  ACTION
+  DEFUSE
+  EXPLODE
+}
+
+enum TokenTxType {
+  BUY
+  STAKE_IN
+  WIN_OUT
+}
+
+// --- MODELS ---
+
+model User {
+  walletAddress      String   @id // PK
+  username           String   @unique
+  currentTokenBalance Int      @default(0)
+  createdAt          DateTime @default(now())
+  lastLogin          DateTime @updatedAt
+
+  createdRooms       Room[]   @relation("Creator")
+  transactions       TokenTransaction[]
+  playerRooms        PlayerRoomState[]
+  gameEvents         GameEvent[]
+}
+
+model Room {
+  roomId               String   @id @default(uuid()) // ใช้ UUID อัตโนมัติ
+  creatorWalletAddress String
+  roomName             String
+  requiredStake        Int
+  maxPlayers           Int
+  password             String?
+  status               RoomStatus @default(WAITING)
+  createdAt            DateTime   @default(now())
+  
+  // Relations
+  creator              User     @relation("Creator", fields: [creatorWalletAddress], references: [walletAddress])
+  players              PlayerRoomState[]
+  gameEvents           GameEvent[]
+  tokenTransactions    TokenTransaction[]
+}
+
+model PlayerRoomState {
+  id            String  @id @default(uuid()) // หรือจะใช้ composite key ก็ได้ แต่ uuid ง่ายกว่าสำหรับ Prisma
+  roomId        String
+  walletAddress String
+  isReady       Boolean @default(false)
+  turnOrder     Int?    // ลำดับการเล่น 1, 2, 3...
+  hasExploded   Boolean @default(false)
+  
+  room          Room    @relation(fields: [roomId], references: [roomId])
+  user          User    @relation(fields: [walletAddress], references: [walletAddress])
+  cards         PlayerCard[]
+
+  @@unique([roomId, walletAddress]) // ห้าม user คนเดิมเข้าห้องเดิมซ้ำ 2 record
+}
+
+model GameCard {
+  cardId      String   @id // e.g., "defuse_card", "skip_card"
+  name        String
+  description String
+  type        CardType
+  
+  instances   PlayerCard[]
+}
+
+model PlayerCard {
+  id             Int    @id @default(autoincrement())
+  playerStateId  String
+  cardId         String
+  location       String // "HAND", "DECK", "DISCARD" (ใช้ String หรือ Enum ก็ได้)
+  deckPosition   Int?   // ถ้าอยู่ใน Deck อยู่ใบที่เท่าไหร่
+  
+  playerState    PlayerRoomState @relation(fields: [playerStateId], references: [id])
+  cardTemplate   GameCard        @relation(fields: [cardId], references: [cardId])
+}
+
+model TokenTransaction {
+  transactionHash String   @id
+  walletAddress   String
+  type            TokenTxType
+  amount          Int
+  transactionDate DateTime @default(now())
+  relatedRoomId   String?
+
+  user            User     @relation(fields: [walletAddress], references: [walletAddress])
+  room            Room?    @relation(fields: [relatedRoomId], references: [roomId])
+}
+
+model GameEvent {
+  eventId       Int      @id @default(autoincrement())
+  roomId        String
+  walletAddress String
+  actionType    String   // "PLAY", "DRAW", "EXPLODE"
+  details       String?  // JSON string เก็บรายละเอียดเพิ่ม
+  timestamp     DateTime @default(now())
+  
+  room          Room     @relation(fields: [roomId], references: [roomId])
+  user          User     @relation(fields: [walletAddress], references: [walletAddress])
 }
