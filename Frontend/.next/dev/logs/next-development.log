@@ -634,3 +634,25 @@ Import traces:
     ./app/lobby/page.js [Server Component]
 
 https://nextjs.org/docs/messages/module-not-found
+[01:26:33.952] Browser ERROR   ./app/lobby/page.js:4:1
+Module not found: Can't resolve '@/app/components/button'
+  2 | import { useState } from "react";
+  3 | import { CldImage } from "next-cloudinary";
+> 4 | import { Button } from '@/app/components/button'
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  5 |
+  6 | export default function Welcomepage() {
+  7 |   const [createroom] = useState("");
+
+Import map: aliased to relative './src/app/components/button' inside of [project]/
+
+Import traces:
+  Client Component Browser:
+    ./app/lobby/page.js [Client Component Browser]
+    ./app/lobby/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/lobby/page.js [Client Component SSR]
+    ./app/lobby/page.js [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
