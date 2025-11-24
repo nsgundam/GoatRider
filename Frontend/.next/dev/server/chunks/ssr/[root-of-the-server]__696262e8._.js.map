@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///D:/GoatRidder/Frontend/app/welcome/page.js"],"sourcesContent":["import React from 'react';\r\n\r\nconst Page = () => {\r\n    return (\r\n        <div>\r\n            \"welcomepage naja\"\r\n        </div>\r\n    );\r\n}\r\nexport default Page;\r\nimport { CldImage } from 'next-cloudinary';\r\n \r\n<CldImage\r\n  width=\"960\"\r\n  height=\"600\"\r\n  src=\"<goat_homepage>\"\r\n  sizes=\"100vw\"\r\n  alt=\"Description of my image\"\r\n/>"],"names":[],"mappings":";;;;;AAAA;;;;;;;;AAEA,MAAM,OAAO;IACT,qBACI,8OAAC;kBAAI;;;;;;AAIb;uCACe;;cAGf,8OAAC;IACC,OAAM;IACN,QAAO;IACP,KAAI;IACJ,OAAM;IACN,KAAI"}}]
+}
