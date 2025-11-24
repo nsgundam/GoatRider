@@ -29,3 +29,5 @@
 [00:11:19.847] Server  LOG      ✓ Compiled in 100ms
 [00:11:25.548] Server  LOG      ✓ Compiled in 112ms
 [00:11:35.440] Server  LOG      ✓ Compiled in 192ms
+[00:03:47.839] Server  LOG        Reload env: .env.local
+[00:03:48.227] Server  LOG      ✓ Compiled in 311ms

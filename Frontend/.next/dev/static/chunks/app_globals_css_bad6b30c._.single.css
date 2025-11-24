@@ -6,7 +6,6 @@
       --tw-leading: initial;
       --tw-font-weight: initial;
       --tw-tracking: initial;
-      --tw-outline-style: solid;
       --tw-duration: initial;
       --tw-blur: initial;
       --tw-brightness: initial;
@@ -60,11 +59,11 @@
 
   @supports (color: lab(0% 0 0)) {
     :root, :host {
-      --color-blue-50: lab(96.492% -1.14647 -5.11479);
+      --color-blue-50: lab(96.492% -1.14644 -5.11479);
       --color-blue-100: lab(92.0301% -2.24757 -11.6453);
       --color-zinc-50: lab(98.26% 0 0);
-      --color-zinc-400: lab(65.6464% 1.53494 -5.42429);
-      --color-zinc-600: lab(35.1166% 1.7821 -6.1173);
+      --color-zinc-400: lab(65.6464% 1.53497 -5.42429);
+      --color-zinc-600: lab(35.1166% 1.78212 -6.1173);
       --color-zinc-950: lab(2.51107% .242703 -.886115);
     }
   }
@@ -331,30 +330,6 @@
     top: calc(var(--spacing) * 140);
   }
 
-  .top-150 {
-    top: calc(var(--spacing) * 150);
-  }
-
-  .top-170 {
-    top: calc(var(--spacing) * 170);
-  }
-
-  .top-180 {
-    top: calc(var(--spacing) * 180);
-  }
-
-  .top-200 {
-    top: calc(var(--spacing) * 200);
-  }
-
-  .top-250 {
-    top: calc(var(--spacing) * 250);
-  }
-
-  .top-\[100px\] {
-    top: 100px;
-  }
-
   .top-\[200px\] {
     top: 200px;
   }
@@ -363,36 +338,8 @@
     top: 300px;
   }
 
-  .top-\[320px\] {
-    top: 320px;
-  }
-
   .right-240 {
     right: calc(var(--spacing) * 240);
-  }
-
-  .left-\[130px\] {
-    left: 130px;
-  }
-
-  .left-\[150px\] {
-    left: 150px;
-  }
-
-  .left-\[200px\] {
-    left: 200px;
-  }
-
-  .left-\[300px\] {
-    left: 300px;
-  }
-
-  .left-\[350px\] {
-    left: 350px;
-  }
-
-  .left-\[500px\] {
-    left: 500px;
   }
 
   .left-\[600px\] {
@@ -471,10 +418,6 @@
     border-radius: 3.40282e38px;
   }
 
-  .rounded-none {
-    border-radius: 0;
-  }
-
   .border {
     border-style: var(--tw-border-style);
     border-width: 1px;
@@ -527,20 +470,12 @@
     padding-inline: calc(var(--spacing) * 20);
   }
 
-  .px-\[20px\] {
-    padding-inline: 20px;
-  }
-
   .py-5 {
     padding-block: calc(var(--spacing) * 5);
   }
 
   .py-32 {
     padding-block: calc(var(--spacing) * 32);
-  }
-
-  .py-\[px\] {
-    padding-block: px;
   }
 
   .text-center {
@@ -569,10 +504,6 @@
   .text-lg {
     font-size: var(--text-lg);
     line-height: var(--tw-leading, var(--text-lg--line-height));
-  }
-
-  .text-\[35px\] {
-    font-size: 35px;
   }
 
   .text-\[120px\] {
@@ -618,10 +549,6 @@
     letter-spacing: var(--tracking-tight);
   }
 
-  .text-\[\#A52424\] {
-    color: #a52424;
-  }
-
   .text-background {
     color: var(--background);
   }
@@ -645,11 +572,6 @@
   .antialiased {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-
-  .outline-5 {
-    outline-style: var(--tw-outline-style);
-    outline-width: 5px;
   }
 
   .transition-colors {
@@ -808,12 +730,6 @@ body {
 @property --tw-tracking {
   syntax: "*";
   inherits: false
-}
-
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 
 @property --tw-duration {
