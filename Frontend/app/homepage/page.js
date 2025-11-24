@@ -59,7 +59,7 @@ export default function Welcomepage() {
    return (
   <div className="w-full h-screen relative">
     <CldImage
-      src="qy3vo3jhmpocodpavgrf"
+      src="qnkwna404xq2bvmzpddl"
       width={1920}
       height={1080}
       className="w-full h-full object-cover"
