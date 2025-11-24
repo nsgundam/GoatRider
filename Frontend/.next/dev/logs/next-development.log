@@ -1,5 +1,25 @@
-[00:00:02.077] Server  LOG      ✓ Ready in 1478ms
-[00:00:08.278] Server  LOG      ○ Compiling / ...
-[00:00:12.941] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:13.058] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:22.875] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.084] Server  LOG      ✓ Ready in 2.3s
+[00:00:11.384] Server  LOG      ○ Compiling / ...
+[00:00:20.615] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:20.744] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/lpa26uhctlhihia0mkmf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:22.249] Browser LOG     Create room clicked
+[00:00:22.249] Browser LOG     Room created with ID: new-room
+[00:01:04.877] Server  LOG      ✓ Compiled in 79ms
+[00:01:51.442] Server  LOG      ✓ Compiled in 73ms
+[00:01:56.032] Browser LOG     Join friends clicked
+[00:01:56.032] Browser LOG     Room created with ID: friend-room
+[00:01:56.565] Browser LOG     Join friends clicked
+[00:01:56.565] Browser LOG     Room created with ID: friend-room
+[00:01:56.741] Browser LOG     Join friends clicked
+[00:01:56.741] Browser LOG     Room created with ID: friend-room
+[00:01:56.954] Browser LOG     Join friends clicked
+[00:01:56.954] Browser LOG     Room created with ID: friend-room
+[00:02:24.567] Server  LOG      ✓ Compiled in 63ms
+[00:08:11.351] Server  LOG      ✓ Compiled in 135ms
+[00:09:31.674] Server  LOG      ✓ Compiled in 131ms
+[00:10:25.786] Server  LOG      ✓ Compiled in 204ms
+[00:11:27.787] Server  LOG      ✓ Compiled in 81ms
+[00:12:05.148] Server  LOG      ✓ Compiled in 69ms
+[00:12:23.977] Server  LOG      ✓ Compiled in 70ms
+[00:12:36.422] Server  LOG      ✓ Compiled in 73ms
+[00:12:37.584] Server  LOG      ✓ Compiled in 79ms
