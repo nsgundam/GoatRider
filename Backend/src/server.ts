@@ -5,7 +5,10 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
+
 import authRoutes from './routes/authRoutes'; 
+import roomRoutes from './routes/roomRoutes';
+import { roomHandler } from './sockets/roomHandler';
 
 dotenv.config();
 
@@ -20,6 +23,7 @@ app.use(cors({
 app.use(express.json());
 
 app.use('/api/auth', authRoutes);
+app.use('/api/rooms', roomRoutes);
 
 
 // Setup Socket.IO
@@ -35,19 +39,13 @@ app.get('/', (req: Request, res: Response) => {
     res.send('GOAT RIDER is Running! 🚀');
 });
 
-app.get('/health', async (req: Request, res: Response) => {
-    try {
-        // ลองยิง DB เล่นๆ เช็คว่าต่อติดไหม
-        await prisma.$queryRaw`SELECT 1`; 
-        res.json({ status: 'OK', database: 'Connected' });
-    } catch (error) {
-        res.status(500).json({ status: 'ERROR', database: 'Disconnected', error });
-    }
-});
 
 // --- Socket.IO Logic (เบื้องต้น) ---
 io.on('connection', (socket) => {
     console.log(`User Connected: ${socket.id}`);
+
+    // เรียกใช้ Logic ห้องแยกออกมา
+    roomHandler(io, socket);
 
     // ลองรับ Event Join Room
     socket.on('join_room', (roomId) => {
@@ -61,6 +59,8 @@ io.on('connection', (socket) => {
         console.log('User Disconnected', socket.id);
     });
 });
+
+
 
 // --- Start Server ---
 const PORT = process.env.PORT || 3001;
