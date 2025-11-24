@@ -6,55 +6,121 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-// ข้อความที่ให้ User เซ็น (ต้องตรงกับ Frontend เป๊ะๆ)
+// ข้อความสำหรับ Sign (ต้องตรงกับ Frontend)
 const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
 
+// --- Helper Function: สร้าง Token ---
+const generateToken = (walletAddress: string) => {
+    return jwt.sign(
+        { walletAddress },
+        process.env.JWT_SECRET || "default_secret_key",
+        { expiresIn: "1d" }
+    );
+};
+
+// ==========================================
+// 1. LOGIN: เช็คว่ามี User ไหม
+// ==========================================
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
         const { walletAddress, signature } = req.body;
 
         if (!walletAddress || !signature) {
-            res.status(400).json({ error: "Missing walletAddress or signature" });
-            return;
+             res.status(400).json({ error: "Missing parameters" });
+             return;
         }
 
         // 1. ตรวจสอบลายเซ็น (Verify Signature)
-        // logic: เอาลายเซ็น + ข้อความ -> แกะออกมาเป็น Address ผู้เซ็น
         const recoveredAddress = ethers.verifyMessage(SIGN_MESSAGE, signature);
-
-        // 2. เช็คว่าคนที่เซ็น คือคนเดียวกับ walletAddress ที่ส่งมาไหม?
         if (recoveredAddress.toLowerCase() !== walletAddress.toLowerCase()) {
-            res.status(401).json({ error: "Invalid signature" });
-            return;
+             res.status(401).json({ error: "Invalid signature" });
+             return;
         }
 
-        // 3. ถ้าถูกตัวจริง -> หา User ใน DB (ถ้าไม่มีให้สร้างใหม่)
-        // ใช้ upsert: ถ้ามี update lastLogin, ถ้าไม่มี create
-        let user = await prisma.user.upsert({
-            where: { walletAddress: walletAddress },
-            update: { lastLogin: new Date() },
-            create: {
-                walletAddress: walletAddress,
-                username: `Player_${walletAddress.slice(0, 6)}`, // ตั้งชื่อมั่วๆ ไปก่อน
-            }
+        // 2. ค้นหา User ใน DB
+        const user = await prisma.user.findUnique({
+            where: { walletAddress: walletAddress }
         });
 
-        // 4. สร้าง JWT Token (บัตรผ่าน)
-        const token = jwt.sign(
-            { walletAddress: user.walletAddress },
-            process.env.JWT_SECRET || "default_secret_key", // เดี๋ยวไปตั้งใน .env
-            { expiresIn: "1d" } // อายุ 1 วัน
-        );
+        // 3. เงื่อนไขการตอบกลับ
+        if (user) {
+            // A. เจอชื่อ -> ล็อกอินสำเร็จ -> ส่ง Token กลับไป
+            const token = generateToken(user.walletAddress);
+            
+            // อัปเดตเวลา Login ล่าสุด
+            await prisma.user.update({
+                where: { walletAddress },
+                data: { lastLogin: new Date() }
+            });
 
-        // 5. ส่งกลับไปให้ Frontend
-        res.json({
-            message: "Login successful",
-            token,
-            user
-        });
+            res.json({
+                status: "LOGIN_SUCCESS",
+                isRegistered: true,
+                token,
+                user
+            });
+        } else {
+            // B. ไม่เจอชื่อ -> แจ้งกลับไปว่าต้องลงทะเบียนก่อน
+            res.json({
+                status: "REGISTER_REQUIRED",
+                isRegistered: false
+                // ยังไม่ให้ Token จนกว่าจะ Register เสร็จ
+            });
+        }
 
     } catch (error) {
         console.error("Login Error:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+// ==========================================
+// 2. REGISTER: ลงทะเบียนพร้อมชื่อ
+// ==========================================
+export const register = async (req: Request, res: Response): Promise<void> => {
+    try {
+        const { walletAddress, signature, username } = req.body;
+
+        if (!walletAddress || !signature || !username) {
+             res.status(400).json({ error: "Missing parameters" });
+             return;
+        }
+
+        // 1. ตรวจสอบลายเซ็นอีกรอบ (เพื่อความปลอดภัย ป้องกันคนแอบอ้างสวมรอยมาสมัคร)
+        const recoveredAddress = ethers.verifyMessage(SIGN_MESSAGE, signature);
+        if (recoveredAddress.toLowerCase() !== walletAddress.toLowerCase()) {
+             res.status(401).json({ error: "Invalid signature" });
+             return;
+        }
+
+        // 2. ตรวจสอบว่าชื่อซ้ำไหม?
+        const existingName = await prisma.user.findUnique({
+            where: { username: username }
+        });
+        if (existingName) {
+             res.status(400).json({ error: "Username already taken" });
+             return;
+        }
+
+        // 3. สร้าง User ใหม่
+        const newUser = await prisma.user.create({
+            data: {
+                walletAddress: walletAddress,
+                username: username
+            }
+        });
+
+        // 4. สมัครเสร็จ -> ให้ Token เลย (จะได้เข้าเมนูต่อได้ทันที)
+        const token = generateToken(newUser.walletAddress);
+
+        res.json({
+            status: "REGISTER_SUCCESS",
+            token,
+            user: newUser
+        });
+
+    } catch (error) {
+        console.error("Register Error:", error);
         res.status(500).json({ error: "Internal server error" });
     }
 };

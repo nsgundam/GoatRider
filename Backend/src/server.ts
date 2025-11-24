@@ -5,26 +5,20 @@ import { Server } from 'socket.io';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { PrismaClient } from '@prisma/client';
-
-// --- (1) เพิ่มบรรทัดนี้: นำเข้า Route ของระบบ Auth ---
 import authRoutes from './routes/authRoutes'; 
 
-// Load env vars
 dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const prisma = new PrismaClient(); // ตัวเชื่อม DB
+const prisma = new PrismaClient();
 
-// Setup CORS (อนุญาตให้ Frontend เข้าถึง)
 app.use(cors({
-    origin: "http://localhost:3000", // URL ของ Frontend Next.js
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"]
 }));
-app.use(express.json()); // อ่าน JSON body ได้
+app.use(express.json());
 
-// --- (2) เพิ่มบรรทัดนี้: เปิดใช้งาน API Login ---
-// ถ้ามีคนยิงมาที่ /api/auth/login มันจะวิ่งไปที่ authRoutes
 app.use('/api/auth', authRoutes);
 
 
@@ -38,7 +32,7 @@ const io = new Server(server, {
 
 // --- Test Routes (REST API) ---
 app.get('/', (req: Request, res: Response) => {
-    res.send('Card Game Backend is Running! 🚀');
+    res.send('GOAT RIDER is Running! 🚀');
 });
 
 app.get('/health', async (req: Request, res: Response) => {
@@ -71,5 +65,5 @@ io.on('connection', (socket) => {
 // --- Start Server ---
 const PORT = process.env.PORT || 3001;
 server.listen(PORT, () => {
-    console.log(`✅ Server is running on port ${PORT}`);
+    console.log(`✅ Server is running on http://localhost:${PORT}`);
 });
