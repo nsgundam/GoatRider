@@ -7,6 +7,9 @@ const prisma = new PrismaClient();
 
 // ข้อความสำหรับ Sign (ต้องตรงกับ Frontend)
 const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
+const TOKEN_ABI = [
+    "function transfer(address to, uint256 amount) returns (bool)"
+];
 
 // --- สร้าง Token ---
 const generateToken = (walletAddress: string) => {
@@ -104,6 +107,33 @@ export const register = async (req: Request, res: Response): Promise<void> => {
                 username: username
             }
         });
+
+        // 💰 FAUCET: แจกเหรียญฟรี 100 GRD
+        try {
+            // เช็คว่ามี Config ครบไหม ถ้าไม่ครบข้ามไป (จะได้ไม่ Error จนสมัครไม่ได้)
+            if (process.env.ADMIN_PRIVATE_KEY && process.env.TOKEN_CONTRACT_ADDRESS && process.env.RPC_URL) {
+                
+                const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
+                const adminWallet = new ethers.Wallet(process.env.ADMIN_PRIVATE_KEY, provider);
+                const tokenContract = new ethers.Contract(process.env.TOKEN_CONTRACT_ADDRESS, TOKEN_ABI, adminWallet);
+
+                // จำนวน 100 tokens (สมมติเหรียญมีทศนิยม 18 หลัก)
+                const amount = ethers.parseUnits("100", 18);
+
+                console.log(`🎁 Faucet: Sending 100 GRD to ${walletAddress}...`);
+                
+                // สั่งโอน (ไม่ต้อง await tx.wait() ก็ได้ เพื่อความรวดเร็ว)
+                await tokenContract.transfer(walletAddress, amount);
+                
+                console.log(`✅ Faucet: Sent!`);
+            } else {
+                console.warn("⚠️ Faucet skipped: Missing .env config");
+            }
+        } catch (faucetError) {
+            console.error("❌ Faucet Error:", faucetError);
+            // ไม่ต้อง throw error ปล่อยให้สมัครผ่านไป แม้โอนเงินไม่สำเร็จ
+        }
+        // =========================================================
 
         // 4. สมัครเสร็จ -> ให้ Token เลย (จะได้เข้าเมนูต่อได้ทันที)
         const token = generateToken(newUser.walletAddress);

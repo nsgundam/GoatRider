@@ -1,5 +1,698 @@
-[00:00:02.904] Server  LOG      ✓ Ready in 1990ms
-[00:00:08.224] Server  LOG      ○ Compiling / ...
-[00:00:25.749] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:31.424] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:24.712] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":4,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:00:02.979] Server  LOG      ✓ Ready in 1896ms
+[00:00:50.919] Server  LOG      ○ Compiling / ...
+[00:01:12.797] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:02:42.829] Server  ERROR    ⨯ ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+
+
+[00:02:43.035] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:02:45.132] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:02:45.287] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:02:46.914] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:02:47.034] Server  ERROR    ⨯ ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+
+
+[00:02:47.173] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:02:48.312] Browser ERROR   uncaughtError: Error: ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+
+
+[00:02:48.747] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:02:48.944] Browser ERROR   ./app/menu/page.js:28:18
+Ecmascript file had an error
+  26 |     setRoom("friend-room");
+  27 |   }
+> 28 |   async function BuyToken() {
+     |                  ^^^^^^^^
+  29 |     console.log("Buy token clicked");
+  30 |     // Logic to handle token purchase
+  31 |     //popup ซื้อ token
+
+the name `BuyToken` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:03:57.724] Browser ERROR   ./app/menu/page.js:111:1
+Parsing ecmascript source code failed
+  109 |     </div>
+  110 |   );
+> 111 | }
+      | ^
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:04:30.705] Browser ERROR   ./app/menu/page.js:109:1
+Parsing ecmascript source code failed
+  107 |     </div>
+  108 |   );
+> 109 | }
+      | ^
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[00:04:40.734] Server  LOG      ✓ Compiled in 213ms
+[00:04:48.264] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:04:49.110] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[00:04:51.725] Browser LOG     Join room clicked
+[00:04:51.725] Browser LOG     Room created with ID: friend-room
+[00:04:52.087] Browser LOG     Create room clicked
+[00:04:52.087] Browser LOG     Room created with ID: new-room
+[00:04:52.087] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:52.291] Browser LOG     Join room clicked
+[00:04:52.291] Browser LOG     Room created with ID: friend-room
+[00:04:52.490] Browser LOG     Create room clicked
+[00:04:52.490] Browser LOG     Room created with ID: new-room
+[00:04:52.491] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:53.211] Browser LOG     Create room clicked
+[00:04:53.212] Browser LOG     Room created with ID: new-room
+[00:04:53.212] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:53.659] Browser LOG     Join room clicked
+[00:04:53.659] Browser LOG     Room created with ID: friend-room
+[00:04:53.844] Browser LOG     Create room clicked
+[00:04:53.845] Browser LOG     Room created with ID: new-room
+[00:04:53.845] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:54.052] Browser LOG     Join room clicked
+[00:04:54.052] Browser LOG     Room created with ID: friend-room
+[00:04:54.320] Browser LOG     Create room clicked
+[00:04:54.321] Browser LOG     Room created with ID: new-room
+[00:04:54.321] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:54.590] Browser LOG     Join room clicked
+[00:04:54.590] Browser LOG     Room created with ID: friend-room
+[00:04:54.832] Browser LOG     Create room clicked
+[00:04:54.832] Browser LOG     Room created with ID: new-room
+[00:04:54.832] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:55.082] Browser LOG     Join room clicked
+[00:04:55.082] Browser LOG     Room created with ID: friend-room
+[00:04:58.408] Browser LOG     Create room clicked
+[00:04:58.408] Browser LOG     Room created with ID: new-room
+[00:04:58.409] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:04:58.711] Browser LOG     Join room clicked
+[00:04:58.711] Browser LOG     Room created with ID: friend-room
+[00:05:00.279] Browser LOG     Create room clicked
+[00:05:00.279] Browser LOG     Room created with ID: new-room
+[00:05:00.279] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:05:00.279] Browser LOG     Join room clicked
+[00:05:00.279] Browser LOG     Room created with ID: friend-room
+[00:05:13.370] Server  LOG      ✓ Compiled in 232ms
+[00:05:13.750] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[00:05:37.210] Browser LOG     Join room clicked
+[00:05:37.210] Browser LOG     Room created with ID: friend-room
+[00:05:37.492] Browser LOG     Create room clicked
+[00:05:37.492] Browser LOG     Room created with ID: new-room
+[00:05:37.493] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:05:37.771] Browser LOG     Join room clicked
+[00:05:37.771] Browser LOG     Room created with ID: friend-room
+[00:06:16.562] Browser LOG     Join room clicked
+[00:06:16.562] Browser LOG     Room created with ID: friend-room
+[00:06:16.939] Browser LOG     Create room clicked
+[00:06:16.939] Browser LOG     Room created with ID: new-room
+[00:06:16.939] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:07:34.551] Browser LOG     Create room clicked
+[00:07:34.551] Browser LOG     Room created with ID: new-room
+[00:07:34.551] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:07:34.734] Browser LOG     Join room clicked
+[00:07:34.734] Browser LOG     Room created with ID: friend-room
+[00:07:34.921] Browser LOG     Create room clicked
+[00:07:34.921] Browser LOG     Room created with ID: new-room
+[00:07:34.921] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:07:35.103] Browser LOG     Join room clicked
+[00:07:35.103] Browser LOG     Room created with ID: friend-room
+[00:07:35.283] Browser LOG     Create room clicked
+[00:07:35.283] Browser LOG     Room created with ID: new-room
+[00:07:35.283] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:07:35.457] Browser LOG     Join room clicked
+[00:07:35.457] Browser LOG     Room created with ID: friend-room
+[00:07:37.148] Browser LOG     Join room clicked
+[00:07:37.148] Browser LOG     Room created with ID: friend-room
+[00:07:37.515] Browser LOG     Create room clicked
+[00:07:37.516] Browser LOG     Room created with ID: new-room
+[00:07:37.516] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:07:42.089] Browser LOG     Create room clicked
+[00:07:42.089] Browser LOG     Room created with ID: new-room
+[00:07:42.089] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:07:42.377] Browser LOG     Join room clicked
+[00:07:42.377] Browser LOG     Room created with ID: friend-room
+[00:07:42.799] Browser LOG     Join room clicked
+[00:07:42.800] Browser LOG     Room created with ID: friend-room
+[00:07:43.266] Browser LOG     Join room clicked
+[00:07:43.266] Browser LOG     Room created with ID: friend-room
+[00:44:49.089] Server  LOG      ○ Compiling /_not-found/page ...
+[00:44:57.169] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:06.502] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:45:09.137] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[00:45:15.718] Browser LOG     Create room clicked
+[00:45:15.718] Browser LOG     Room created with ID: new-room
+[00:45:15.718] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:45:15.945] Browser LOG     Join room clicked
+[00:45:15.945] Browser LOG     Room created with ID: friend-room
+[00:45:16.133] Browser LOG     Create room clicked
+[00:45:16.133] Browser LOG     Room created with ID: new-room
+[00:45:16.133] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:46:36.681] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:36.936] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[00:46:59.098] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:47:43.612] Browser ERROR   {"action":"requestAccess","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: undefined","payload":{"method":"eth_requestAccounts","params":[]}},"payload":{"method":"eth_requestAccounts","params":[]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:47:49.313] Browser ERROR   {"action":"requestAccess","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: undefined","payload":{"method":"eth_requestAccounts","params":[]}},"payload":{"method":"eth_requestAccounts","params":[]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:48:17.778] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:48:19.041] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[00:48:23.052] Browser WARN    Image with src "namegamegoat" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:48:42.541] Browser LOG     Create room clicked
+[00:48:42.541] Browser LOG     Room created with ID: new-room
+[00:48:42.541] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:48:42.793] Browser LOG     Join room clicked
+[00:48:42.793] Browser LOG     Room created with ID: friend-room
+[00:48:43.026] Browser LOG     Create room clicked
+[00:48:43.026] Browser LOG     Room created with ID: new-room
+[00:48:43.027] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:48:43.231] Browser LOG     Join room clicked
+[00:48:43.231] Browser LOG     Room created with ID: friend-room
+[00:48:43.440] Browser LOG     Create room clicked
+[00:48:43.440] Browser LOG     Room created with ID: new-room
+[00:48:43.440] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[00:48:43.649] Browser LOG     Join room clicked
+[00:48:43.649] Browser LOG     Room created with ID: friend-room
+[00:48:43.862] Browser LOG     Create room clicked
+[00:48:43.862] Browser LOG     Room created with ID: new-room
+[00:48:43.862] Browser ERROR   uncaughtError: ReferenceError: router is not defined
+[01:18:57.923] Server  LOG      ✓ Compiled in 438ms
+[01:19:33.597] Server  LOG      ✓ Compiled in 84ms
+[01:19:51.022] Server  LOG      ✓ Compiled in 75ms
+[01:20:10.137] Server  LOG      ✓ Compiled in 89ms
+[01:20:20.616] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:20:20.971] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[01:20:22.850] Browser LOG     Create room clicked
+[01:20:22.850] Browser LOG     Room created with ID: new-room
+[01:20:22.850] Browser LOG     Join room clicked
+[01:20:22.850] Browser LOG     Room created with ID: friend-room
+[01:20:22.850] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:20:23.694] Browser LOG     Create room clicked
+[01:20:23.694] Browser LOG     Room created with ID: new-room
+[01:20:23.694] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:20:24.024] Browser LOG     Join room clicked
+[01:20:24.024] Browser LOG     Room created with ID: friend-room
+[01:20:24.293] Browser LOG     Join room clicked
+[01:20:24.293] Browser LOG     Room created with ID: friend-room
+[01:20:24.461] Browser LOG     Join room clicked
+[01:20:24.461] Browser LOG     Room created with ID: friend-room
+[01:20:24.884] Browser LOG     Create room clicked
+[01:20:24.884] Browser LOG     Room created with ID: new-room
+[01:20:24.884] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:20:25.028] Browser LOG     Create room clicked
+[01:20:25.028] Browser LOG     Room created with ID: new-room
+[01:20:25.028] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:20:37.313] Server  LOG      ✓ Compiled in 245ms
+[01:20:43.639] Server  LOG      ✓ Compiled in 266ms
+[01:20:59.632] Server  LOG      ✓ Compiled in 90ms
+[01:21:46.067] Server  LOG      ✓ Compiled in 209ms
+[01:21:54.999] Server  LOG      ✓ Compiled in 49ms
+[01:22:05.469] Server  LOG      ✓ Compiled in 106ms
+[01:22:09.764] Server  LOG      ✓ Compiled in 113ms
+[01:22:14.053] Server  LOG      ✓ Compiled in 694ms
+[01:22:30.116] Server  LOG      ✓ Compiled in 93ms
+[01:22:40.329] Server  LOG      ✓ Compiled in 204ms
+[01:23:21.134] Server  LOG      ✓ Compiled in 107ms
+[01:23:25.121] Browser LOG     Create room clicked
+[01:23:25.121] Browser LOG     Room created with ID: new-room
+[01:23:25.121] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:23:25.375] Browser LOG     Join room clicked
+[01:23:25.375] Browser LOG     Room created with ID: friend-room
+[01:23:25.840] Browser LOG     Join room clicked
+[01:23:25.840] Browser LOG     Room created with ID: friend-room
+[01:23:25.996] Browser LOG     Join room clicked
+[01:23:25.996] Browser LOG     Room created with ID: friend-room
+[01:23:44.903] Server  LOG      ✓ Compiled in 91ms
+[01:23:54.163] Server  LOG      ✓ Compiled in 94ms
+[01:24:20.280] Server  LOG      ✓ Compiled in 153ms
+[01:24:31.323] Server  LOG      ✓ Compiled in 67ms
+[01:24:36.052] Server  LOG      ✓ Compiled in 106ms
+[01:24:39.888] Browser LOG     Join room clicked
+[01:24:39.888] Browser LOG     Room created with ID: friend-room
+[01:24:40.040] Browser LOG     Join room clicked
+[01:24:40.040] Browser LOG     Room created with ID: friend-room
+[01:24:40.290] Browser LOG     Join room clicked
+[01:24:40.290] Browser LOG     Room created with ID: friend-room
+[01:24:40.774] Browser LOG     Join room clicked
+[01:24:40.774] Browser LOG     Room created with ID: friend-room
+[01:24:41.041] Browser LOG     Join room clicked
+[01:24:41.041] Browser LOG     Room created with ID: friend-room
+[01:24:41.334] Browser LOG     Join room clicked
+[01:24:41.334] Browser LOG     Room created with ID: friend-room
+[01:24:41.598] Browser LOG     Create room clicked
+[01:24:41.598] Browser LOG     Room created with ID: new-room
+[01:24:41.598] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:24:42.141] Browser LOG     Join room clicked
+[01:24:42.141] Browser LOG     Room created with ID: friend-room
+[01:24:42.587] Browser LOG     Join room clicked
+[01:24:42.587] Browser LOG     Room created with ID: friend-room
+[01:24:42.719] Browser LOG     Join room clicked
+[01:24:42.719] Browser LOG     Room created with ID: friend-room
+[01:24:42.865] Browser LOG     Join room clicked
+[01:24:42.865] Browser LOG     Room created with ID: friend-room
+[01:24:43.141] Browser LOG     Create room clicked
+[01:24:43.141] Browser LOG     Room created with ID: new-room
+[01:24:43.141] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[01:24:43.406] Browser LOG     Join room clicked
+[01:24:43.406] Browser LOG     Room created with ID: friend-room
+[01:24:43.752] Browser LOG     Join room clicked
+[01:24:43.752] Browser LOG     Room created with ID: friend-room
+[01:24:44.305] Browser LOG     Join room clicked
+[01:24:44.305] Browser LOG     Room created with ID: friend-room
+[01:24:44.438] Browser LOG     Join room clicked
+[01:24:44.438] Browser LOG     Room created with ID: friend-room
+[01:24:44.690] Browser LOG     Join room clicked
+[01:24:44.690] Browser LOG     Room created with ID: friend-room
+[01:24:44.822] Browser LOG     Join room clicked
+[01:24:44.822] Browser LOG     Room created with ID: friend-room
+[01:28:24.790] Server  LOG      ✓ Compiled in 661ms
+[02:06:19.398] Browser LOG     Join room clicked
+[02:06:19.412] Browser LOG     Room created with ID: friend-room
+[02:06:21.633] Browser LOG     Create room clicked
+[02:06:21.634] Browser LOG     Room created with ID: new-room
+[02:06:21.634] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:06:21.634] Browser LOG     Join room clicked
+[02:06:21.634] Browser LOG     Room created with ID: friend-room
+[02:06:21.996] Browser LOG     Create room clicked
+[02:06:21.997] Browser LOG     Room created with ID: new-room
+[02:06:21.997] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:06:22.431] Browser LOG     Join room clicked
+[02:06:22.478] Browser LOG     Room created with ID: friend-room
+[02:06:22.735] Browser LOG     Join room clicked
+[02:06:22.735] Browser LOG     Room created with ID: friend-room
+[02:06:23.230] Browser LOG     Create room clicked
+[02:06:23.230] Browser LOG     Room created with ID: new-room
+[02:06:23.230] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:06:42.071] Server  LOG      ✓ Compiled in 505ms
+[02:06:59.203] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:06:59.437] Browser WARN    Image with src "lpa26uhctlhihia0mkmf" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[02:06:59.437] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[02:07:09.999] Server  LOG      ✓ Compiled in 130ms
+[02:07:12.495] Browser LOG     Join room clicked
+[02:07:12.495] Browser LOG     Room created with ID: friend-room
+[02:07:12.811] Browser LOG     Join room clicked
+[02:07:12.811] Browser LOG     Room created with ID: friend-room
+[02:07:13.151] Browser LOG     Create room clicked
+[02:07:13.151] Browser LOG     Room created with ID: new-room
+[02:07:13.151] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:07:13.476] Browser LOG     Join room clicked
+[02:07:13.476] Browser LOG     Room created with ID: friend-room
+[02:07:13.636] Browser LOG     Join room clicked
+[02:07:13.636] Browser LOG     Room created with ID: friend-room
+[02:07:13.776] Browser LOG     Join room clicked
+[02:07:13.776] Browser LOG     Room created with ID: friend-room
+[02:07:14.150] Browser LOG     Create room clicked
+[02:07:14.150] Browser LOG     Room created with ID: new-room
+[02:07:14.150] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:07:14.261] Browser LOG     Create room clicked
+[02:07:14.261] Browser LOG     Room created with ID: new-room
+[02:07:14.261] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:07:14.592] Browser LOG     Join room clicked
+[02:07:14.593] Browser LOG     Room created with ID: friend-room
+[02:07:14.722] Browser LOG     Join room clicked
+[02:07:14.722] Browser LOG     Room created with ID: friend-room
+[02:07:15.077] Browser LOG     Join room clicked
+[02:07:15.077] Browser LOG     Room created with ID: friend-room
+[02:07:15.224] Browser LOG     Join room clicked
+[02:07:15.225] Browser LOG     Room created with ID: friend-room
+[02:07:16.209] Browser LOG     Join room clicked
+[02:07:16.209] Browser LOG     Room created with ID: friend-room
+[02:07:16.977] Browser LOG     Create room clicked
+[02:07:16.977] Browser LOG     Room created with ID: new-room
+[02:07:16.977] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:07:17.302] Browser LOG     Join room clicked
+[02:07:17.302] Browser LOG     Room created with ID: friend-room
+[02:07:17.713] Browser LOG     Join room clicked
+[02:07:17.713] Browser LOG     Room created with ID: friend-room
+[02:09:43.350] Browser LOG     Create room clicked
+[02:09:43.363] Browser LOG     Room created with ID: new-room
+[02:09:43.363] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:09:43.429] Browser LOG     Create room clicked
+[02:09:43.429] Browser LOG     Room created with ID: new-room
+[02:09:43.429] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:09:43.630] Browser LOG     Create room clicked
+[02:09:43.632] Browser LOG     Room created with ID: new-room
+[02:09:43.632] Browser ERROR   unhandledRejection: ReferenceError: router is not defined
+[02:09:43.958] Browser LOG     Join room clicked
+[02:09:43.958] Browser LOG     Room created with ID: friend-room
+[02:09:44.092] Browser LOG     Join room clicked
+[02:09:44.092] Browser LOG     Room created with ID: friend-room
+[02:09:44.409] Browser LOG     Join room clicked
+[02:09:44.409] Browser LOG     Room created with ID: friend-room
+[02:09:44.685] Browser LOG     Join room clicked
+[02:09:44.685] Browser LOG     Room created with ID: friend-room
+[02:10:37.265] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:10:37.552] Browser ERROR   Expected `%s` listener to be a function, instead got a value of `%s` type. onClick string
+[02:24:38.617] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/menu/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[02:24:39.421] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:24:41.679] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/lpa26uhctlhihia0mkmf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:24:47.810] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:24:49.626] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:24:53.598] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/lpa26uhctlhihia0mkmf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:24:56.811] Browser ERROR   unhandledRejection: Error: could not coalesce error (error={ "code": -32002, "payload": { "method": "eth_requestAccounts", "params": [  ] } }, payload={ "method": "eth_requestAccounts", "params": [  ] }, code=UNKNOWN_ERROR, version=6.15.0)
+[02:24:57.142] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:24:59.314] Browser ERROR   {"code":"UNKNOWN_ERROR","error":{"code":-32002,"payload":{"method":"eth_requestAccounts","params":[]}},"payload":{"method":"eth_requestAccounts","params":[]},"shortMessage":"could not coalesce error"}
+[02:25:01.933] Browser ERROR   {"code":"UNKNOWN_ERROR","error":{"code":-32002,"payload":{"method":"eth_requestAccounts","params":[]}},"payload":{"method":"eth_requestAccounts","params":[]},"shortMessage":"could not coalesce error"}
+[02:25:54.703] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/menu/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[02:25:54.712] Server  LOG      ✓ Compiled in 9.2s
+[02:25:58.368] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:26:00.944] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[02:26:26.829] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__d334ffa4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[02:26:26.836] Server  ERROR    ⨯ ReferenceError: tokenbalance is not defined
+[02:26:27.216] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:26:27.407] Browser ERROR   uncaughtError: ReferenceError: tokenbalance is not defined
+[02:27:13.374] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[02:27:13.402] Server  ERROR    ⨯ ReferenceError: tokenbalance is not defined
+[02:27:13.755] Server  LOG      ✓ Compiled in 1488ms
+[02:27:14.835] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:27:15.406] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:27:15.734] Browser ERROR   uncaughtError: ReferenceError: tokenbalance is not defined
+[02:29:12.846] Server  LOG      ✓ Compiled in 626ms
+[02:29:12.850] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:29:13.700] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[02:29:13.709] Server  ERROR    ⨯ ReferenceError: tokenbalance is not defined
+[02:29:14.444] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:29:14.774] Browser ERROR   uncaughtError: ReferenceError: tokenbalance is not defined
+[02:29:26.631] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[02:29:26.666] Server  LOG      ✓ Compiled in 132ms
+[02:29:27.078] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[02:29:27.080] Server  ERROR    ⨯ ReferenceError: tokenbalance is not defined
+[02:29:27.593] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[02:29:27.862] Browser ERROR   uncaughtError: ReferenceError: tokenbalance is not defined
+[02:30:19.564] Server  LOG      ✓ Compiled in 318ms
+[02:30:19.681] Browser ERROR   ./app/menu/page.js:176:2
+Parsing ecmascript source code failed
+  174 |     </div>
+  175 |   );
+> 176 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[02:30:33.411] Browser ERROR   ./app/menu/page.js:177:2
+Parsing ecmascript source code failed
+  175 |     </div>
+  176 |   );
+> 177 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[03:39:13.811] Browser ERROR   ./app/menu/page.js:177:2
+Parsing ecmascript source code failed
+  175 |     </div>
+  176 |   );
+> 177 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[03:39:14.557] Browser ERROR   ./app/menu/page.js:177:2
+Parsing ecmascript source code failed
+  175 |     </div>
+  176 |   );
+> 177 | }
+      |  ^
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[03:41:09.666] Server  LOG      ✓ Compiled in 358ms
+[03:41:09.677] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:41:12.218] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:41:12.224] Server  ERROR    ⨯ ReferenceError: tokenbalance is not defined
+[03:41:13.305] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:41:13.768] Browser ERROR   uncaughtError: ReferenceError: tokenbalance is not defined
+[03:42:19.200] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:42:19.201] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:42:19.238] Server  LOG      ✓ Compiled in 86ms
+[03:42:19.548] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:42:19.550] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[turbopack]_runtime.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:42:19.595] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:42:19.602] Server  ERROR    ⨯ ReferenceError: username is not defined
+[03:42:20.009] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:42:20.303] Browser ERROR   uncaughtError: ReferenceError: username is not defined
+[03:47:00.617] Server  LOG      ✓ Compiled in 310ms
+[03:47:00.774] Browser ERROR   ./app/menu/page.js:168:5
+Parsing ecmascript source code failed
+  166 |       </div>
+  167 |     </div>
+> 168 |   );
+      |     ^
+  169 |
+
+Expected '}', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[03:47:09.697] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:47:09.699] Server  WARN     ⚠ Fast Refresh had to perform a full reload when ./app/menu/page.js changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[03:47:09.700] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:47:09.703] Server  LOG      ✓ Compiled in 403ms
+[03:47:11.490] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:47:11.494] Server  ERROR    ⨯ ReferenceError: tokenbalance is not defined
+[03:47:12.237] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:47:12.601] Browser ERROR   uncaughtError: ReferenceError: tokenbalance is not defined
+[03:49:17.531] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:49:17.583] Server  LOG      ✓ Compiled in 116ms
+[03:49:18.003] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__c816fc60._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[03:49:18.012] Server  ERROR    ⨯ ReferenceError: BuyToken is not defined
+[03:49:18.678] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:49:18.918] Browser ERROR   uncaughtError: ReferenceError: BuyToken is not defined
+[03:51:08.786] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[03:51:08.818] Server  LOG      ✓ Compiled in 96ms
+[03:51:09.761] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:51:10.422] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:51:12.792] Browser ERROR   {"code":"UNKNOWN_ERROR","error":{"code":-32002,"payload":{"method":"eth_requestAccounts","params":[]}},"payload":{"method":"eth_requestAccounts","params":[]},"shortMessage":"could not coalesce error"}
+[03:51:23.398] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:51:23.746] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:52:09.919] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:52:10.436] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
