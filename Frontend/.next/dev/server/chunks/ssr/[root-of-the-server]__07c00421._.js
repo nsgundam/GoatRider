@@ -15,7 +15,13 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react-jsx-dev-runtime.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/server/route-modules/app-page/vendored/ssr/react.js [app-ssr] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$cloudinary$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next-cloudinary/dist/index.mjs [app-ssr] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/utils/auth'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 "use client";
+;
 ;
 ;
 ;
@@ -85,7 +91,7 @@ function Welcomepage() {
                 alt: "goat rider homepage"
             }, void 0, false, {
                 fileName: "[project]/app/homepage/page.js",
-                lineNumber: 61,
+                lineNumber: 62,
                 columnNumber: 5
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -96,7 +102,7 @@ function Welcomepage() {
                         children: "Goat "
                     }, void 0, false, {
                         fileName: "[project]/app/homepage/page.js",
-                        lineNumber: 69,
+                        lineNumber: 70,
                         columnNumber: 5
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -104,29 +110,29 @@ function Welcomepage() {
                         children: "Ridder "
                     }, void 0, false, {
                         fileName: "[project]/app/homepage/page.js",
-                        lineNumber: 70,
+                        lineNumber: 71,
                         columnNumber: 5
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/homepage/page.js",
-                lineNumber: 68,
+                lineNumber: 69,
                 columnNumber: 1
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                onClick: handleConnectWallet,
+                onClick: auth.handleLogin,
                 disabled: loading || wallet,
                 className: "text-2xl absolute top-140 right-240 px-20 py-5 font-normal  bg-blue-50 text-black rounded none hover:bg-blue-100 transition-colors duration-300",
                 children: loading ? "Connecting..." : "Connect Wallet"
             }, void 0, false, {
                 fileName: "[project]/app/homepage/page.js",
-                lineNumber: 74,
+                lineNumber: 75,
                 columnNumber: 5
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/homepage/page.js",
-        lineNumber: 60,
+        lineNumber: 61,
         columnNumber: 3
     }, this);
 }

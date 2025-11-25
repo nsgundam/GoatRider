@@ -9,8 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@rainbow-me/rainbowkit": "^2.2.9",
     "geist": "^1.5.1",
+=======
+    "ethers": "^6.15.0",
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
     "next": "16.0.3",
     "next-cloudinary": "^6.17.5",
     "react": "19.2.0",
