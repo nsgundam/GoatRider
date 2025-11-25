@@ -5,13 +5,13 @@ import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
-// ข้อความสำหรับ Sign (ต้องตรงกับ Frontend)
+// ข้อความสำหรับ Sign
 const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
 const TOKEN_ABI = [
     "function transfer(address to, uint256 amount) returns (bool)"
 ];
 
-// --- สร้าง Token ---
+// สร้าง Token สำหรับการยืนยันตัวตน
 const generateToken = (walletAddress: string) => {
     return jwt.sign(
         { walletAddress },
