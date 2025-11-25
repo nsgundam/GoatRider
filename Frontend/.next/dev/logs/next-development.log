@@ -1,5 +1,14 @@
+<<<<<<< HEAD
 [00:00:04.921] Server  LOG      ✓ Ready in 3.8s
 [00:00:09.013] Server  LOG      ○ Compiling / ...
 [00:00:33.901] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
 [00:00:39.034] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
 [00:01:13.745] Browser LOG     Connect button clicked (debug)
+=======
+[00:00:00.902] Server  LOG      ✓ Ready in 676ms
+[00:00:05.640] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:19.339] Browser ERROR   [CldImage] Failed to load image qy3vo3jhmpocodpavgrf: Resource not found - qy3vo3jhmpocodpavgrf
+[00:00:40.159] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:41.759] Browser ERROR   [CldImage] Failed to load image qy3vo3jhmpocodpavgrf: Unknown error
+[00:01:04.066] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd

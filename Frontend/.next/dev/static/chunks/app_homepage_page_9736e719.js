@@ -9,9 +9,15 @@ __turbopack_context__.s([
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$cloudinary$2f$dist$2f$index$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next-cloudinary/dist/index.mjs [app-client] (ecmascript)");
+(()=>{
+    const e = new Error("Cannot find module '@/utils/auth'");
+    e.code = 'MODULE_NOT_FOUND';
+    throw e;
+})();
 ;
 var _s = __turbopack_context__.k.signature();
 "use client";
+;
 ;
 ;
 function Welcomepage() {
@@ -103,8 +109,13 @@ function Welcomepage() {
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
                 lineNumber: 82,
                 columnNumber: 7
+=======
+                lineNumber: 62,
+                columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "absolute inset-0 flex flex-col items-center justify-center text-center gap-8 px-4 z-20",
@@ -114,14 +125,20 @@ function Welcomepage() {
                         children: "Goat"
                     }, void 0, false, {
                         fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
                         lineNumber: 95,
                         columnNumber: 9
+=======
+                        lineNumber: 70,
+                        columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-5xl md:text-7xl lg:text-[150px] font-bold text-white -mt-6",
                         children: "Ridder"
                     }, void 0, false, {
                         fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
                         lineNumber: 96,
                         columnNumber: 9
                     }, this),
@@ -146,10 +163,15 @@ function Welcomepage() {
                         fileName: "[project]/app/homepage/page.js",
                         lineNumber: 112,
                         columnNumber: 11
+=======
+                        lineNumber: 71,
+                        columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
                 lineNumber: 93,
                 columnNumber: 7
             }, this),
@@ -224,12 +246,31 @@ function Welcomepage() {
                 fileName: "[project]/app/homepage/page.js",
                 lineNumber: 118,
                 columnNumber: 9
+=======
+                lineNumber: 69,
+                columnNumber: 1
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                onClick: auth.handleLogin,
+                disabled: loading || wallet,
+                className: "text-2xl absolute top-140 right-240 px-20 py-5 font-normal  bg-blue-50 text-black rounded none hover:bg-blue-100 transition-colors duration-300",
+                children: loading ? "Connecting..." : "Connect Wallet"
+            }, void 0, false, {
+                fileName: "[project]/app/homepage/page.js",
+                lineNumber: 75,
+                columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
         lineNumber: 81,
         columnNumber: 5
+=======
+        lineNumber: 61,
+        columnNumber: 3
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
     }, this);
 } // Notes:
  // - The important fix: check `typeof window` before accessing `window.ethereum`. That avoids errors during SSR.
