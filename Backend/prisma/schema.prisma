@@ -49,7 +49,6 @@ model Room {
   roomName             String
   requiredStake        Int
   maxPlayers           Int
-  password             String?
   status               RoomStatus @default(WAITING)
   createdAt            DateTime   @default(now())
   
