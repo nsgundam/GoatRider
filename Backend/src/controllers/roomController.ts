@@ -62,3 +62,28 @@ export const getRooms = async (req: AuthRequest, res: Response): Promise<void> =
         res.status(500).json({ error: "Failed to fetch rooms" });
     }
 };
+
+// ==========================================
+// [TEST ONLY] จำลองการจ่ายเงิน (Mock Payment)
+// ==========================================
+export const mockPayment = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        const { roomId, walletAddress } = req.body;
+        
+        // 1. อัปเดต DB เหมือน Listener ตัวจริง
+        await prisma.playerRoomState.update({
+            where: {
+                roomId_walletAddress: { roomId, walletAddress }
+            },
+            data: { isReady: true }
+        });
+
+        // 2. (ข้อจำกัด: เราไม่มี access ถึง object 'io' ตรงนี้ง่ายๆ)
+        // แต่ไม่เป็นไร แค่เช็ค DB ว่าเปลี่ยนเป็น true ก็พอแล้วสำหรับการเทสเบื้องต้น
+        
+        res.json({ message: `Mock payment success for ${walletAddress} in room ${roomId}` });
+
+    } catch (error) {
+        res.status(500).json({ error: "Mock payment failed" });
+    }
+};

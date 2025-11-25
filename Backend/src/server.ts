@@ -9,6 +9,7 @@ import { PrismaClient } from '@prisma/client';
 import authRoutes from './routes/authRoutes'; 
 import roomRoutes from './routes/roomRoutes';
 import { roomHandler } from './sockets/roomHandler';
+import { initBlockchainListener } from './services/blockchainService';
 
 dotenv.config();
 
@@ -60,7 +61,7 @@ io.on('connection', (socket) => {
     });
 });
 
-
+initBlockchainListener(io);
 
 // --- Start Server ---
 const PORT = process.env.PORT || 3001;
