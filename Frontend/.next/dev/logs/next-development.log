@@ -1,145 +1,427 @@
-<<<<<<< HEAD
-[00:00:04.921] Server  LOG      ✓ Ready in 3.8s
-[00:00:09.013] Server  LOG      ○ Compiling / ...
-[00:00:33.901] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:39.034] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:01:13.745] Browser LOG     Connect button clicked (debug)
-=======
-[00:00:00.902] Server  LOG      ✓ Ready in 676ms
-[00:00:05.640] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:00:19.339] Browser ERROR   [CldImage] Failed to load image qy3vo3jhmpocodpavgrf: Resource not found - qy3vo3jhmpocodpavgrf
-[00:00:40.159] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:41.759] Browser ERROR   [CldImage] Failed to load image qy3vo3jhmpocodpavgrf: Unknown error
-[00:01:04.066] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
->>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
-[03:54:45.999] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.146] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.284] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.305] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.312] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.332] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.358] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.375] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.393] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:46.410] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:49.192] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.208] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.211] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.213] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.214] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.215] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.227] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.243] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.261] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.347] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:49.476] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.496] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.547] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.598] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.631] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.693] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.792] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.859] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.942] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:49.992] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:50.080] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.096] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.110] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.113] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.125] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.140] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.148] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.161] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.164] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.177] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:50.240] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.249] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.261] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.263] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.275] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.292] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.322] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.329] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.348] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.374] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:50.441] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.459] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.463] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.475] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.478] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.483] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.494] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.495] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.499] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.507] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:50.559] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.571] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.577] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.580] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.591] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.607] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.609] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.613] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.629] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.644] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:50.707] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.715] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.730] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.743] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.747] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.756] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.798] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.821] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.829] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:50.846] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:51.280] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.291] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.293] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.297] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.308] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.326] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.364] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.430] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.475] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:51.508] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:52.063] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.080] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.090] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.093] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.097] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.098] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.106] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.108] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.110] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:52.113] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:54:53.170] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.175] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.181] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_be4d7e34._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.189] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.193] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.196] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.198] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.204] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.208] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:54:53.212] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:55:04.261] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.375] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.560] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_next_dist_2f87da1c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.562] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.562] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.563] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.564] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.568] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.569] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:04.570] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
-[03:55:04.589] Server  LOG      ✓ Compiled in 10.4s
-[03:55:05.647] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\load-manifest.external.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.657] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.665] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\node_modules_next_dist_2f87da1c._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.677] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.680] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.682] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.689] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.690] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.694] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
-[03:55:05.695] Server  ERROR    ⨯ SyntaxError: Expected property name or '}' in JSON at position 102 (line 7 column 1)
+[00:00:02.763] Server  LOG      ✓ Ready in 1973ms
+[00:00:05.894] Server  LOG      ○ Compiling / ...
+[00:00:12.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:13.055] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:16.857] Browser ERROR   {"code":"UNKNOWN_ERROR","error":{"code":-32002,"payload":{"method":"eth_requestAccounts","params":[]}},"payload":{"method":"eth_requestAccounts","params":[]},"shortMessage":"could not coalesce error"}
+[00:01:16.057] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:47.976] Server  LOG      ✓ Compiled in 1015ms
+[00:03:51.412] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:51.993] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/lpa26uhctlhihia0mkmf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:04:08.181] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:04:51.763] Server  LOG      ✓ Compiled in 470ms
+[00:05:29.768] Server  LOG      ✓ Compiled in 62ms
+[00:06:48.551] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:07:05.954] Server  LOG      ✓ Compiled in 96ms
+[00:13:41.963] Server  LOG      ✓ Compiled in 326ms
+[00:14:55.502] Server  LOG      ✓ Compiled in 155ms
+[00:15:05.875] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:06.434] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/lpa26uhctlhihia0mkmf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:15:51.965] Server  LOG      ✓ Compiled in 1052ms
+[00:15:52.080] Browser ERROR   ./app/page.tsx:231:1
+Parsing ecmascript source code failed
+  229 |     </div>
+  230 |   );
+> 231 | }
+      | ^
+  232 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:16:39.487] Server  LOG      ✓ Compiled in 68ms
+[00:16:49.863] Server  LOG      ✓ Compiled in 73ms
+[00:16:49.979] Browser ERROR   ./app/page.tsx:221:1
+Parsing ecmascript source code failed
+  219 |     </div>
+  220 |   );
+> 221 | }
+      | ^
+  222 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:16:56.606] Server  LOG      ✓ Compiled in 97ms
+[00:16:56.713] Browser ERROR   ./app/page.tsx:218:10
+Parsing ecmascript source code failed
+  216 |           </div>
+  217 |           </div>
+> 218 |         </div>
+      |          ^^^^^
+  219 |       )}
+  220 |     </div>
+  221 |   );
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:17:04.024] Server  LOG      ✓ Compiled in 45ms
+[00:17:04.129] Browser ERROR   ./app/page.tsx:221:1
+Parsing ecmascript source code failed
+  219 |     </div>
+  220 |   );
+> 221 | }
+      | ^
+  222 |
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:17:34.307] Server  LOG      ✓ Compiled in 83ms
+[00:17:34.435] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:18:20.382] Server  LOG      ✓ Compiled in 192ms
+[00:18:33.734] Server  LOG      ✓ Compiled in 78ms
+[00:18:37.606] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_640/f_auto/q_auto/v1/namegamegoat?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:18:41.605] Server  LOG      ✓ Compiled in 91ms
+[00:18:45.757] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_2048/f_auto/q_auto/v1/namegamegoat?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:18:55.062] Server  LOG      ✓ Compiled in 66ms
+[00:19:02.012] Server  LOG      ✓ Compiled in 61ms
+[00:19:05.049] Server  LOG      ✓ Compiled in 111ms
+[00:19:05.141] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/namegamegoat?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:19:11.831] Server  LOG      ✓ Compiled in 86ms
+[00:25:59.208] Server  LOG      ✓ Compiled in 264ms
+[00:31:19.917] Server  LOG      ✓ Compiled in 749ms
+[00:31:28.348] Server  LOG      ✓ Compiled in 106ms
+[00:31:47.131] Server  LOG      ✓ Compiled in 72ms
+[00:32:06.761] Server  LOG      ✓ Compiled in 114ms
+[00:32:11.396] Server  LOG      ✓ Compiled in 72ms
+[00:32:16.031] Server  LOG      ✓ Compiled in 112ms
+[00:32:23.549] Server  LOG      ✓ Compiled in 89ms
+[00:32:55.308] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:33:54.646] Server  LOG      ✓ Compiled in 105ms
+[00:34:12.028] Server  LOG      ✓ Compiled in 66ms
+[00:37:02.183] Server  LOG      ✓ Compiled in 235ms
+[00:37:07.332] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:37:30.203] Server  LOG      ✓ Compiled in 91ms
+[00:38:01.747] Server  LOG      ✓ Compiled in 99ms
+[00:39:17.097] Server  LOG      ✓ Compiled in 986ms
+[00:39:17.207] Browser ERROR   ./app/page.tsx:228:5
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |     </div>
+      |     ^
+  229 |   );
+  230 | }
+  231 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:17.207] Browser ERROR   ./app/page.tsx:228:6
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |     </div>
+      |      ^^^^^
+  229 |   );
+  230 | }
+  231 |
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:33.816] Browser ERROR   ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:37.597] Server  ERROR    ⨯ ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:39:37.733] Browser ERROR   ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:40.534] Browser ERROR   ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:40.621] Server  LOG      ○ Compiling /_error ...
+[00:39:40.934] Browser ERROR   ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:44.600] Browser ERROR   uncaughtError: Error: ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+
+
+[00:39:44.894] Browser ERROR   ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:45.551] Browser ERROR   ./app/page.tsx:228:3
+Parsing ecmascript source code failed
+  226 |         </div>
+  227 |       )}
+> 228 |   );
+      |   ^
+  229 | }
+  230 |
+
+Expression expected
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[00:39:51.791] Server  LOG      ✓ Compiled in 117ms
+[00:39:54.324] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:54.749] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:40:15.455] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:27.539] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:29.275] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:41:11.733] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":null,"location":"confirmation"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:41:41.016] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:45.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:46.002] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:42:30.551] Browser ERROR   {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":null,"location":"confirmation"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x1081517748ff543a1b2f940fe132810f9cb23a30"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:53:26.207] Server  LOG      ✓ Compiled in 962ms
+[00:53:45.718] Server  LOG      ✓ Compiled in 102ms
+[00:55:04.503] Server  LOG      ✓ Compiled in 163ms
+[00:55:05.596] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__31c4daa8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:05.606] Server  ERROR    ⨯ ReferenceError: baloo is not defined
+[00:55:06.163] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\[root-of-the-server]__31c4daa8._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[00:55:06.164] Server  ERROR    ⨯ ReferenceError: baloo is not defined
+[00:55:07.320] Browser ERROR   uncaughtError: ReferenceError: baloo is not defined
+[00:55:21.183] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:55:21.184] Server  LOG      ✓ Compiled in 1794ms
+[00:55:21.248] Server  WARN     ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+[00:55:28.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:55:32.403] Browser WARN    Image with src "namegamegoat" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:57:40.926] Server  LOG      ✓ Compiled in 839ms
+[00:58:05.767] Server  LOG      ✓ Compiled in 238ms
+[00:59:32.182] Server  LOG      ✓ Compiled in 1851ms
+[00:59:42.165] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:49.684] Server  LOG      ✓ Compiled in 1196ms
+[01:04:54.775] Server  LOG      ✓ Compiled in 216ms
+[01:05:15.680] Server  LOG      ✓ Compiled in 180ms
+[01:05:25.486] Server  LOG      ✓ Compiled in 112ms
+[01:06:20.096] Server  LOG      ✓ Compiled in 355ms
+[01:06:20.401] Browser ERROR   ./app/page.tsx:244:16
+Parsing ecmascript source code failed
+  242 |                 >x</input>
+  243 |                 maxLength={15}
+> 244 |               />
+      |                ^
+  245 |
+  246 |               <button
+  247 |                 type="submit"
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[01:06:56.220] Browser ERROR   ./app/page.tsx:244:16
+Parsing ecmascript source code failed
+  242 |                 maxLength={15}
+  243 |                 >x</input>
+> 244 |               />
+      |                ^
+  245 |
+  246 |               <button
+  247 |                 type="submit"
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import traces:
+  Client Component Browser:
+    ./app/page.tsx [Client Component Browser]
+    ./app/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./app/page.tsx [Client Component SSR]
+    ./app/page.tsx [Server Component]
+[01:07:06.518] Server  LOG      ✓ Compiled in 146ms
+[01:07:29.129] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:07:46.318] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:09:57.650] Server  LOG      ✓ Compiled in 376ms
+[01:10:02.002] Server  LOG      ✓ Compiled in 103ms
+[01:10:08.893] Server  LOG      ✓ Compiled in 163ms
+[01:10:54.521] Server  LOG      ✓ Compiled in 122ms
+[01:11:05.265] Server  LOG      ✓ Compiled in 71ms
+[01:11:14.587] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:11:14.808] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:11:36.157] Server  LOG      ✓ Compiled in 101ms
+[01:11:39.148] Server  LOG      ✓ Compiled in 152ms
+[01:11:58.122] Server  LOG      ✓ Compiled in 85ms
+[01:12:26.614] Server  LOG      ✓ Compiled in 97ms
+[01:12:30.320] Server  LOG      ✓ Compiled in 123ms
+[01:12:53.472] Server  LOG      ✓ Compiled in 148ms
+[01:15:50.592] Server  LOG      ✓ Compiled in 951ms
+[01:16:17.935] Server  LOG      ✓ Compiled in 340ms
+[01:16:59.650] Server  LOG      ✓ Compiled in 142ms
+[01:17:13.767] Server  LOG      ✓ Compiled in 133ms
+[01:17:24.593] Server  LOG      ✓ Compiled in 118ms
+[01:17:28.022] Server  LOG      ✓ Compiled in 132ms
+[01:17:31.605] Server  LOG      ✓ Compiled in 159ms
+[01:17:35.295] Server  LOG      ✓ Compiled in 231ms
+[01:17:38.357] Server  LOG      ✓ Compiled in 91ms
+[01:17:44.275] Server  LOG      ✓ Compiled in 93ms
+[01:17:47.898] Server  LOG      ✓ Compiled in 101ms
+[01:18:11.614] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:18:12.054] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:20:34.828] Server  LOG      ✓ Compiled in 260ms
+[01:20:58.727] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold

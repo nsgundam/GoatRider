@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-
+import { Baloo_2 } from "next/font/google";
+const baloo = Baloo_2({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-baloo",
+});
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -23,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={baloo.className}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
