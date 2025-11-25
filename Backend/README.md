@@ -40,7 +40,9 @@ JWT_SECRET="super_secret_key_change_this_in_production"
 
 ### 4. Database Setup
 # สร้างตารางใน Database (Migration)
+```bash
 npx prisma migrate dev --name init_db
+```
 
 ### 5. Run Server
 # รันโหมด Developer (Auto-restart)
