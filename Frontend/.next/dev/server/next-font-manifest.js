@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-self.__NEXT_FONT_MANIFEST="{\n  \"app\": {\n    \"[project]/app/_not-found/page\": [\n      \"static/media/Geist_Variable-s.p.f19e4721.woff2\",\n      \"static/media/GeistMono_Variable.p.73882635.woff2\"\n    ],\n    \"[project]/app/page\": [\n      \"static/media/Geist_Variable-s.p.f19e4721.woff2\",\n      \"static/media/GeistMono_Variable.p.73882635.woff2\"\n    ]\n  },\n  \"appUsingSizeAdjust\": true,\n  \"pages\": {},\n  \"pagesUsingSizeAdjust\": false\n}"
-=======
-self.__NEXT_FONT_MANIFEST="{\n  \"app\": {\n    \"[project]/app/homepage/page\": [\n      \"static/media/caa3a2e1cccd8315-s.p.853070df.woff2\",\n      \"static/media/797e433ab948586e-s.p.dbea232f.woff2\"\n    ],\n    \"[project]/app/page\": [\n      \"static/media/caa3a2e1cccd8315-s.p.853070df.woff2\",\n      \"static/media/797e433ab948586e-s.p.dbea232f.woff2\"\n    ]\n  },\n  \"appUsingSizeAdjust\": true,\n  \"pages\": {},\n  \"pagesUsingSizeAdjust\": false\n}"
->>>>>>> 3cf3e16a05befcec0aacfdca355f726686da4fb6
+self.__NEXT_FONT_MANIFEST="{\n  \"app\": {},\n  \"appUsingSizeAdjust\": false,\n  \"pages\": {},\n  \"pagesUsingSizeAdjust\": false\n}"
