@@ -1,4 +1,3 @@
-// src/controllers/authController.ts
 import { Request, Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { ethers } from 'ethers';
@@ -9,7 +8,7 @@ const prisma = new PrismaClient();
 // ข้อความสำหรับ Sign (ต้องตรงกับ Frontend)
 const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
 
-// --- Helper Function: สร้าง Token ---
+// --- สร้าง Token ---
 const generateToken = (walletAddress: string) => {
     return jwt.sign(
         { walletAddress },
@@ -18,9 +17,7 @@ const generateToken = (walletAddress: string) => {
     );
 };
 
-// ==========================================
 // 1. LOGIN: เช็คว่ามี User ไหม
-// ==========================================
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
         const { walletAddress, signature } = req.body;
@@ -30,7 +27,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
              return;
         }
 
-        // 1. ตรวจสอบลายเซ็น (Verify Signature)
+        // 1. ตรวจสอบลายเซ็น
         const recoveredAddress = ethers.verifyMessage(SIGN_MESSAGE, signature);
         if (recoveredAddress.toLowerCase() !== walletAddress.toLowerCase()) {
              res.status(401).json({ error: "Invalid signature" });
@@ -74,9 +71,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     }
 };
 
-// ==========================================
 // 2. REGISTER: ลงทะเบียนพร้อมชื่อ
-// ==========================================
 export const register = async (req: Request, res: Response): Promise<void> => {
     try {
         const { walletAddress, signature, username } = req.body;
