@@ -1,37 +1,5 @@
-[00:00:01.643] Server  LOG      ✓ Ready in 1124ms
-[00:00:06.855] Server  LOG      ○ Compiling /homepage ...
-[00:00:11.227] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:11.367] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:03:55.514] Server  LOG      ✓ Compiled in 81ms
-[00:04:28.081] Server  LOG      ✓ Compiled in 86ms
-[00:04:32.098] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:04:32.252] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:05:45.460] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:52.214] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:05:56.546] Browser ERROR   [CldImage] Failed to load image qy3vo3jhmpocodpavgrf: Resource not found - qy3vo3jhmpocodpavgrf
-[00:10:06.168] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:53.301] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:11:53.420] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:13:24.400] Server  LOG      ✓ Compiled in 151ms
-[00:16:54.316] Server  LOG      ✓ Compiled in 166ms
-[00:16:57.509] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:16:57.663] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:16:58.679] Browser LOG     Connect button clicked (debug)
-[00:17:33.248] Browser LOG     Submitting (frontend test naja): {"name":"pat","wallet":"0x1081517748ff543a1b2f940fe132810f9cb23a30"}
-[00:18:22.247] Browser LOG     Connect button clicked (debug)
-[00:55:19.062] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:55:19.214] Browser WARN    Image with src "http://localhost:3000/vercel.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:55:57.735] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:56:00.981] Browser LOG     Connect button clicked (debug)
-[00:56:22.296] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:56:23.264] Browser LOG     Connect button clicked (debug)
-[00:57:22.418] Server  LOG      ✓ Compiled in 169ms
-[00:57:59.322] Server  LOG      ✓ Compiled in 55ms
-[00:58:30.605] Server  LOG      ✓ Compiled in 58ms
-[00:58:50.102] Server  LOG      ✓ Compiled in 52ms
-[00:59:04.500] Server  LOG      ✓ Compiled in 66ms
-[00:59:29.891] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:59:30.910] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
-[00:59:31.826] Browser LOG     Connect button clicked (debug)
-[01:19:10.561] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:19:11.074] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:04.921] Server  LOG      ✓ Ready in 3.8s
+[00:00:09.013] Server  LOG      ○ Compiling / ...
+[00:00:33.901] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:39.034] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qy3vo3jhmpocodpavgrf?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:01:13.745] Browser LOG     Connect button clicked (debug)
