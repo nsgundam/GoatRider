@@ -32,29 +32,19 @@ function Welcomepage() {
     const [showpopup, setshowpopup] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(false);
     const [name, setname] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     //-----------------------------------------------------------//
-    //มีMATAMASKบ่อ้าย
+    // Connect to MetaMask (safe for SSR) 
     async function handleConnectWallet() {
         seterror("");
-        if (!window?.ethereum) {
-            alert("Please install Metamask"); //ไปติดตั้งก่อนเด้ออ้าย
+        // Protect against server-side execution: window is only available in the browser
+        if ("TURBOPACK compile-time truthy", 1) {
+            console.warn("handleConnectWallet called on the server. Abort.");
+            seterror("This action must be performed in a browser.");
             return;
         }
-        try {
-            setloading(true);
-            const accounts = await window.ethereum.request({
-                method: "eth_requestAccounts"
-            });
-            const account = accounts[0];
-            setwallet(account);
-            //------------------------popup------------------------------//
-            setshowpopup(true);
-            setloading(false);
-        } catch (err) {
-            console.error(err);
-            seterror("Failed to connect wallet");
-        } finally{
-            setloading(false);
-        }
+        //TURBOPACK unreachable
+        ;
+        // Now it's safe to read window.ethereum
+        const provider = undefined;
     }
     //-----------------------------------------------------------//
     async function summitname(e) {
@@ -81,41 +71,161 @@ function Welcomepage() {
     }
     //-----------------------------------------------------------//
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "w-full h-screen relative",
+        className: "relative w-full h-screen",
         children: [
-            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$cloudinary$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CldImage"], {
-                src: "qy3vo3jhmpocodpavgrf",
-                width: 1920,
-                height: 1080,
-                className: "w-full h-full object-cover",
-                alt: "goat rider homepage"
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "absolute inset-0 -z-10 pointer-events-none",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2d$cloudinary$2f$dist$2f$index$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CldImage"], {
+                    src: "qy3vo3jhmpocodpavgrf",
+                    width: 1920,
+                    height: 1080,
+                    className: "w-full h-full object-cover pointer-events-none",
+                    alt: "goat rider homepage"
+                }, void 0, false, {
+                    fileName: "[project]/app/homepage/page.js",
+                    lineNumber: 83,
+                    columnNumber: 9
+                }, this)
             }, void 0, false, {
                 fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
+                lineNumber: 82,
+                columnNumber: 7
+=======
                 lineNumber: 62,
                 columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                className: "",
+                className: "absolute inset-0 flex flex-col items-center justify-center text-center gap-8 px-4 z-20",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-[120px] font-bold text-white absolute top-[200px] left-[600px]",
-                        children: "Goat "
+                        className: "text-5xl md:text-7xl lg:text-[150px] font-bold text-white",
+                        children: "Goat"
                     }, void 0, false, {
                         fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
+                        lineNumber: 95,
+                        columnNumber: 9
+=======
                         lineNumber: 70,
                         columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-[150px] font-bold text-white absolute top-[300px] left-[600px]",
-                        children: "Ridder "
+                        className: "text-5xl md:text-7xl lg:text-[150px] font-bold text-white -mt-6",
+                        children: "Ridder"
                     }, void 0, false, {
                         fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
+                        lineNumber: 96,
+                        columnNumber: 9
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: ()=>{
+                            console.log("Connect button clicked (debug)");
+                            handleConnectWallet();
+                        },
+                        // only disable while loading; let wallet state be shown but not block reconnect attempts
+                        disabled: loading,
+                        className: "z-30 pointer-events-auto text-2xl font-normal bg-blue-50 text-black rounded-none hover:bg-blue-100 transition-colors duration-300 px-6 py-3 disabled:opacity-60 disabled:cursor-not-allowed",
+                        children: loading ? "Connecting..." : "Connect Wallet"
+                    }, void 0, false, {
+                        fileName: "[project]/app/homepage/page.js",
+                        lineNumber: 98,
+                        columnNumber: 9
+                    }, this),
+                    error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "mt-2 text-red-200 bg-red-900/30 px-3 py-1 rounded-md",
+                        children: error
+                    }, void 0, false, {
+                        fileName: "[project]/app/homepage/page.js",
+                        lineNumber: 112,
+                        columnNumber: 11
+=======
                         lineNumber: 71,
                         columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
+                lineNumber: 93,
+                columnNumber: 7
+            }, this),
+            showpopup && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "fixed inset-0 z-40 flex items-center justify-center bg-black/50",
+                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                    className: "bg-white p-6 rounded-md max-w-sm w-full",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                            className: "text-black text-lg font-semibold",
+                            children: "Enter your name"
+                        }, void 0, false, {
+                            fileName: "[project]/app/homepage/page.js",
+                            lineNumber: 120,
+                            columnNumber: 13
+                        }, this),
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("form", {
+                            onSubmit: summitname,
+                            className: "mt-3",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                    value: name,
+                                    onChange: (e)=>setname(e.target.value),
+                                    className: "w-full px-3 py-2 border rounded-md",
+                                    placeholder: "Your name"
+                                }, void 0, false, {
+                                    fileName: "[project]/app/homepage/page.js",
+                                    lineNumber: 122,
+                                    columnNumber: 15
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    className: "mt-3 flex justify-end gap-2",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "button",
+                                            onClick: ()=>setshowpopup(false),
+                                            className: " text-black px-3 py-2 border rounded-md",
+                                            children: "Cancel"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/homepage/page.js",
+                                            lineNumber: 129,
+                                            columnNumber: 17
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            type: "submit",
+                                            className: "px-3 py-2 bg-blue-600 text-white rounded-md",
+                                            children: "Submit"
+                                        }, void 0, false, {
+                                            fileName: "[project]/app/homepage/page.js",
+                                            lineNumber: 130,
+                                            columnNumber: 17
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/app/homepage/page.js",
+                                    lineNumber: 128,
+                                    columnNumber: 15
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/app/homepage/page.js",
+                            lineNumber: 121,
+                            columnNumber: 13
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/app/homepage/page.js",
+                    lineNumber: 119,
+                    columnNumber: 11
+                }, this)
+            }, void 0, false, {
+                fileName: "[project]/app/homepage/page.js",
+                lineNumber: 118,
+                columnNumber: 9
+=======
                 lineNumber: 69,
                 columnNumber: 1
             }, this),
@@ -128,14 +238,23 @@ function Welcomepage() {
                 fileName: "[project]/app/homepage/page.js",
                 lineNumber: 75,
                 columnNumber: 5
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/homepage/page.js",
+<<<<<<< HEAD
+        lineNumber: 81,
+        columnNumber: 5
+=======
         lineNumber: 61,
         columnNumber: 3
+>>>>>>> 78940119c9bdf8a4c1df0b5093f564efe3c929bd
     }, this);
-}
+} // Notes:
+ // - The important fix: check `typeof window` before accessing `window.ethereum`. That avoids errors during SSR.
+ // - Keep pointer-events-none on the background image only; don't put it on a root wrapper.
+ // - When debugging MetaMask, open DevTools and watch console logs from the button click and the provider request.
 }),
 ];
 
