@@ -8,7 +8,7 @@ import { useRouter } from "next/navigation"; // ใช้สำหรับเ�
 const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
 const BACKEND_URL = "http://localhost:3001/api/auth";
 
-export default function Welcomepage() {
+export default function homepage() {
     const router = useRouter();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
