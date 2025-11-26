@@ -8,6 +8,7 @@ import { PrismaClient } from '@prisma/client';
 
 import authRoutes from './routes/authRoutes'; 
 import roomRoutes from './routes/roomRoutes';
+import userRoutes from './routes/userRoutes';
 import { roomHandler } from './sockets/roomHandler';
 import { initBlockchainListener } from './services/blockchainService';
 
@@ -25,6 +26,7 @@ app.use(express.json());
 
 app.use('/api/auth', authRoutes);
 app.use('/api/rooms', roomRoutes);
+app.use('/api/user', userRoutes);
 
 
 // Setup Socket.IO
