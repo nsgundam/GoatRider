@@ -1,5 +1,120 @@
-[00:00:06.042] Server  LOG      ✓ Ready in 4.7s
-[00:00:12.333] Server  LOG      ○ Compiling / ...
-[00:00:24.656] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:00:45.596] Browser ERROR   handleConnectAndLogin error: {}
-[00:00:54.407] Browser LOG     User rejected signature or sign failed: {"action":"signMessage","code":"ACTION_REJECTED","info":{"error":{"code":4001,"data":{"cause":"rejectAllApprovals"},"message":"ethers-user-denied: User rejected the request."},"payload":{"id":5,"jsonrpc":"2.0","method":"personal_sign","params":["0x57656c636f6d6520746f20476f617452696465722120506c65617365207369676e2074686973206d65737361676520746f206c6f67696e2e","0x2923125dbe455f53778636559ce943745415f891"]}},"reason":"rejected","shortMessage":"user rejected action"}
+[00:00:02.402] Server  LOG      ✓ Ready in 1665ms
+[00:00:09.521] Server  LOG      ○ Compiling / ...
+[00:00:13.841] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:14.117] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:43:14.847] Server  LOG      ✓ Compiled in 4.9s
+[00:43:26.923] Server  LOG      ○ Compiling /_not-found/page ...
+[00:43:31.944] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:02.150] Server  LOG      ○ Compiling /menu ...
+[00:44:09.042] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:44:10.487] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[00:44:13.928] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[00:44:14.448] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}
+[00:45:22.411] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:52.492] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:46:53.970] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:48:08.876] Server  LOG      ✓ Compiled in 1915ms
+[00:48:25.749] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:27.775] Server  LOG      ○ Compiling /lobby ...
+[00:49:35.320] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:50:20.307] Server  LOG      ✓ Compiled in 3.4s
+[01:12:57.799] Server  LOG      ✓ Compiled in 1598ms
+[01:16:10.944] Server  LOG      ✓ Compiled in 295ms
+[01:16:28.744] Server  LOG      ✓ Compiled in 346ms
+[01:16:37.738] Server  LOG      ✓ Compiled in 250ms
+[01:16:55.222] Server  LOG      ✓ Compiled in 224ms
+[01:16:58.305] Server  LOG      ✓ Compiled in 364ms
+[01:17:47.040] Server  LOG      ✓ Compiled in 226ms
+[01:18:41.734] Server  LOG      ✓ Compiled in 431ms
+[01:20:55.806] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.817] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\75472_next_dist_132e8bf4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.826] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.832] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.836] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.839] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.845] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.850] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.855] Server  ERROR    ⨯ Error: The default export is not a React Component in "/maingame/page"
+[01:20:55.869] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\compiled\next-server\app-page-turbo.runtime.dev.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.870] Server  ERROR   D:\GoatRidder\Frontend\.next\dev\server\chunks\ssr\75472_next_dist_132e8bf4._.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.871] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\base-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.872] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\next-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.872] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\dev\next-dev-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.873] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\trace\trace.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.874] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\router-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.874] Server  ERROR   D:\GoatRidder\Frontend\node_modules\next\dist\server\lib\start-server.js: Invalid source map. Only conformant source maps can be used to find the original code. Cause: Error: sourceMapURL could not be parsed
+[01:20:55.876] Server  ERROR    ⨯ Error: The default export is not a React Component in "/maingame/page"
+[01:20:58.901] Server  LOG      ○ Compiling /_error ...
+[01:21:00.613] Browser ERROR   uncaughtError: Error: The default export is not a React Component in "/maingame/page"
+[01:21:28.638] Server  LOG      ✓ Compiled in 123ms
+[01:21:29.708] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:21:44.267] Server  LOG      ✓ Compiled in 43ms
+[01:22:07.527] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:29:10.008] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/hugl4hmvs5foaw8fdizk?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[01:29:28.514] Server  LOG      ✓ Compiled in 117ms
+[01:30:06.306] Server  LOG      ✓ Compiled in 326ms
+[01:31:05.825] Server  LOG      ✓ Compiled in 252ms
+[01:31:24.642] Server  LOG      ✓ Compiled in 178ms
+[01:32:44.955] Server  LOG      ✓ Compiled in 606ms
+[01:33:12.853] Server  LOG      ✓ Compiled in 89ms
+[01:33:22.549] Server  LOG      ✓ Compiled in 105ms
+[01:33:29.274] Server  LOG      ✓ Compiled in 836ms
+[01:33:46.692] Server  LOG      ✓ Compiled in 250ms
+[01:39:59.532] Server  LOG      ✓ Compiled in 920ms
+[01:40:34.304] Server  LOG      ✓ Compiled in 398ms
+[01:40:59.837] Server  LOG      ✓ Compiled in 1252ms
+[01:41:15.785] Server  LOG      ✓ Compiled in 203ms
+[01:41:18.722] Server  LOG      ✓ Compiled in 141ms
+[01:41:54.576] Server  LOG      ✓ Compiled in 216ms
+[01:42:01.103] Server  LOG      ✓ Compiled in 279ms
+[01:42:25.136] Server  LOG      ✓ Compiled in 222ms
+[01:42:32.390] Server  LOG      ✓ Compiled in 438ms
+[01:42:53.004] Server  LOG      ✓ Compiled in 348ms
+[01:43:11.072] Server  LOG      ✓ Compiled in 297ms
+[01:43:16.582] Server  LOG      ✓ Compiled in 496ms
+[01:45:44.109] Server  LOG      ✓ Compiled in 150ms
+[01:46:09.915] Server  LOG      ✓ Compiled in 152ms
+[01:46:31.246] Server  LOG      ✓ Compiled in 990ms
+[01:46:38.169] Server  LOG      ✓ Compiled in 138ms
+[01:46:43.333] Server  LOG      ✓ Compiled in 199ms
+[01:46:50.101] Server  LOG      ✓ Compiled in 174ms
+[01:47:17.094] Server  LOG      ✓ Compiled in 174ms
+[01:47:25.833] Server  LOG      ✓ Compiled in 177ms
+[01:47:56.744] Server  LOG      ✓ Compiled in 124ms
+[01:48:04.234] Server  LOG      ✓ Compiled in 249ms
+[01:48:09.609] Server  LOG      ✓ Compiled in 176ms
+[01:48:21.078] Server  LOG      ✓ Compiled in 104ms
+[01:48:27.933] Server  LOG      ✓ Compiled in 213ms
+[01:48:34.310] Server  LOG      ✓ Compiled in 136ms
+[01:48:39.859] Server  LOG      ✓ Compiled in 117ms
+[01:48:58.955] Server  LOG      ✓ Compiled in 266ms
+[01:49:05.209] Server  LOG      ✓ Compiled in 317ms
+[01:49:12.740] Server  LOG      ✓ Compiled in 225ms
+[01:49:21.120] Server  LOG      ✓ Compiled in 325ms
+[01:49:36.692] Server  LOG      ✓ Compiled in 653ms
+[01:49:42.558] Server  LOG      ✓ Compiled in 166ms
+[01:49:47.582] Server  LOG      ✓ Compiled in 103ms
+[01:49:56.424] Server  LOG      ✓ Compiled in 97ms
+[01:50:07.425] Server  LOG      ✓ Compiled in 204ms
+[01:50:18.101] Server  LOG      ✓ Compiled in 132ms
+[01:50:27.798] Server  LOG      ✓ Compiled in 218ms
+[01:50:31.644] Server  LOG      ✓ Compiled in 97ms
+[01:50:38.633] Server  LOG      ✓ Compiled in 268ms
+[01:50:44.330] Server  LOG      ✓ Compiled in 121ms
+[01:50:53.056] Server  LOG      ✓ Compiled in 134ms
+[01:50:57.646] Server  LOG      ✓ Compiled in 150ms
+[01:51:00.193] Server  LOG      ✓ Compiled in 154ms
+[01:51:06.123] Server  LOG      ✓ Compiled in 501ms
+[01:51:09.075] Server  LOG      ✓ Compiled in 166ms
+[01:51:12.324] Server  LOG      ✓ Compiled in 362ms
+[01:51:22.370] Server  LOG      ✓ Compiled in 566ms
+[01:51:27.747] Server  LOG      ✓ Compiled in 185ms
+[01:51:31.590] Server  LOG      ✓ Compiled in 172ms
+[01:51:34.837] Server  LOG      ✓ Compiled in 192ms
+[01:51:43.141] Server  LOG      ✓ Compiled in 188ms
+[01:55:20.136] Server  LOG      ✓ Compiled in 87ms
+[02:04:40.079] Server  LOG      ✓ Compiled in 603ms
+[02:05:19.560] Server  LOG      ✓ Compiled in 256ms
+[02:05:54.531] Server  LOG      ✓ Compiled in 281ms
+[02:06:57.828] Server  LOG      ✓ Compiled in 1052ms
+[02:07:21.166] Server  LOG      ✓ Compiled in 178ms
