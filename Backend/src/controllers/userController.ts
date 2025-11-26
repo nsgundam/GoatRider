@@ -1,8 +1,8 @@
 import { Response } from 'express';
 import { PrismaClient } from '@prisma/client';
 import { ethers } from 'ethers';
-import { AuthRequest } from '../middlewares/authMiddleware'; // ใช้ middleware ที่มี user.walletAddress
-import TOKEN_ABI from '../config/TokenABI.json'; // ต้องคัดลอกไฟล์นี้มาใช้
+import { AuthRequest } from '../middlewares/authMiddleware';
+import TOKEN_ABI from '../config/TokenABI.json';
 
 const prisma = new PrismaClient();
 

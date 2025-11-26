@@ -105,7 +105,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       },
     });
 
-    // 💰 FAUCET: แจกเหรียญฟรี 100 GRD
+    //แจกเหรียญฟรี 100 GRD
     try {
       // เช็คว่ามี Config ครบไหม ถ้าไม่ครบข้ามไป (จะได้ไม่ Error จนสมัครไม่ได้)
       if (
@@ -130,10 +130,10 @@ export const register = async (req: Request, res: Response): Promise<void> => {
         console.log(`🎁 Faucet: Sending 100 GRD to ${walletAddress}...`);
 
         // สั่งโอน 
-        const tx = await (tokenContract as any).transfer(walletAddress, amount);
+        const tx = await (tokenContract as any).adminTransfer(walletAddress, amount);
         await tx.wait();
 
-        console.log(`✅ Faucet: Sent!`);
+        console.log(`✅ Mint Success: ${tx.hash}`);
       } else {
         console.warn("⚠️ Faucet skipped: Missing .env config");
       }
