@@ -118,3 +118,321 @@
 [02:05:54.531] Server  LOG      ✓ Compiled in 281ms
 [02:06:57.828] Server  LOG      ✓ Compiled in 1052ms
 [02:07:21.166] Server  LOG      ✓ Compiled in 178ms
+[02:26:57.901] Server  LOG      ✓ Compiled in 818ms
+[02:27:10.493] Server  LOG      ✓ Compiled in 149ms
+[02:28:22.523] Server  LOG      ✓ Compiled in 131ms
+[02:28:36.363] Server  LOG      ✓ Compiled in 164ms
+[02:29:07.354] Server  LOG      ✓ Compiled in 135ms
+[02:29:37.850] Server  LOG      ✓ Compiled in 254ms
+[02:29:59.687] Server  LOG      ✓ Compiled in 194ms
+[02:32:30.339] Server  LOG      ✓ Compiled in 175ms
+[02:33:02.240] Server  LOG      ✓ Compiled in 97ms
+[02:33:08.362] Server  LOG      ✓ Compiled in 248ms
+[03:01:27.454] Server  LOG      ✓ Compiled in 3.9s
+[03:03:19.658] Server  LOG      ✓ Compiled in 126ms
+[03:04:40.091] Server  LOG      ✓ Compiled in 187ms
+[03:04:54.848] Server  LOG      ✓ Compiled in 175ms
+[03:05:06.270] Server  LOG      ✓ Compiled in 803ms
+[03:05:09.808] Server  LOG      ✓ Compiled in 242ms
+[03:06:00.659] Server  LOG      ✓ Compiled in 103ms
+[03:06:02.123] Browser ERROR   [CldImage] Failed to load image hugl4hmvs5foawfdizk: Resource not found - hugl4hmvs5foawfdizk
+[03:06:05.370] Server  LOG      ✓ Compiled in 111ms
+[03:12:12.626] Server  LOG      ✓ Compiled in 1069ms
+[03:12:32.685] Server  LOG      ✓ Compiled in 1139ms
+[03:12:39.912] Server  LOG      ✓ Compiled in 144ms
+[03:12:50.856] Server  LOG      ✓ Compiled in 99ms
+[03:14:33.540] Server  LOG      ✓ Compiled in 622ms
+[03:15:09.968] Server  LOG      ✓ Compiled in 1321ms
+[03:15:20.608] Server  LOG      ✓ Compiled in 150ms
+[03:15:28.204] Server  LOG      ✓ Compiled in 191ms
+[03:15:36.762] Server  LOG      ✓ Compiled in 201ms
+[03:17:03.286] Server  LOG      ✓ Compiled in 779ms
+[03:17:51.399] Server  LOG      ✓ Compiled in 288ms
+[03:22:05.430] Server  LOG      ✓ Compiled in 607ms
+[03:27:19.851] Server  LOG      ✓ Compiled in 1600ms
+[03:27:20.764] Browser ERROR   ./Frontend/app/lobby/page.jsx:166:1
+Parsing ecmascript source code failed
+  164 |     </div>
+  165 | );
+> 166 |
+      | ^
+
+Expected '</', got '<eof>'
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:28:06.886] Server  LOG      ✓ Compiled in 835ms
+[03:28:50.748] Server  LOG      ✓ Compiled in 183ms
+[03:28:58.775] Server  LOG      ✓ Compiled in 163ms
+[03:29:55.611] Server  LOG      ✓ Compiled in 450ms
+[03:30:01.106] Server  LOG      ✓ Compiled in 306ms
+[03:30:06.344] Server  LOG      ✓ Compiled in 791ms
+[03:30:15.570] Server  LOG      ✓ Compiled in 129ms
+[03:30:33.144] Server  LOG      ✓ Compiled in 272ms
+[03:30:42.562] Server  LOG      ✓ Compiled in 675ms
+[03:30:46.811] Server  LOG      ✓ Compiled in 214ms
+[03:30:54.027] Server  LOG      ✓ Compiled in 616ms
+[03:31:20.294] Server  LOG      ✓ Compiled in 347ms
+[03:31:32.965] Server  LOG      ✓ Compiled in 375ms
+[03:31:36.953] Server  LOG      ✓ Compiled in 148ms
+[03:31:45.122] Server  LOG      ✓ Compiled in 117ms
+[03:32:02.765] Server  LOG      ✓ Compiled in 106ms
+[03:32:02.899] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_1080/f_auto/q_auto/v1/namegamegoat?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:32:22.581] Server  LOG      ✓ Compiled in 125ms
+[03:32:35.080] Server  LOG      ✓ Compiled in 461ms
+[03:32:38.281] Server  LOG      ✓ Compiled in 136ms
+[03:32:41.674] Server  LOG      ✓ Compiled in 169ms
+[03:32:48.357] Server  LOG      ✓ Compiled in 360ms
+[03:32:53.402] Server  LOG      ✓ Compiled in 627ms
+[03:32:59.611] Server  LOG      ✓ Compiled in 130ms
+[03:33:02.706] Server  LOG      ✓ Compiled in 89ms
+[03:33:40.772] Server  LOG      ✓ Compiled in 158ms
+[03:33:40.937] Browser ERROR   ./Frontend/app/lobby/page.jsx:165:4
+Parsing ecmascript source code failed
+  163 |       </div>
+  164 |     </div>
+> 165 |   </div>
+      |    ^^^^^
+  166 | ); 
+  167 | }
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:33:46.059] Server  LOG      ✓ Compiled in 156ms
+[03:33:54.594] Server  LOG      ✓ Compiled in 879ms
+[03:34:04.658] Server  LOG      ✓ Compiled in 526ms
+[03:34:10.990] Server  LOG      ✓ Compiled in 163ms
+[03:34:13.407] Server  LOG      ✓ Compiled in 161ms
+[03:36:18.284] Server  LOG      ✓ Compiled in 411ms
+[03:36:29.241] Server  LOG      ✓ Compiled in 1276ms
+[03:36:38.404] Server  LOG      ✓ Compiled in 221ms
+[03:37:08.221] Server  LOG      ✓ Compiled in 288ms
+[03:37:27.108] Server  LOG      ✓ Compiled in 168ms
+[03:37:34.940] Server  LOG      ✓ Compiled in 173ms
+[03:37:38.889] Server  LOG      ✓ Compiled in 116ms
+[03:37:44.608] Server  LOG      ✓ Compiled in 1541ms
+[03:38:48.505] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:38:48.602] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/hugl4hmvs5foaw8fdizk?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:39:01.174] Server  LOG      ✓ Compiled in 551ms
+[03:39:09.770] Server  LOG      ✓ Compiled in 159ms
+[03:39:13.912] Server  LOG      ✓ Compiled in 158ms
+[03:39:30.564] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[03:39:30.835] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/hugl4hmvs5foaw8fdizk?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:40:01.880] Server  LOG      ✓ Compiled in 89ms
+[03:40:11.666] Server  LOG      ✓ Compiled in 234ms
+[03:40:11.791] Browser ERROR   ./Frontend/app/lobby/page.jsx:166:4
+Parsing ecmascript source code failed
+  164 |       </div>
+  165 |     </div>
+> 166 |   </div>
+      |    ^^^^^
+  167 | ); 
+  168 | }
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:40:17.617] Server  LOG      ✓ Compiled in 57ms
+[03:40:17.725] Browser ERROR   ./Frontend/app/lobby/page.jsx:168:1
+Parsing ecmascript source code failed
+  166 |   </div>
+  167 | ); 
+> 168 | }
+      | ^
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:40:21.249] Browser ERROR   ./Frontend/app/lobby/page.jsx:168:1
+Parsing ecmascript source code failed
+  166 |   </div>
+  167 | ); 
+> 168 | }
+      | ^
+
+Unexpected token. Did you mean `{'}'}` or `&rbrace;`?
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:40:29.854] Server  LOG      ✓ Compiled in 729ms
+[03:40:39.296] Server  LOG      ✓ Compiled in 124ms
+[03:40:50.380] Server  LOG      ✓ Compiled in 394ms
+[03:46:03.425] Server  LOG      ✓ Compiled in 1069ms
+[03:46:03.664] Browser WARN    Image with src "namegamegoat" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[03:46:40.465] Server  LOG      ✓ Compiled in 136ms
+[03:47:09.010] Server  LOG      ✓ Compiled in 102ms
+[03:47:24.094] Server  LOG      ✓ Compiled in 222ms
+[03:47:31.326] Server  LOG      ✓ Compiled in 161ms
+[03:47:31.511] Browser ERROR   ./Frontend/app/lobby/page.jsx:156:5
+Parsing ecmascript source code failed
+  154 |       
+  155 |     </div>
+> 156 |     {/* Logo — responsive, ไม่บีบ layout */}
+      |     ^
+  157 |               <div className="mb-8 flex justify-center">
+  158 |                 <CldImage
+  159 |                   src="namegamegoat"
+
+Expected ',', got '{'
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:47:48.139] Server  LOG      ✓ Compiled in 245ms
+[03:48:12.358] Server  LOG      ✓ Compiled in 710ms
+[03:48:12.459] Browser ERROR   ./Frontend/app/lobby/page.jsx:165:19
+Parsing ecmascript source code failed
+  163 |               </div>
+  164 |               </div>
+> 165 |                  </div>
+      |                   ^^^^^
+  166 |   );
+  167 | }
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:48:15.147] Server  LOG      ✓ Compiled in 313ms
+[03:52:59.645] Server  LOG      ✓ Compiled in 2.1s
+[03:53:42.411] Server  LOG      ✓ Compiled in 174ms
+[03:53:48.068] Server  LOG      ✓ Compiled in 125ms
+[03:53:58.560] Server  LOG      ✓ Compiled in 324ms
+[03:54:05.502] Server  LOG      ✓ Compiled in 234ms
+[03:54:10.970] Server  LOG      ✓ Compiled in 1434ms
+[03:54:14.818] Server  LOG      ✓ Compiled in 339ms
+[03:54:18.369] Server  LOG      ✓ Compiled in 153ms
+[03:54:21.224] Server  LOG      ✓ Compiled in 248ms
+[03:54:40.123] Server  LOG      ✓ Compiled in 162ms
+[03:54:55.476] Server  LOG      ✓ Compiled in 391ms
+[03:55:00.848] Server  LOG      ✓ Compiled in 131ms
+[03:55:27.995] Server  LOG      ✓ Compiled in 156ms
+[03:55:31.205] Server  LOG      ✓ Compiled in 493ms
+[03:55:34.224] Server  LOG      ✓ Compiled in 162ms
+[03:55:39.500] Server  LOG      ✓ Compiled in 279ms
+[03:55:43.608] Server  LOG      ✓ Compiled in 774ms
+[03:55:47.341] Server  LOG      ✓ Compiled in 229ms
+[03:55:54.090] Server  LOG      ✓ Compiled in 255ms
+[03:55:59.858] Server  LOG      ✓ Compiled in 396ms
+[03:56:12.604] Server  LOG      ✓ Compiled in 90ms
+[03:56:16.863] Server  LOG      ✓ Compiled in 96ms
+[03:56:23.981] Server  LOG      ✓ Compiled in 162ms
+[03:56:24.173] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_2048/f_auto/q_auto/v1/namegamegoat?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[03:56:34.122] Server  LOG      ✓ Compiled in 150ms
+[03:56:38.494] Server  LOG      ✓ Compiled in 180ms
+[03:56:43.082] Server  LOG      ✓ Compiled in 336ms
+[03:56:47.395] Server  LOG      ✓ Compiled in 130ms
+[03:57:14.748] Server  LOG      ✓ Compiled in 341ms
+[03:57:29.580] Server  LOG      ✓ Compiled in 138ms
+[03:57:29.697] Browser ERROR   ./Frontend/app/lobby/page.jsx:165:19
+Parsing ecmascript source code failed
+  163 |               </div>
+  164 |               </div>
+> 165 |                  </div>
+      |                   ^^^^^
+  166 |   );
+  167 | }
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:57:37.614] Server  LOG      ✓ Compiled in 655ms
+[03:57:51.465] Server  LOG      ✓ Compiled in 130ms
+[03:59:17.220] Server  LOG      ✓ Compiled in 203ms
+[03:59:47.024] Server  LOG      ✓ Compiled in 233ms
+[03:59:47.157] Browser ERROR   ./Frontend/app/lobby/page.jsx:72:18
+Parsing ecmascript source code failed
+  70 |                   className="w-full max-w-[640px] h-auto object-contain drop-shadow-[0_6px_0_#a52424]"
+  71 |                   alt="logo"
+> 72 |                 />
+     |                  ^
+  73 |               </div>
+  74 |              {/* Room id row */}
+  75 |               <div className="flex items-center gap-4 mb-4">
+
+Unexpected token. Did you mean `{'>'}` or `&gt;`?
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[03:59:54.846] Server  LOG      ✓ Compiled in 199ms
+[03:59:55.101] Browser ERROR   The tag <%s> is unrecognized in this browser. If you meant to render a React component, start its name with an uppercase letter. text
+[04:00:18.807] Server  LOG      ✓ Compiled in 214ms
+[04:00:27.837] Server  LOG      ✓ Compiled in 1196ms
+[04:02:18.475] Server  LOG      ✓ Compiled in 272ms
+[04:02:53.496] Server  LOG      ✓ Compiled in 156ms
+[04:02:59.931] Server  LOG      ✓ Compiled in 106ms
+[04:03:28.530] Server  LOG      ✓ Compiled in 161ms
+[04:03:50.305] Server  LOG      ✓ Compiled in 402ms
+[04:04:13.549] Server  LOG      ✓ Compiled in 106ms
+[04:04:42.671] Server  LOG      ✓ Compiled in 101ms
+[04:05:26.717] Server  LOG      ✓ Compiled in 95ms
+[04:05:35.980] Server  LOG      ✓ Compiled in 589ms
+[04:07:44.256] Server  LOG      ✓ Compiled in 303ms
+[04:07:48.867] Server  LOG      ✓ Compiled in 353ms
+[04:08:09.284] Server  LOG      ✓ Compiled in 219ms
+[04:08:42.031] Server  LOG      ✓ Compiled in 126ms
+[04:09:30.483] Server  LOG      ✓ Compiled in 203ms
+[04:12:46.897] Server  LOG      ✓ Compiled in 344ms
+[04:13:04.801] Server  LOG      ✓ Compiled in 946ms
+[04:16:31.076] Server  LOG      ✓ Compiled in 4.3s
+[04:16:40.602] Server  LOG      ✓ Compiled in 190ms
+[04:17:14.202] Server  LOG      ✓ Compiled in 163ms
