@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+npm install geist
+ืand npm install again na
+=======
 1. npm install
 2. npm install ethers
 3. npm install next-cloudinary 
@@ -10,3 +14,4 @@
     add ".env.local" to .gitignore
 
 [if dont have .env.local] na  
+>>>>>>> 3cf3e16a05befcec0aacfdca355f726686da4fb6

@@ -1,1 +1,109 @@
-[00:00:00.921] Server  LOG      ✓ Ready in 690ms
+[00:00:02.832] Server  LOG      ✓ Ready in 2.1s
+[00:01:10.831] Server  LOG      ○ Compiling / ...
+[00:01:16.590] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:01:24.756] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:01:24.756] Browser WARN    Image with src "namegamegoat" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:06:22.778] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:23.011] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:06:38.412] Server  LOG      ○ Compiling /menu ...
+[00:06:41.763] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:06:41.763] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:06:51.274] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:06:54.558] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:07:01.860] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:07:03.518] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/qnkwna404xq2bvmzpddl?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:07:58.428] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:07:58.428] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:20:23.694] Server  LOG      ✓ Compiled in 2.6s
+[00:20:33.912] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:21:34.418] Server  LOG      ✓ Compiled in 116ms
+[00:21:51.122] Server  LOG      ✓ Compiled in 240ms
+[00:22:43.914] Server  LOG      ✓ Compiled in 186ms
+[00:22:53.575] Server  LOG      ✓ Compiled in 133ms
+[00:25:10.659] Server  LOG      ✓ Compiled in 257ms
+[00:25:28.194] Browser ERROR   {}
+[00:25:44.717] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:25:44.717] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:29:24.443] Server  LOG      ✓ Compiled in 492ms
+[00:29:26.288] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:30:09.748] Server  LOG      ✓ Compiled in 499ms
+[00:30:47.902] Server  LOG      ✓ Compiled in 364ms
+[00:34:34.262] Server  LOG      ✓ Compiled in 321ms
+[00:37:00.225] Browser ERROR   {}
+[00:41:25.060] Server  LOG      ✓ Compiled in 397ms
+[00:41:56.963] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[00:41:57.045] Browser ERROR   unhandledRejection: Error: could not decode result data (value="0x", info={ "method": "balanceOf", "signature": "balanceOf(address)" }, code=BAD_DATA, version=6.15.0)
+[01:02:08.200] Server  LOG      ✓ Compiled in 1041ms
+[01:02:47.096] Server  LOG      ✓ Compiled in 961ms
+[01:03:16.221] Server  LOG      ✓ Compiled in 1315ms
+[01:03:16.907] Browser ERROR   ./app/menu/page.js:9:7
+Ecmascript file had an error
+   7 | import TOKEN_ABI from "@/src/abi.json";
+   8 | const TOKEN_CONTRACT = "0xa2Ba61876c71BA642ee131979806305F46f703A9";
+>  9 | const TOKEN_ABI = [
+     |       ^^^^^^^^^
+  10 |   "function balanceOf(address owner) view returns (uint256)",
+  11 |   "function buyToken() payable"
+  12 | ];
+
+the name `TOKEN_ABI` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[01:09:05.540] Server  LOG      ✓ Compiled in 903ms
+[01:09:08.464] Browser ERROR   ./app/menu/page.js:9:7
+Ecmascript file had an error
+   7 | import TOKEN_ABI from "@/src/abi.json";
+   8 | const TOKEN_CONTRACT = "0xa2Ba61876c71BA642ee131979806305F46f703A9";
+>  9 | const TOKEN_ABI = [
+     |       ^^^^^^^^^
+  10 |   "function balanceOf(address owner) view returns (uint256)",
+  11 |   "function buyToken() payable"
+  12 | ];
+
+the name `TOKEN_ABI` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[01:10:44.604] Server  LOG      ✓ Compiled in 410ms
+[01:10:44.908] Browser ERROR   ./app/menu/page.js:9:7
+Ecmascript file had an error
+   7 | import TOKEN_ABI from "@/src/abi.json";
+   8 | const TOKEN_CONTRACT = "0xa2Ba61876c71BA642ee131979806305F46f703A9";
+>  9 | const TOKEN_ABI = [
+     |       ^^^^^^^^^
+  10 |   "function balanceOf(address owner) view returns (uint256)",
+  11 |   "function buyToken() payable"
+  12 | ];
+
+the name `TOKEN_ABI` is defined multiple times
+
+Import traces:
+  Client Component Browser:
+    ./app/menu/page.js [Client Component Browser]
+    ./app/menu/page.js [Server Component]
+
+  Client Component SSR:
+    ./app/menu/page.js [Client Component SSR]
+    ./app/menu/page.js [Server Component]
+[01:11:18.322] Server  LOG      ✓ Compiled in 396ms
+[01:11:41.868] Browser ERROR   {}
+[01:12:07.953] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[01:12:07.953] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[01:12:09.888] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[01:12:09.888] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[01:12:10.199] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}
+[01:12:10.199] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}

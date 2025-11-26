@@ -9,194 +9,250 @@ const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
 const BACKEND_URL = "http://localhost:3001/api/auth";
 
 export default function Welcomepage() {
-    const router = useRouter();
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-    
-    // State สำหรับเก็บข้อมูลชั่วคราว
-    const [wallet, setWallet] = useState("");
-    const [signature, setSignature] = useState(""); // ต้องเก็บลายเซ็นไว้ใช้ตอนสมัคร
-    const [showPopup, setShowPopup] = useState(false);
-    const [name, setName] = useState("");
+  const router = useRouter();
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    // -----------------------------------------------------------
-    // 1. ฟังก์ชันเชื่อมต่อ + Sign Message + Login
-    // -----------------------------------------------------------
-    async function handleConnectAndLogin() {
-        setError("");
-        
-        // เช็คว่ามี Metamask ไหม
-        if (!window.ethereum) {
-            alert("Please install Metamask! (ไปติดตั้งก่อนเด้ออ้าย)");
-            return;
-        }
+  // State สำหรับเก็บข้อมูลชั่วคราว
+  const [wallet, setWallet] = useState("");
+  const [signature, setSignature] = useState(""); // ต้องเก็บลายเซ็นไว้ใช้ตอนสมัคร
+  const [showPopup, setShowPopup] = useState(false);
+  const [name, setName] = useState("");
 
-        try {
-            setLoading(true);
+  // -----------------------------------------------------------
+  // 1. ฟังก์ชันเชื่อมต่อ + Sign Message + Login
+  // -----------------------------------------------------------
+  async function handleConnectAndLogin() {
+    setError("");
 
-            // A. เชื่อมต่อ Wallet
-            const provider = new ethers.BrowserProvider(window.ethereum);
-            const signer = await provider.getSigner();
-            const address = await signer.getAddress();
-            
-            // B. ขอ Sign Message (เด้ง Popup Metamask)
-            const sig = await signer.signMessage(SIGN_MESSAGE);
-
-            // เก็บค่าไว้ใน State เผื่อต้องใช้ตอนสมัคร
-            setWallet(address);
-            setSignature(sig);
-
-            // C. ส่งไปเช็ค Login ที่ Backend
-            const res = await fetch(`${BACKEND_URL}/login`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ walletAddress: address, signature: sig })
-            });
-
-            const data = await res.json();
-
-            if (data.status === "LOGIN_SUCCESS") {
-                // ✅ กรณีมีชื่อแล้ว: บันทึก Token แล้วไปหน้า Menu เลย
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("user", JSON.stringify(data.user));
-                alert(`Welcome back, ${data.user.username}!`);
-                router.push("/menu"); // ไปหน้าเมนู (คุณต้องสร้าง page นี้)
-            } else if (data.status === "REGISTER_REQUIRED") {
-                // 🟡 กรณีไม่มีชื่อ: เปิด Popup ให้กรอกชื่อ
-                setShowPopup(true);
-            } else {
-                setError("Login failed: " + data.error);
-            }
-
-        } catch (err: any) {
-            console.error(err);
-            setError("Connection failed or User rejected request");
-        } finally {
-            setLoading(false);
-        }
+    // เช็คว่า Metamask มีไหม
+    if (!window.ethereum) {
+      alert("Please install Metamask!");
+      return;
     }
 
-    // -----------------------------------------------------------
-    // 2. ฟังก์ชันสมัครสมาชิก (เมื่อกรอกชื่อใน Popup)
-    // -----------------------------------------------------------
-    async function handleSubmitName(e: React.FormEvent) {
-        e.preventDefault();
-        setError("");
+    try {
+      setLoading(true);
 
-        const trimmedName = name.trim();
-        if (!trimmedName) {
-            setError("Please enter your name");
-            return;
-        }
+      // A. เชื่อมต่อ Wallet
+      const provider = new ethers.BrowserProvider(window.ethereum);
+      await provider.send("eth_requestAccounts", []); // ขอสิทธิ์เชื่อมบัญชี
+      const signer = await provider.getSigner();
+      const address = await signer.getAddress();
 
-        try {
-            setLoading(true);
+      // B. ขอ Sign Message — จับเฉพาะ error ถ้าผู้ใช้ปฏิเสธ
+      let sig;
+      try {
+        sig = await signer.signMessage(SIGN_MESSAGE);
+      } catch (signErr) {
+        console.log("User rejected signature or sign failed:", signErr);
+        setError("You rejected the signature request. Please confirm the signature in MetaMask to login.");
+        setLoading(false);
+        return; // หยุด flow — ไม่เรียก backend
+      }
 
-            // ส่งข้อมูลไปสมัครที่ Backend (/register)
-            const res = await fetch(`${BACKEND_URL}/register`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ 
-                    walletAddress: wallet, 
-                    signature: signature, // ต้องแนบลายเซ็นเดิมไปด้วย
-                    username: trimmedName 
-                })
-            });
+      // เก็บ Address + Signature ไว้ใช้ตอนสมัคร
+      setWallet(address);
+      setSignature(sig);
 
-            const data = await res.json();
+      // C. ส่งไป login ที่ backend
+      const res = await fetch(`${BACKEND_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ walletAddress: address, signature: sig }),
+      });
 
-            if (data.status === "REGISTER_SUCCESS") {
-                // ✅ สมัครสำเร็จ: บันทึก Token แล้วไปหน้า Menu
-                localStorage.setItem("token", data.token);
-                localStorage.setItem("user", JSON.stringify(data.user));
-                alert("Registration Successful!");
-                setShowPopup(false);
-                router.push("/menu");
-            } else {
-                setError(data.error || "Registration failed");
-            }
+      // ถ้า HTTP error ให้อ่านข้อความก่อน
+      if (!res.ok) {
+        const text = await res.text().catch(() => null);
+        throw new Error(text || "Login request failed");
+      }
 
-        } catch (err) {
-            console.error(err);
-            setError("Failed to register");
-        } finally {
-            setLoading(false);
-        }
+      const data = await res.json();
+
+      if (data.status === "LOGIN_SUCCESS") {
+        // ผู้เล่นเคยสมัครแล้ว
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        alert(`Welcome back, ${data.user.username}!`);
+        router.push("/menu"); // ไปหน้าเมนู
+      } else if (data.status === "REGISTER_REQUIRED") {
+        // ผู้เล่นใหม่ ต้องสมัคร
+        setShowPopup(true);
+      } else {
+        setError(data.error || "Login failed");
+      }
+    } catch (err) {
+      console.error("handleConnectAndLogin error:", err);
+      setError((err && err.message) || "Connection failed or User rejected request");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // -----------------------------------------------------------
+  // 2. ฟังก์ชันสมัครสมาชิก (เมื่อกรอกชื่อใน Popup)
+  // -----------------------------------------------------------
+  async function handleSubmitName(e) {
+    e.preventDefault();
+    setError("");
+
+    const trimmedName = name.trim();
+    if (!trimmedName) {
+      setError("Please enter your name");
+      return;
     }
 
-    // -----------------------------------------------------------
-    // UI ส่วนแสดงผล
-    // -----------------------------------------------------------
-    return (
-        <div className="w-full h-screen relative overflow-hidden">
-            {/* Background Image */}
-            <CldImage
-                src="qy3vo3jhmpocodpavgrf" // อย่าลืมเช็คชื่อรูปใน Cloudinary
-                width={1920}
-                height={1080}
-                className="w-full h-full object-cover absolute z-0"
-                alt="goat rider homepage"
-            />
+    if (!wallet || !signature) {
+      setError("Signature missing. Please reconnect wallet and sign again.");
+      return;
+    }
 
-            {/* Title Text */}
-            <div className="absolute top-[20%] left-[10%] z-10">
-                <h1 className="text-[100px] md:text-[150px] font-bold text-white drop-shadow-lg leading-tight">
-                    Goat <br /> Ridder
-                </h1>
-            </div>
+    try {
+      setLoading(true);
 
-            {/* Connect Button */}
-            {!showPopup && (
-                <button
-                    onClick={handleConnectAndLogin}
-                    disabled={loading}
-                    className="absolute top-[60%] left-[10%] z-10 px-10 py-4 
-                             bg-white text-black text-2xl font-bold rounded-full 
-                             hover:bg-blue-500 hover:text-white transition-all duration-300 shadow-xl"
-                >
-                    {loading ? "Processing..." : "Connect Wallet"}
-                </button>
-            )}
+      // ส่งข้อมูลไปสมัครที่ Backend (/register)
+      const res = await fetch(`${BACKEND_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          walletAddress: wallet,
+          signature: signature, // ต้องแนบลายเซ็นเดิมไปด้วย
+          username: trimmedName,
+        }),
+      });
 
-            {/* Error Message */}
-            {error && (
-                <div className="absolute bottom-10 left-10 z-20 bg-red-500 text-white px-4 py-2 rounded">
-                    ⚠️ {error}
-                </div>
-            )}
+      if (!res.ok) {
+        const text = await res.text().catch(() => null);
+        throw new Error(text || "Registration request failed");
+      }
 
-            {/* ------------------------------------------- */}
-            {/* POPUP MODAL (สำหรับกรอกชื่อ) */}
-            {/* ------------------------------------------- */}
-            {showPopup && (
-                <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-                    <div className="bg-white p-8 rounded-2xl shadow-2xl w-[90%] max-w-md text-center">
-                        <h2 className="text-3xl font-bold mb-4 text-gray-800">Create Account</h2>
-                        <p className="mb-6 text-gray-600">
-                            Welcome new rider! <br/> Please enter your display name.
-                        </p>
-                        
-                        <form onSubmit={handleSubmitName} className="flex flex-col gap-4">
-                            <input
-                                type="text"
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder="Enter your username..."
-                                className="border-2 border-gray-300 rounded-lg p-3 text-lg focus:outline-none focus:border-blue-500 text-black"
-                                maxLength={15}
-                            />
-                            
-                            <button 
-                                type="submit" 
-                                disabled={loading}
-                                className="bg-blue-600 text-white py-3 rounded-lg text-xl font-bold hover:bg-blue-700 transition"
-                            >
-                                {loading ? "Creating..." : "Start Game 🚀"}
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            )}
+      const data = await res.json();
+
+      if (data.status === "REGISTER_SUCCESS") {
+        // สมัครสำเร็จ
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
+        alert("Registration Successful!");
+        setShowPopup(false);
+        router.push("/menu");
+      } else {
+        setError(data.error || "Registration failed");
+      }
+    } catch (err) {
+      console.error("handleSubmitName error:", err);
+      setError((err && err.message) || "Failed to register");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  // -----------------------------------------------------------
+  // UI ส่วนแสดงผล (ปรับให้เหมือนหน้า Menu)
+  // -----------------------------------------------------------
+  return (
+    <div className="relative w-full min-h-screen overflow-hidden">
+
+      {/* ชั้นภาพพื้นหลัง + เบลอ */}
+      <div className="absolute inset-0 blur-[3px] opacity-25">
+        <CldImage
+          src="qnkwna404xq2bvmzpddl"
+          width={1920}
+          height={1080}
+          className="w-full h-full object-cover"
+          alt="background"
+        />
+      </div>
+
+{/* LOGO (อยู่ซ้าย) */}
+<div className="absolute top-[15%] left-[8%] z-20 pointer-events-none">
+  <CldImage
+    src="namegamegoat"
+    width={1980}
+    height={1020}
+    className="object-contain w-[900px] select-none"
+    alt="game logo"
+  />
+</div>
+
+{/* ปุ่ม Connect Wallet เยื้องซ้าย (ไม่อยู่ตรงกลางอีกแล้ว) */}
+<button
+  onClick={handleConnectAndLogin}
+  disabled={loading}
+  className="
+    absolute
+    left-[25%]
+    top-[50%]
+    z-30
+    px-10 py-4
+    text-xl font-bold
+    rounded-full
+    shadow-[0_6px_0_#a52424]
+    bg-white text-black
+    hover:bg-[#FBAF22] hover:text-white
+    transition
+  "
+>
+  {loading ? "Processing..." : "Connect Wallet"}
+</button>
+      {/* top-right capsule */}
+      <div className="absolute top-6 right-6 z-20">
+        <div className="flex items-center gap-3 
+          bg-[#FBAF22] hover:bg-[#eedebf] px-4 py-2 rounded-full max-w-[320px]
+          shadow-[0_10px_0_#a52424] transition-all">
+          {/* (optional content: avatar / token) */}
         </div>
-    );
+      </div>
+
+      {/* Error Message (inline with retry button) */}
+      {error && (
+        <div className="absolute bottom-8 left-8 z-20 bg-red-500 text-white px-4 py-2 rounded flex items-center gap-3">
+          <span>⚠️ {error}</span>
+          <button
+            onClick={handleConnectAndLogin}
+            className="ml-4 bg-white text-black px-3 py-1 rounded"
+          >
+            Try again
+          </button>
+        </div>
+      )}
+
+      {/* POPUP MODAL (สำหรับตั้งชื่อ) */}
+      {showPopup && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="bg-white p-8 rounded-2xl shadow-2xl w-[90%] max-w-md text-center">
+            <h2 className="text-3xl font-bold mb-4 text-gray-800">
+              Create Account
+            </h2>
+            <p className="mb-6 text-gray-600">
+              Welcome new rider! <br /> Please enter your display name.
+            </p>
+
+            <form
+              onSubmit={handleSubmitName}
+              className="flex flex-col gap-4"
+            >
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Enter your name..."
+                className="border-2 border-gray-300 rounded-lg p-3 text-lg
+                focus:outline-none focus:border-blue-500 text-black"
+                maxLength={15}
+              />
+
+              <button
+                type="submit"
+                disabled={loading}
+                className="bg-[#FBAF22] text-black py-3 rounded-lg text-xl font-bold hover:bg-[a52424] transition"
+              >
+                {loading ? "Creating..." : "Start Game "}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
