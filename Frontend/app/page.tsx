@@ -2,9 +2,9 @@
 import { useState } from "react";
 import { CldImage } from "next-cloudinary";
 import { ethers } from "ethers";
-import { useRouter } from "next/navigation"; // ใช้สำหรับเปลี่ยนหน้า
+import { useRouter } from "next/navigation";
 
-// ⚠️ ค่านี้ต้องตรงกับ Backend เป๊ะๆ ห้ามผิด!
+//ค่านี้ต้องตรงกับ Backend
 const SIGN_MESSAGE = "Welcome to GoatRider! Please sign this message to login.";
 const BACKEND_URL = "http://localhost:3001/api/auth";
 

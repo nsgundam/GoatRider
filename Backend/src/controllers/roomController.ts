@@ -10,7 +10,7 @@ const prisma = new PrismaClient();
 // ==========================================
 export const createRoom = async (req: AuthRequest, res: Response): Promise<void> => {
     try {
-        const { roomName, requiredStake, maxPlayers} = req.body;
+        const { requiredStake, maxPlayers} = req.body;
         const creatorAddress = req.user?.walletAddress; // ได้มาจาก Middleware
 
         if (!creatorAddress) {
@@ -21,7 +21,6 @@ export const createRoom = async (req: AuthRequest, res: Response): Promise<void>
         // สร้างห้องใน DB
         const newRoom = await prisma.room.create({
             data: {
-                roomName,
                 requiredStake: Number(requiredStake),
                 maxPlayers: Number(maxPlayers),
                 creatorWalletAddress: creatorAddress,
