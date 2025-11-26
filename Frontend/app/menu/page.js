@@ -1,6 +1,3 @@
-// MenuPage component (cleaned & fixed)
-// ABI file: /mnt/data/abi.json (imported as TOKEN_ABI)
-
 "use client";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
