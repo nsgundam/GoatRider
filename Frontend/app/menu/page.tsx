@@ -28,7 +28,6 @@ interface CreateRoomResponse {
     roomId: string;
     requiredStake: number;
     maxPlayers: number;
-    // ...
   };
   error?: string;
 }
@@ -40,7 +39,7 @@ export default function MenuPage() {
 
   // --- States ---
   const [username, setUsername] = useState<string>("");
-  const [wallet, setWallet] = useState<string>("");
+  const [wallet, setWallet] = useState<string>(""); // เก็บไว้โชว์หรือใช้ logic อื่น
   const [tokenBalance, setTokenBalance] = useState<number>(0);
   const [loadingBuy, setLoadingBuy] = useState<boolean>(false);
 
@@ -68,7 +67,6 @@ export default function MenuPage() {
     }
 
     try {
-      // Backend จะไปดึง Username จาก DB และ Balance จาก Blockchain มาให้เรา
       const res = await fetch(`${API_BASE_URL}/user/me`, {
         method: "GET",
         headers: {
@@ -80,6 +78,7 @@ export default function MenuPage() {
       if (!res.ok) {
         console.warn("Session expired or unauthorized");
         localStorage.removeItem("token");
+        localStorage.removeItem("user");
         router.push("/");
         return;
       }
@@ -87,7 +86,7 @@ export default function MenuPage() {
       const data: UserProfile = await res.json();
       setUsername(data.username);
       setWallet(data.walletAddress);
-      // Backend แปลงหน่วย Ether มาให้แล้ว เป็น string หรือ number
+      // Backend แปลงหน่วย Ether มาให้แล้ว
       setTokenBalance(Number(data.tokenBalance));
 
     } catch (err) {
@@ -100,7 +99,7 @@ export default function MenuPage() {
   }, [loadUserData]);
 
   //-------------------------------------------------------------------------------//
-  // 2. ซื้อ Token (Faucet) โดยใช้ CONTRACTS config
+  // 2. ซื้อ Token (เรียก Smart Contract: buyToken)
   //-------------------------------------------------------------------------------//
   async function handleBuyToken() {
     if (!window.ethereum) return;
@@ -111,29 +110,40 @@ export default function MenuPage() {
       const signer = await provider.getSigner();
 
       // ✅ ใช้ Address และ ABI จาก contracts.js
+      // ใช้ as any เพื่อเลี่ยง Type check ชั่วคราว
       const contract = new ethers.Contract(
-        CONTRACTS.TOKEN.ADDRESS!, // ใส่ ! ยืนยันว่ามีค่า (จาก .env)
+        CONTRACTS.TOKEN.ADDRESS!, 
         CONTRACTS.TOKEN.ABI,
         signer
-      ) as any; // cast any เพื่อเรียก faucet/buyToken ได้ง่ายๆ
+      ) as any; 
 
-      // เรียก function faucet (หรือ buyToken) ตามที่ Smart Contract มี
-      const tx =
-        (await contract.faucet?.()) ??
-        (await contract.buyToken?.({ value: ethers.parseEther("0.001") }));
+      // 🔴 แก้ไข: เรียก buyToken โดยตรง (ตาม Smart Contract ใหม่)
+      // ส่ง ETH ไป 0.001 (ปรับค่านี้ตามต้องการ)
+      const ethAmount = "0.001";
+      console.log(`Buying tokens with ${ethAmount} ETH...`);
 
+      const tx = await contract.buyToken({ 
+        value: ethers.parseEther(ethAmount) 
+      });
+
+      console.log("Transaction sent:", tx.hash);
+      
       if (tx && typeof tx.wait === "function") {
         await tx.wait(); // รอ Transaction ยืนยัน
       }
 
-      alert("Buy token success! (Received 100 GRD)");
+      alert("Buy token success!");
       
       // โหลดข้อมูลใหม่เพื่ออัปเดตยอดเงินบนหน้าจอ
       await loadUserData();
 
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
-      alert("Failed to buy token. Check console.");
+      if (e.code === 'ACTION_REJECTED') {
+        alert("Transaction rejected.");
+      } else {
+        alert("Failed to buy token. Ensure you have Sepolia ETH.");
+      }
     } finally {
       setLoadingBuy(false);
     }
@@ -154,16 +164,13 @@ export default function MenuPage() {
           "Authorization": `Bearer ${token}` 
         },
         body: JSON.stringify({
-          requiredStake, // จำนวนเหรียญที่ต้องใช้
-          maxPlayers,    // จำนวนผู้เล่นสูงสุด
-          // ไม่ต้องส่ง roomName (ลบแล้ว)
-          // ไม่ต้องส่ง wallet (Backend รู้เอง)
+          requiredStake, 
+          maxPlayers,    
         }),
       });
 
       const data: CreateRoomResponse = await res.json();
 
-      // เช็คว่า Backend ส่ง roomId มาให้ไหม
       if (!res.ok || !data.room?.roomId) {
         alert(`Error: ${data.error || "Failed to create room"}`);
         return;
@@ -180,7 +187,7 @@ export default function MenuPage() {
   }
 
   //-------------------------------------------------------------------------------//
-  // 4. เข้าร่วมห้อง (Redirect ไป Lobby พร้อม ID)
+  // 4. เข้าร่วมห้อง (Redirect ไป Lobby)
   //-------------------------------------------------------------------------------//
   function handleJoinConfirm() {
     setJoinError("");
@@ -191,8 +198,7 @@ export default function MenuPage() {
 
     setJoinLoading(true);
 
-    // จำลองการโหลดนิดหน่อย แล้วพาไปหน้า Lobby
-    // (ในหน้า Lobby เราจะใช้ Socket.io เชื่อมต่อจริง)
+    // พาไปหน้า Lobby เพื่อต่อ Socket
     setTimeout(() => {
         setShowJoinPopup(false);
         router.push(`/lobby/${encodeURIComponent(joinRoomId.trim())}`);
