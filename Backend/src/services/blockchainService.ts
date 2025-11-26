@@ -2,7 +2,7 @@
 import { ethers } from 'ethers';
 import { PrismaClient } from '@prisma/client';
 import { Server } from 'socket.io';
-import abi from '../config/abi.json'; // Import ไฟล์ ABI ที่สร้างตะกี้
+import GAME_POOL_ABI from '../config/GamePoolABI.json';// Import ไฟล์ ABI ที่สร้างตะกี้
 
 const prisma = new PrismaClient();
 
@@ -22,7 +22,7 @@ export const initBlockchainListener = (io: Server) => {
 
         // 1. Setup Connection
         provider = new ethers.JsonRpcProvider(rpcUrl);
-        contract = new ethers.Contract(contractAddress, abi, provider);
+        contract = new ethers.Contract(contractAddress, GAME_POOL_ABI, provider);
 
         console.log(`👂 Listening to Contract at: ${contractAddress}`);
 
