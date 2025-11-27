@@ -15,10 +15,10 @@ export default function LobbyPage() {
   const qAvatar = search?.get("avatar") ?? ""; // cloudinary id
   const qToken = Number(search?.get("token") ?? search?.get("tokens") ?? 0);
   const qCost = Number(search?.get("cost") ?? 10);
-  const qPlayers = search?.get("players") ?? ""; // optional comma list of names
+  const qPlayers = search?.get("players") ?? ""; // optional comma list of names or "Name|avatar|token"
 
   // frontend-only / UI state
-  const [roomId, setRoomId] = useState(qRoomId || "AB123");
+  const [roomId, setRoomId] = useState(qRoomId || "");
   // costPerPlayer now a mutable state initialized from qCost (host should send this)
   const [costPerPlayer, setCostPerPlayer] = useState(qCost);
   const [currentUserId] = useState(() => {
@@ -26,7 +26,7 @@ export default function LobbyPage() {
     return qUserName ? qUserName.toLowerCase().replace(/\s+/g, "_") : "you";
   });
 
-  // players state: try to build from query params (menu passes initial players)
+  // players state: build from query params (menu must pass initial players if multiplayer)
   const buildInitialPlayers = () => {
     // if menu passed a players csv, use it
     // CSV format supported: "Name" or "Name|avatarId" or "Name|avatarId|token"
@@ -48,7 +48,7 @@ export default function LobbyPage() {
       });
     }
 
-    // otherwise fallback: include current user + placeholders
+    // If no qPlayers provided, only include current user (no mock placeholders)
     const me = {
       id: currentUserId,
       name: qUserName || "You",
@@ -57,11 +57,7 @@ export default function LobbyPage() {
       isHost: true,
       avatar: qAvatar || null
     };
-    const others = [
-      { id: "p2", name: "Nanya", ready: false, token: 100, isHost: false, avatar: null },
-      { id: "p3", name: "ns", ready: false, token: 100, isHost: false, avatar: null },
-    ];
-    return [me, ...others].slice(0, 5);
+    return [me];
   };
 
   const [players, setPlayers] = useState(buildInitialPlayers);
@@ -81,37 +77,26 @@ export default function LobbyPage() {
   function toggleReady(playerId) {
     // frontend local toggle only
     setPlayers(prev => prev.map(p => p.id === playerId ? { ...p, ready: !p.ready } : p));
-
-    // In real app: emit socket event here to notify server/other clients
   }
 
   function startGame() {
     if (!everyoneReady) return;
 
-    // frontend-only simulation: check each player has enough tokens,
-    // deduct costPerPlayer from each player and then navigate.
-    // If any player doesn't have enough tokens, abort and show console warning.
     const insufficient = players.find(p => p.token < costPerPlayer);
     if (insufficient) {
-      // Don't change UI structure; just give a console warning for now.
-      // You can hook this to an in-UI message (toast) later.
       console.warn(`Player ${insufficient.name} does not have enough tokens (${insufficient.token}) to pay ${costPerPlayer}.`);
       return;
     }
 
-    // Deduct tokens (simulate)
     const updated = players.map(p => ({ ...p, token: Math.max(0, p.token - costPerPlayer) }));
     setPlayers(updated);
 
-    // In a real implementation: call server API / socket to validate & deduct atomically.
-    // After simulated deduction, navigate to game page
     router.push(`/maingame?room=${encodeURIComponent(roomId)}`);
   }
 
   // UI helpers
   const cardBase = "bg-white/95 rounded-2xl transition-all duration-200 border-2 border-black";
   const cardShadow = "shadow-[0_6px_0_#a52424] hover:shadow-[0_8px_0_#7d1c1c]";
-
   return (
     <div className="fixed inset-0 w-screen h-screen overflow-hidden">
       {/* BACKGROUND: ครอบเต็ม viewport แน่นอน */}
@@ -244,3 +229,4 @@ export default function LobbyPage() {
     </div>
   );
 }
+
