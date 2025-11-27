@@ -46,7 +46,6 @@ model User {
 model Room {
   roomId               String   @id @default(uuid()) // ใช้ UUID อัตโนมัติ
   creatorWalletAddress String
-  roomName             String
   requiredStake        Int
   maxPlayers           Int
   status               RoomStatus @default(WAITING)
