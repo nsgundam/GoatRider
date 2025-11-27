@@ -25,3 +25,9 @@ body {
   font-family: var(--font-baloo), sans-serif;
 
 }
+/* ให้แน่ใจว่าไม่มี margin บน body */
+html, body, #__next {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
