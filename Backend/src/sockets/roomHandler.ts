@@ -79,7 +79,6 @@ export const roomHandler = (io: Server, socket: Socket) => {
     // Event: ผู้เล่นกด Ready
     socket.on('player_ready', async ({ roomId, walletAddress }) => {
         try {
-            // อัปเดตสถานะ Ready ใน DB
             await prisma.playerRoomState.update({
                 where: {
                     roomId_walletAddress: { roomId, walletAddress }
@@ -87,7 +86,6 @@ export const roomHandler = (io: Server, socket: Socket) => {
                 data: { isReady: true }
             });
 
-            // แจ้งทุกคนว่าคนนี้พร้อมแล้ว
             const players = await prisma.playerRoomState.findMany({
                 where: { roomId },
                 include: { user: true }
