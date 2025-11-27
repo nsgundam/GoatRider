@@ -436,3 +436,85 @@ Import traces:
 [04:16:31.076] Server  LOG      ✓ Compiled in 4.3s
 [04:16:40.602] Server  LOG      ✓ Compiled in 190ms
 [04:17:14.202] Server  LOG      ✓ Compiled in 163ms
+[05:26:50.444] Server  LOG      ✓ Compiled in 790ms
+[05:34:11.567] Server  LOG      ✓ Compiled in 1878ms
+[05:37:44.888] Server  LOG      ✓ Compiled in 643ms
+[05:37:45.232] Browser ERROR   ./Frontend/app/lobby/page.jsx:236:6
+Parsing ecmascript source code failed
+  234 |         </div>
+  235 |       </div>
+> 236 |     </div>
+      |      ^^^^^
+  237 |   );
+  238 | }
+  239 |
+
+Unterminated regexp literal
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[05:38:10.535] Server  LOG      ✓ Compiled in 351ms
+[05:38:57.567] Server  LOG      ✓ Compiled in 399ms
+[05:39:53.052] Server  LOG      ✓ Compiled in 222ms
+[05:39:56.815] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[05:39:56.815] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[05:39:58.613] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[05:39:58.613] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[05:39:58.907] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}
+[05:39:58.907] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}
+[05:40:23.363] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:40:23.612] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/hugl4hmvs5foaw8fdizk?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:41:03.909] Server  LOG      ✓ Compiled in 334ms
+[05:41:53.783] Server  LOG      ✓ Compiled in 1756ms
+[05:41:54.119] Browser ERROR   Received `%s` for a non-boolean attribute `%s`.
+
+If you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}. true h h true h
+[05:42:32.167] Server  LOG      ✓ Compiled in 190ms
+[05:42:32.279] Browser ERROR   ./Frontend/app/lobby/page.jsx:225:86
+Parsing ecmascript source code failed
+  223 |                       onClick={startGame}
+  224 |                       disabled={!everyoneReady}
+> 225 |                       className={`px-4 py-2 font-bold rounded-full ${everyoneReady ? "bg-red-600 hover:bg-red-700
+      |                                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  226 |                          text-white shadow-[0_6px_0_#7d1c1c]" : "bg-gray-400 text-black cursor-not-allowed"}`}
+  227 |                     >
+  228 |                       start Game
+
+Unterminated string constant
+
+Import traces:
+  Client Component Browser:
+    ./Frontend/app/lobby/page.jsx [Client Component Browser]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+
+  Client Component SSR:
+    ./Frontend/app/lobby/page.jsx [Client Component SSR]
+    ./Frontend/app/lobby/page.jsx [Server Component]
+[05:42:50.185] Server  LOG      ✓ Compiled in 239ms
+[05:43:48.508] Server  LOG      ✓ Compiled in 392ms
+[05:44:03.246] Server  LOG      ✓ Compiled in 1669ms
+[05:44:05.778] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[05:44:05.778] Browser WARN    Please switch MetaMask network to Sepolia (chainId 11155111).
+[05:44:07.606] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[05:44:07.607] Browser WARN    decimals() not available, default to 18 {"code":"BAD_DATA","info":{"method":"decimals","signature":"decimals()"},"shortMessage":"could not decode result data","value":"0x"}
+[05:44:07.920] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}
+[05:44:07.920] Browser ERROR   Failed to call balanceOf: {"code":"BAD_DATA","info":{"method":"balanceOf","signature":"balanceOf(address)"},"shortMessage":"could not decode result data","value":"0x"}
+[05:44:12.298] Server  ERROR   Received `true` for a non-boolean attribute `h`.
+
+If you want to write it to the DOM, pass a string instead: h="true" or h={value.toString()}.
+[05:44:14.016] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[05:44:16.749] Browser ERROR   Received `%s` for a non-boolean attribute `%s`.
+
+If you want to write it to the DOM, pass a string instead: %s="%s" or %s={value.toString()}. true h h true h
+[05:44:16.749] Browser WARN    Image with src "https://res.cloudinary.com/dla8rkqp6/image/upload/c_limit,w_3840/f_auto/q_auto/v1/hugl4hmvs5foaw8fdizk?_a=BAVMn6AQ0" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[05:44:28.394] Server  LOG      ✓ Compiled in 1550ms
+[05:44:49.838] Server  LOG      ✓ Compiled in 4.1s
+[05:45:34.725] Server  LOG      ✓ Compiled in 152ms
+[05:47:26.643] Server  LOG      ✓ Compiled in 327ms
+[05:47:31.936] Server  LOG      ✓ Compiled in 128ms
