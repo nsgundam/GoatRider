@@ -6,6 +6,7 @@ import { Button } from "@/app/components/button";
 import { useRouter } from "next/navigation";
 import { CONTRACTS } from "@/src/config/contracts";
 
+
 // ประกาศ Type เพื่อเลี่ยง Error: Window.ethereum
 declare global {
   interface Window {
