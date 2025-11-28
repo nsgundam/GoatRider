@@ -13,13 +13,7 @@ interface Player {
   user: {
     username: string;
   };
-  isReady: boolean; // มาจาก DB (จ่ายเงินหรือยัง)
-}
-interface RoomData {
-  roomId: string;
-  requiredStake: number;
-  players: Player[];
-  creatorWalletAddress?: string; // ถ้า Backend ส่งมา
+  isReady: boolean;
 }
 
 export default function LobbyPage() {
@@ -31,6 +25,7 @@ export default function LobbyPage() {
   const [socket, setSocket] = useState<Socket | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
   const [currentUser, setCurrentUser] = useState<{ username: string; walletAddress: string } | null>(null);
+  const [myTokenBalance, setMyTokenBalance] = useState<number>(0);
   const [requiredStake, setRequiredStake] = useState<number>(0); // รอรับจาก Backend
   const [isProcessing, setIsProcessing] = useState(false); // สำหรับ Loading ตอนจ่ายเงิน
   const [canStart, setCanStart] = useState(false); // ปุ่ม Start
@@ -130,7 +125,7 @@ export default function LobbyPage() {
       // 3. จ่ายเงินเข้าห้อง (JoinAndBet)
       console.log("💸 Paying stake to join room...");
       // ต้องมั่นใจว่า Smart Contract มีฟังก์ชันชื่อนี้ (เช็คกับเพื่อน)
-      const txJoin = await poolContract.joinAndBet(roomId); 
+      const txJoin = await poolContract.joinAndBet(roomId, stakeAmount); 
       await txJoin.wait();
 
       console.log("✅ Payment Confirmed on Blockchain");

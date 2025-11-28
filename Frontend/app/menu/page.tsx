@@ -175,6 +175,7 @@ export default function MenuPage() {
         alert(`Error: ${data.error || "Failed to create room"}`);
         return;
       }
+      
 
       setRoomUUID(data.room.roomId);
       setShowCreatePopup(false);
