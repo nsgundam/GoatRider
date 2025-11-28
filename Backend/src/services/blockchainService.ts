@@ -2,69 +2,92 @@
 import { ethers } from 'ethers';
 import { PrismaClient } from '@prisma/client';
 import { Server } from 'socket.io';
-import GAME_POOL_ABI from '../config/GamePoolABI.json';// Import ไฟล์ ABI ที่สร้างตะกี้
+// ⚠️ ต้องมั่นใจว่าไฟล์นี้คือ ABI ตัวล่าสุดที่คุณเพิ่งอัปเดต
+import GAME_POOL_ABI from '../config/GamePoolABI.json'; 
 
 const prisma = new PrismaClient();
 
-// ตัวแปรเก็บ Instance
 let contract: ethers.Contract;
 let provider: ethers.JsonRpcProvider;
 
 export const initBlockchainListener = (io: Server) => {
+    console.log("🔄 Initializing Blockchain Listener...");
+
     try {
         const rpcUrl = process.env.RPC_URL;
         const contractAddress = process.env.GAME_CONTRACT_ADDRESS;
 
         if (!rpcUrl || !contractAddress) {
-            console.warn("⚠️ Blockchain config missing. Listener skipped.");
+            console.error("❌ Missing RPC_URL or GAME_CONTRACT_ADDRESS in .env");
             return;
         }
 
-        // 1. Setup Connection
+        // 1. เชื่อมต่อ Blockchain
         provider = new ethers.JsonRpcProvider(rpcUrl);
+        // ใช้ Polling Interval เพื่อความเสถียร (เช็คทุก 3 วินาที)
+        provider.pollingInterval = 3000; 
+
         contract = new ethers.Contract(contractAddress, GAME_POOL_ABI, provider);
 
-        console.log(`👂 Listening to Contract at: ${contractAddress}`);
+        console.log(`👂 Listening to GamePool at: ${contractAddress}`);
 
-        // 2. Listen to 'PlayerJoined' Event
+        // 2. ฟัง Event: PlayerJoined
+        // event PlayerJoined(string indexed roomId, address indexed player, uint256 amount);
         contract.on("PlayerJoined", async (roomId, playerAddress, amount, event) => {
-            console.log(`💰 Payment Detected! Room: ${roomId}, Player: ${playerAddress}`);
+            console.log(`💰 [EVENT] PlayerJoined Detected!`);
+            console.log(`   - Room: ${roomId}`);
+            console.log(`   - Player: ${playerAddress}`);
+            console.log(`   - Amount: ${ethers.formatEther(amount)} GRD`);
 
             try {
-                // A. อัปเดต DB ว่าจ่ายเงินแล้ว
-                await prisma.playerRoomState.update({
+                // A. อัปเดต Database: isReady = true
+                // หมายเหตุ: ใช้ updateMany เผื่อกรณี Wallet Address ตัวพิมพ์เล็ก/ใหญ่ไม่ตรงกัน
+                const updateResult = await prisma.playerRoomState.updateMany({
                     where: {
-                        roomId_walletAddress: {
-                            roomId: roomId,
-                            walletAddress: playerAddress
-                        }
+                        roomId: roomId,
+                        // ใช้ mode: 'insensitive' ไม่ได้ใน updateMany ของ Prisma บางเวอร์ชัน
+                        // ดังนั้นเราจะพยายามหาตรงๆ หรือถ้า User เก็บ lowercase ก็จะเจอ
+                        walletAddress: {
+                            equals: playerAddress,
+                            mode: 'insensitive' // บังคับไม่สนตัวพิมพ์เล็กใหญ่
+                        } 
                     },
-                    data: { 
-                        isReady: true // ถือว่าจ่ายเงิน = พร้อมเล่น
-                    }
+                    data: { isReady: true }
                 });
 
-                // B. แจ้งเตือนทุกคนในห้องผ่าน Socket
-                io.to(roomId).emit('player_paid', {
-                    walletAddress: playerAddress,
-                    status: 'PAID'
-                });
-                
-                // C. อัปเดตรายชื่อคนในห้องใหม่
+                if (updateResult.count === 0) {
+                    console.warn(`⚠️ Warning: User ${playerAddress} not found in room ${roomId} (DB not updated)`);
+                    // กรณีนี้อาจเกิดถ้า User จ่ายเงินก่อนกด Join ใน DB (แต่ระบบเรา Join DB ก่อนเสมอ)
+                } else {
+                    console.log(`✅ Database Updated: ${playerAddress} is READY.`);
+                }
+
+                // B. ดึงข้อมูลล่าสุดเพื่อส่ง Socket
                 const players = await prisma.playerRoomState.findMany({
                     where: { roomId },
                     include: { user: true }
                 });
-                io.to(roomId).emit('room_update', { roomId, players });
 
-                // D. เช็คว่าครบคนหรือยัง เพื่อเริ่มเกม (เหมือนใน RoomHandler)
+                const roomInfo = await prisma.room.findUnique({
+                    where: { roomId }
+                });
+
+                // C. แจ้งเตือน Frontend ผ่าน Socket
+                io.to(roomId).emit('room_update', { 
+                    roomId, 
+                    players,
+                    requiredStake: roomInfo?.requiredStake || 0
+                });
+
+                // D. เช็คว่าเริ่มเกมได้หรือยัง
                 const allReady = players.every(p => p.isReady);
                 if (allReady && players.length >= 2) {
+                    console.log(`🚀 Room ${roomId} is ready to start!`);
                     io.to(roomId).emit('can_start_game', true);
                 }
 
             } catch (err) {
-                console.error("❌ Error handling payment event:", err);
+                console.error("❌ Error processing PlayerJoined event:", err);
             }
         });
 
@@ -73,20 +96,20 @@ export const initBlockchainListener = (io: Server) => {
     }
 };
 
-// ฟังก์ชันสำหรับจ่ายเงินรางวัล (เรียกตอนจบเกม)
+// ฟังก์ชันจ่ายรางวัล (คงเดิม)
 export const payoutWinner = async (roomId: string, winnerAddress: string) => {
     try {
         const privateKey = process.env.ADMIN_PRIVATE_KEY;
         if (!privateKey) throw new Error("Admin Private Key missing");
 
         const wallet = new ethers.Wallet(privateKey, provider);
-        const contractWithSigner = contract.connect(wallet) as ethers.Contract;
+        // ใช้ as any เพื่อเลี่ยง TS check ชั่วคราว
+        const contractWithSigner = contract.connect(wallet) as any;
 
         console.log(`💸 Distributing reward for Room ${roomId} to ${winnerAddress}...`);
         
-        // เรียกฟังก์ชัน Smart Contract
-        const tx = await  (contractWithSigner as any).distributeReward(roomId, winnerAddress);
-        await tx.wait(); // รอ Transaction ยืนยัน
+        const tx = await contractWithSigner.distributeReward(roomId, winnerAddress);
+        await tx.wait();
 
         console.log(`✅ Payout Success! TX: ${tx.hash}`);
         return tx.hash;

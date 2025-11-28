@@ -19,33 +19,59 @@ interface Player {
 export default function LobbyPage() {
   const router = useRouter();
   const params = useParams();
-  const roomId = params?.id as string; // ดึง Room ID จาก URL
+  const roomId = params?.id as string;
 
   // --- States ---
   const [socket, setSocket] = useState<Socket | null>(null);
   const [players, setPlayers] = useState<Player[]>([]);
   const [currentUser, setCurrentUser] = useState<{ username: string; walletAddress: string } | null>(null);
-  const [myTokenBalance, setMyTokenBalance] = useState<number>(0);
-  const [requiredStake, setRequiredStake] = useState<number>(0); // รอรับจาก Backend
-  const [isProcessing, setIsProcessing] = useState(false); // สำหรับ Loading ตอนจ่ายเงิน
-  const [canStart, setCanStart] = useState(false); // ปุ่ม Start
+  
+  // 💰 1. เพิ่ม State เก็บเงิน
+  const [myTokenBalance, setMyTokenBalance] = useState<number>(0); 
+  
+  const [requiredStake, setRequiredStake] = useState<number>(0);
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [canStart, setCanStart] = useState(false);
 
   // --- 1. Init Data & Socket Connection ---
   useEffect(() => {
-    // โหลดข้อมูล User ตัวเองจาก LocalStorage
     const userStr = localStorage.getItem("user");
-    if (!userStr) {
+    const token = localStorage.getItem("token"); // ต้องใช้ Token
+
+    if (!userStr || !token) {
       router.push("/");
       return;
     }
     const userObj = JSON.parse(userStr);
     setCurrentUser(userObj);
 
-    // เชื่อมต่อ Socket
-    const newSocket = io("http://localhost:3001"); // URL Backend
+    // -------------------------------------------------------------
+    // 💰 2. เพิ่มการดึงยอดเงินล่าสุดจาก Backend
+    // -------------------------------------------------------------
+    fetch("http://localhost:3001/api/user/me", {
+        headers: { "Authorization": `Bearer ${token}` }
+    })
+    .then(res => res.json())
+    .then(data => {
+        if(data.tokenBalance) setMyTokenBalance(Number(data.tokenBalance));
+    })
+    .catch(err => console.error("Failed to load balance:", err));
+
+    // -------------------------------------------------------------
+    // 🏠 3. ดึงข้อมูลห้องเบื้องต้น (Backup)
+    // -------------------------------------------------------------
+    fetch(`http://localhost:3001/api/rooms/${roomId}`)
+    .then(res => res.json())
+    .then(data => {
+       if (data.requiredStake) setRequiredStake(data.requiredStake);
+    })
+    .catch(() => console.log("Room check skipped"));
+
+
+    // --- Socket Connection ---
+    const newSocket = io("http://localhost:3001");
     setSocket(newSocket);
 
-    // Join Room ทันทีที่ต่อติด
     newSocket.on("connect", () => {
       console.log("🔌 Connected to Socket");
       newSocket.emit("join_room", {
@@ -54,7 +80,6 @@ export default function LobbyPage() {
       });
     });
 
-    // ฟัง Event: อัปเดตข้อมูลห้อง
     newSocket.on("room_update", (data: { players: Player[], requiredStake?: number }) => {
       console.log("📢 Room Update:", data);
       setPlayers(data.players);
@@ -62,12 +87,10 @@ export default function LobbyPage() {
       if (data.requiredStake) setRequiredStake(data.requiredStake); 
     });
 
-    // ฟัง Event: ปุ่ม Start กดได้หรือยัง
     newSocket.on("can_start_game", (status: boolean) => {
       setCanStart(status);
     });
 
-    // ฟัง Event: เกมเริ่มแล้ว! (ไปหน้า MainGame)
     newSocket.on("game_started", () => {
       console.log("🚀 Game Started! Redirecting...");
       router.push(`/maingame?room=${roomId}`);
@@ -78,24 +101,28 @@ export default function LobbyPage() {
       if(msg === "Room not found") router.push("/menu");
     });
 
-    // Cleanup
     return () => {
       newSocket.disconnect();
     };
   }, [roomId, router]);
 
 
-  // --- 2. Logic: จ่ายเงิน (Ready) ---
-  // Flow: Approve Token -> Call joinAndBet -> รอ Blockchain Event -> Backend อัปเดต -> Socket เด้งกลับมา
+  // --- Logic: จ่ายเงิน (Ready) ---
   async function handlePayAndReady() {
     if (!window.ethereum || !currentUser) return;
+    
+    // เช็คเงินก่อน
+    if (myTokenBalance < requiredStake) {
+        alert("Not enough tokens!");
+        return;
+    }
+
     setIsProcessing(true);
 
     try {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
 
-      // 1. เตรียม Contract
       const tokenContract = new ethers.Contract(
         CONTRACTS.TOKEN.ADDRESS!, 
         CONTRACTS.TOKEN.ABI, 
@@ -108,28 +135,34 @@ export default function LobbyPage() {
         signer
       );
 
-      // แปลง Stake เป็น Wei (สมมติ 18 decimals)
-      // *หมายเหตุ: ตอนนี้ Backend ยังไม่ส่ง requiredStake มาใน room_update
-      const stakeAmount = ethers.parseUnits(requiredStake.toString() || "10", 18); 
+      const stakeAmount = ethers.parseUnits(requiredStake.toString(), 18); 
 
-      // 2. เช็ค Allowance & Approve
+      // Check Allowance
       const allowance = await tokenContract.allowance(currentUser.walletAddress, CONTRACTS.GAME_POOL.ADDRESS);
-      
       if (allowance < stakeAmount) {
-        console.log("📝 Approving tokens...");
+        console.log("📝 Approving...");
         const txApprove = await tokenContract.approve(CONTRACTS.GAME_POOL.ADDRESS, stakeAmount);
         await txApprove.wait();
-        console.log("✅ Approved");
       }
 
-      // 3. จ่ายเงินเข้าห้อง (JoinAndBet)
-      console.log("💸 Paying stake to join room...");
-      // ต้องมั่นใจว่า Smart Contract มีฟังก์ชันชื่อนี้ (เช็คกับเพื่อน)
+      // JoinAndBet
+      console.log("💸 Paying...");
       const txJoin = await poolContract.joinAndBet(roomId, stakeAmount); 
       await txJoin.wait();
 
-      console.log("✅ Payment Confirmed on Blockchain");
-      // ไม่ต้องทำอะไรต่อ... เดี๋ยว Backend Listener จะจับ Event แล้วส่ง Socket มา update หน้าจอเอง
+      console.log("✅ Payment Confirmed");
+      
+      // 1. เปลี่ยนสถานะตัวเองในลิสต์ให้เป็น Ready = true
+      setPlayers((prevPlayers) => 
+        prevPlayers.map((p) => 
+          p.walletAddress.toLowerCase() === currentUser.walletAddress.toLowerCase()
+            ? { ...p, isReady: true }
+            : p
+        )
+      );
+
+      // 2. หักเงินในหน้าจอทันที (เพื่อความสมจริง)
+      setMyTokenBalance((prev) => prev - requiredStake)
 
     } catch (error: any) {
       console.error("Payment Error:", error);
@@ -139,7 +172,7 @@ export default function LobbyPage() {
     }
   }
 
-  // --- 3. Logic: เริ่มเกม (Host Only) ---
+  // --- Logic: เริ่มเกม ---
   function handleStartGame() {
     if (!socket) return;
     socket.emit("start_game", { roomId });
@@ -153,9 +186,10 @@ export default function LobbyPage() {
   // UI helpers
   const cardBase = "bg-white/95 rounded-2xl transition-all duration-200 border-2 border-black";
   const cardShadow = "shadow-[0_6px_0_#a52424] hover:shadow-[0_8px_0_#7d1c1c]";
+
   return (
     <div className="fixed inset-0 w-screen h-screen overflow-hidden font-sans">
-      {/* BACKGROUND: ครอบเต็ม viewport แน่นอน */}
+      {/* BACKGROUND */}
       <div className="absolute inset-0">
         <CldImage
           src="hugl4hmvs5foaw8fdizk"
@@ -167,7 +201,31 @@ export default function LobbyPage() {
         <div className="absolute inset-0 bg-black/30" />
       </div>
 
-      {/* CONTENT area (scrollable ifสูงเกิน) */}
+      {/* 🔴 4. เพิ่ม UI แสดงยอดเงินที่มุมขวาบน */}
+      <div className="absolute top-6 right-6 flex items-center gap-3 
+        bg-[#FBAF22] hover:bg-[#eedebf] px-4 py-2 rounded-full max-w-[320px] 
+        shadow-[0_10px_0_#a52424] transition-all z-20"
+      >
+        <div className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden flex-shrink-0">
+          <CldImage
+            src="k302t89vjayzaffzm3ci"
+            width={50}
+            height={50}
+            className="w-full h-full object-cover"
+            alt="User Avatar"
+          />
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-lg font-bold text-white truncate max-w-[100px]">
+            {currentUser?.username || "Guest"}
+          </span>
+          <span className="text-lg font-bold text-white bg-black/20 px-3 py-1 rounded-full">
+            {myTokenBalance} GRD
+          </span>
+        </div>
+      </div>
+
+      {/* CONTENT area */}
       <div className="relative z-10 w-full h-full overflow-auto flex items-center justify-center">
         <div className="max-w-[1200px] px-6">
           <div className="grid grid-cols-12 gap-6 items-start w-full">
@@ -179,15 +237,15 @@ export default function LobbyPage() {
                 <h1 className="text-5xl font-extrabold text-[#FBAF22] drop-shadow-[2px_2px_0_#000] tracking-wide">
                   HAVE FUN!
                 </h1>
-
                 <p className="text-gray-500 font-bold mt-2">ROOM ID: {roomId}</p>
-
               </div>
 
               {/* Room id row */}
                <div className="flex justify-between items-center bg-gray-100 p-4 rounded-xl border-2 border-gray-300 mb-6">
                 <span className="font-bold text-gray-600">Entry Fee:</span>
-                <span className="text-2xl font-bold text-[#a52424]">{requiredStake} GRD</span>
+                <span className="text-2xl font-bold text-[#a52424]">
+                    {requiredStake > 0 ? `${requiredStake} GRD` : "Loading..."}
+                </span>
               </div>
 
               {/* Players list */}
@@ -195,7 +253,6 @@ export default function LobbyPage() {
                 {players.map((p,index) => (
                   <div key={p.walletAddress} className={`${cardBase} ${cardShadow} flex items-center justify-between p-4`}>
                    <div className="flex items-center gap-3 min-w-0">
-                      {/* Avatar Placeholder */}
                       <div className="w-12 h-12 rounded-full bg-gray-200 border-2 border-black flex items-center justify-center text-xl">
                         {index === 0 ? "👑" : "👤"}
                       </div>
@@ -251,7 +308,7 @@ export default function LobbyPage() {
                   {!isMyReady && (
                   <Button
                     onClick={handlePayAndReady}
-                    disabled={isProcessing}
+                    disabled={isProcessing || requiredStake === 0}
                     className={`px-8 py-3 font-bold rounded-full text-xl shadow-[0_4px_0_#000]
                       ${isProcessing ? "bg-gray-400" : "bg-[#FBAF22] hover:bg-[#e49c20] text-white"}`}
                   >
@@ -276,7 +333,7 @@ export default function LobbyPage() {
               </div>
             </div>
 
-            {/* RIGHT PANEL: keep it simple (no extra full-screen image to avoid seams) */}
+            {/* RIGHT PANEL */}
             <div className="col-span-12 lg:col-span-7 rounded-3xl overflow-hidden relative">
               <div className="absolute inset-0 bg-gradient-to-l from-transparent to-black/30" />
               <div className="relative z-10 h-full" />
@@ -287,4 +344,3 @@ export default function LobbyPage() {
     </div>
   );
 }
-
