@@ -8,97 +8,75 @@ export default function PlayerHand({
   isSelf = false,
   onCardClick,
   playerIndex = 0,
-  layout = "bottom", // bottom, top, left, right
-  containerSize = 600, // ความกว้าง (แนวนอน) หรือ ความสูง (แนวตั้ง) ที่ยอมให้แสดงผล
+  layout = "bottom",
+  containerSize = 600,
   selectedCards = [],
 }) {
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const cardCount = cards.length;
 
-  // --- คำนวณขนาดและการซ้อนทับ (Dynamic Stacking) ---
+  // --- คำนวณขนาด (เหมือนเดิม แต่ปรับจูนนิดหน่อย) ---
   const { cardSize, offset, startPos } = useMemo(() => {
-    // กำหนดขนาดการ์ดตาม Layout
-    // ถ้าเป็นเรา (bottom) ให้ใหญ่หน่อย, คนอื่น (top/left/right) ให้เล็กกว่านิดนึง
-    const baseWidth = isSelf ? 120 : 70; 
-    
-    // สำหรับ Card component: ถ้าแนวตั้ง เราจะอิงความสูงของ card เป็นหลักในการคำนวณ offset
-    // แต่ Card component วาดตัวเองเป็น width x height (ratio ~1.35)
-    // ดังนั้น:
-    // แนวนอน (Top/Bottom): กินพื้นที่แกน X = width
-    // แนวตั้ง (Left/Right): กินพื้นที่แกน Y = height = width * 1.35
-    
+    // ขนาดการ์ด (รวมขอบขาว): เราใหญ่ (120), คนอื่นเล็ก (90)
+    const baseWidth = isSelf ? 120 : 90;
     const itemSize = (layout === "left" || layout === "right") 
-      ? Math.round(baseWidth * 1.35) // ความสูงการ์ด
-      : baseWidth; // ความกว้างการ์ด
+      ? Math.round(baseWidth * 1.4) // แนวตั้งอิงความสูง
+      : baseWidth;                  // แนวนอนอิงความกว้าง
 
-    // พื้นที่ที่ใช้ได้จริง (เผื่อขอบนิดหน่อย)
     const availableSpace = containerSize - 40; 
-
-    // สูตรคำนวณ Offset (ระยะห่างระหว่างใบ)
-    // ถ้าไพ่น้อย -> ใช้ระยะห่างปกติ (เช่น 40px)
-    // ถ้าไพ่เยอะ -> บีบให้ลงใน availableSpace
-    const defaultOffset = isSelf ? 50 : 30;
+    const defaultOffset = isSelf ? 50 : 35; // ระยะห่างปกติ
     const maxTotalSize = (cardCount - 1) * defaultOffset + itemSize;
     
     let finalOffset = defaultOffset;
     if (maxTotalSize > availableSpace) {
+      // สูตรบีบไพ่ (Squeeze) ถ้าพื้นที่ไม่พอ
       finalOffset = (availableSpace - itemSize) / Math.max(1, cardCount - 1);
     }
 
-    // คำนวณจุดเริ่มต้น (เพื่อให้ไพ่อยู่ตรงกลาง Container)
     const actualTotalSize = (cardCount - 1) * finalOffset + itemSize;
     const start = (containerSize - actualTotalSize) / 2;
 
     return { cardSize: baseWidth, offset: finalOffset, startPos: start };
   }, [cardCount, containerSize, isSelf, layout]);
 
-
-  // --- Render ---
   const isVertical = layout === "left" || layout === "right";
 
   return (
     <div 
-      className="relative pointer-events-none" // ป้องกันการกดที่ว่าง (ให้กดได้เฉพาะที่ตัว Card)
+      className="relative pointer-events-none"
       style={{
-        width: isVertical ? "140px" : "100%",
-        height: isVertical ? "100%" : "160px",
-        maxWidth: isVertical ? undefined : `${containerSize}px`,
-        maxHeight: isVertical ? `${containerSize}px` : undefined,
-        // debug border (เอาออกได้)
-        // border: "1px dashed rgba(255,0,0,0.3)" 
+        width: isVertical ? "160px" : "100%",
+        height: isVertical ? "100%" : "180px",
+        // ให้แน่ใจว่า Container ใหญ่พอจะโชว์เงา
+        overflow: "visible", 
       }}
     >
       {cards.map((card, i) => {
-        // ตำแหน่ง
         const posValue = startPos + i * offset;
-        
-        // Z-Index & Interactive Logic
         const isHovered = hoveredIndex === i;
         const isSelected = selectedCards.includes(card.id);
         
-        // ถ้าเป็นเรา: Hover/Select แล้วเด้งมาหน้าสุด (500)
-        // ถ้าเป็นคนอื่น: เรียงตามลำดับปกติ (100+i) เพราะไม่ต้อง Interactive
+        // Z-Index: 
+        // ปกติ: เรียงตามลำดับ (100+i)
+        // ถ้า Hover/Select (เฉพาะเรา): เด้งมาหน้าสุด (500)
         let z = 100 + i;
-        if (isSelf && (isHovered || isSelected)) {
-          z = 500;
-        }
+        if (isSelf && (isHovered || isSelected)) z = 500;
 
-        // Style
+        // Position Style
         const style = isVertical
           ? { position: "absolute", top: `${posValue}px`, left: "50%", transform: "translateX(-50%)", zIndex: z }
           : { position: "absolute", left: `${posValue}px`, zIndex: z };
 
-        // Animation Class (เฉพาะของตัวเอง)
-        let animClass = "transition-all duration-200 ease-out";
+        // Animation Classes
+        let animClass = "transition-all duration-300 ease-out origin-bottom";
         if (isSelf) {
-          animClass += " cursor-pointer pointer-events-auto origin-bottom"; // เปิดให้กดได้เฉพาะการ์ดเรา
-          if (isSelected) {
-            animClass += " -translate-y-12 scale-110 z-[600]";
-          } else if (isHovered) {
-            animClass += " -translate-y-8 scale-110";
-          } else {
-            animClass += " translate-y-0 scale-100";
-          }
+          animClass += " cursor-pointer pointer-events-auto"; // เปิดให้กดได้เฉพาะเรา
+          if (isSelected) animClass += " -translate-y-12 scale-110 z-[600]";
+          else if (isHovered) animClass += " -translate-y-8 scale-110";
+          else animClass += " translate-y-0 scale-100";
+        } else {
+          // คนอื่น: นิ่งๆ ไม่ต้องเด้ง
+          animClass += " translate-y-0 scale-100";
         }
 
         return (
@@ -110,29 +88,29 @@ export default function PlayerHand({
             onMouseLeave={() => isSelf && setHoveredIndex(null)}
             onClick={() => isSelf && onCardClick && onCardClick(playerIndex, card)}
           >
+            {/* --- ส่วนที่ทำให้สวย "White Frame Wrapper" --- 
+               ใช้กับทุกคน (ทั้งเราและเขา) 
+            */}
             <div className={`
-                rounded-xl shadow-lg transition-all duration-200
-                ${isSelf && isSelected ? "ring-4 ring-[#FBAF22] shadow-[0_0_15px_rgba(251,175,34,0.6)]" : ""}
-            `}>
+              bg-white p-1.5 rounded-xl shadow-lg border border-gray-200
+              ${isSelf && isSelected ? "ring-4 ring-[#FBAF22] ring-offset-2" : ""}
+            `}
+            style={{
+                width: `${cardSize}px`,
+                // คำนวณความสูงให้สัมพันธ์กับ Card ratio (1.4) + padding
+                height: `${Math.round((cardSize - 12) * 1.4) + 12}px` 
+            }}
+            >
+              {/* ตัวการ์ดจริงอยู่ข้างใน */}
               <Card 
                 card={card} 
-                isFaceUp={isSelf} // ของเราหงาย คนอื่นคว่ำ
-                width={cardSize}
+                isFaceUp={isSelf} // เราหงาย คนอื่นคว่ำ
+                width={cardSize - 12} // ลบ padding ออกเพื่อให้ลงล็อค
               />
             </div>
           </div>
         );
       })}
-      
-      {/* Badge บอกจำนวนไพ่ (สำหรับคนอื่น) */}
-      {!isSelf && (
-        <div className={`
-          absolute z-[200] bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md
-          ${isVertical ? "-top-2 right-0" : "-top-2 right-0"}
-        `}>
-          {cardCount}
-        </div>
-      )}
     </div>
   );
 }
