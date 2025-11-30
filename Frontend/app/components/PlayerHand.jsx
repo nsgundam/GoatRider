@@ -1,4 +1,3 @@
-// app/components/PlayerHand.jsx
 "use client";
 import React, { useMemo, useState } from "react";
 import Card from "./Card";
@@ -15,13 +14,17 @@ export default function PlayerHand({
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const cardCount = cards.length;
 
-  // --- คำนวณขนาด (เหมือนเดิม แต่ปรับจูนนิดหน่อย) ---
+  // --- ปรับให้เป็นแนวนอนทั้งหมด (Horizontal Only) ---
+  // บังคับไม่ให้เป็นแนวตั้งเลย ไม่ว่าจะ layout ไหน
+  const isVertical = false; 
+
+  // --- คำนวณขนาดและการซ้อนทับ ---
   const { cardSize, offset, startPos } = useMemo(() => {
-    // ขนาดการ์ด (รวมขอบขาว): เราใหญ่ (120), คนอื่นเล็ก (90)
-    const baseWidth = isSelf ? 120 : 90;
-    const itemSize = (layout === "left" || layout === "right") 
-      ? Math.round(baseWidth * 1.4) // แนวตั้งอิงความสูง
-      : baseWidth;                  // แนวนอนอิงความกว้าง
+    // ขนาดการ์ด: เราใหญ่ (120), คนอื่นเล็ก (100)
+    const baseWidth = isSelf ? 120 : 100;
+    
+    // เนื่องจากเป็นแนวนอนหมด itemSize จึงเท่ากับความกว้าง (baseWidth) เสมอ
+    const itemSize = baseWidth;
 
     const availableSpace = containerSize - 40; 
     const defaultOffset = isSelf ? 50 : 35; // ระยะห่างปกติ
@@ -37,17 +40,15 @@ export default function PlayerHand({
     const start = (containerSize - actualTotalSize) / 2;
 
     return { cardSize: baseWidth, offset: finalOffset, startPos: start };
-  }, [cardCount, containerSize, isSelf, layout]);
-
-  const isVertical = layout === "left" || layout === "right";
+  }, [cardCount, containerSize, isSelf]); // ตัด layout ออกจาก dependency เพราะไม่ได้ใช้คำนวณขนาดแล้ว
 
   return (
     <div 
       className="relative pointer-events-none"
       style={{
-        width: isVertical ? "160px" : "100%",
-        height: isVertical ? "100%" : "180px",
-        // ให้แน่ใจว่า Container ใหญ่พอจะโชว์เงา
+        // ปรับขนาด Container ให้รองรับแนวนอนทั้งหมด
+        width: "100%", 
+        height: isSelf ? "180px" : "140px", // ความสูงเผื่อการ์ดเด้งนิดหน่อย
         overflow: "visible", 
       }}
     >
@@ -56,26 +57,24 @@ export default function PlayerHand({
         const isHovered = hoveredIndex === i;
         const isSelected = selectedCards.includes(card.id);
         
-        // Z-Index: 
-        // ปกติ: เรียงตามลำดับ (100+i)
-        // ถ้า Hover/Select (เฉพาะเรา): เด้งมาหน้าสุด (500)
         let z = 100 + i;
         if (isSelf && (isHovered || isSelected)) z = 500;
 
-        // Position Style
-        const style = isVertical
-          ? { position: "absolute", top: `${posValue}px`, left: "50%", transform: "translateX(-50%)", zIndex: z }
-          : { position: "absolute", left: `${posValue}px`, zIndex: z };
+        // บังคับ Style เป็นแนวนอน (ใช้ left)
+        const style = { 
+            position: "absolute", 
+            left: `${posValue}px`, 
+            zIndex: z 
+        };
 
         // Animation Classes
         let animClass = "transition-all duration-300 ease-out origin-bottom";
         if (isSelf) {
-          animClass += " cursor-pointer pointer-events-auto"; // เปิดให้กดได้เฉพาะเรา
+          animClass += " cursor-pointer pointer-events-auto";
           if (isSelected) animClass += " -translate-y-12 scale-110 z-[600]";
           else if (isHovered) animClass += " -translate-y-8 scale-110";
           else animClass += " translate-y-0 scale-100";
         } else {
-          // คนอื่น: นิ่งๆ ไม่ต้องเด้ง
           animClass += " translate-y-0 scale-100";
         }
 
@@ -88,24 +87,20 @@ export default function PlayerHand({
             onMouseLeave={() => isSelf && setHoveredIndex(null)}
             onClick={() => isSelf && onCardClick && onCardClick(playerIndex, card)}
           >
-            {/* --- ส่วนที่ทำให้สวย "White Frame Wrapper" --- 
-               ใช้กับทุกคน (ทั้งเราและเขา) 
-            */}
+            {/* White Frame Wrapper */}
             <div className={`
               bg-white p-1.5 rounded-xl shadow-lg border border-gray-200
               ${isSelf && isSelected ? "ring-4 ring-[#FBAF22] ring-offset-2" : ""}
             `}
             style={{
                 width: `${cardSize}px`,
-                // คำนวณความสูงให้สัมพันธ์กับ Card ratio (1.4) + padding
                 height: `${Math.round((cardSize - 12) * 1.4) + 12}px` 
             }}
             >
-              {/* ตัวการ์ดจริงอยู่ข้างใน */}
               <Card 
                 card={card} 
-                isFaceUp={isSelf} // เราหงาย คนอื่นคว่ำ
-                width={cardSize - 12} // ลบ padding ออกเพื่อให้ลงล็อค
+                isFaceUp={isSelf} 
+                width={cardSize - 12}
               />
             </div>
           </div>

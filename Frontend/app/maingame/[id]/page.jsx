@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { makeSimpleDeck } from "../../utils/deck";
 import PlayerSeat from "../../components/PlayerSeat"; 
 import CentralPile from "../../components/CentralPile";
+import { CldImage } from "next-cloudinary";
 
 const playersData = [
   { id: "me", name: "Me (You)", tokens: 100 },
@@ -35,6 +36,21 @@ export default function MainGame() {
       return prev;
     });
   }
+  // ✅ ฟังก์ชันใหม่: เล่นไพ่ (ลบไพ่ที่เลือกออกจากมือ)
+  function handlePlayCards() {
+    setHands(prev => {
+      // กรองเอาเฉพาะใบที่ "ไม่ได้ถูกเลือก" เก็บไว้ (ใบที่เลือกจะหายไป) ใส่เพิ่มเติมเกี่ยวกับการกรองไพ่ อะไรเลือกแล้วต้องลบอะไรไม่ต้องลบ
+      const myNewHand = prev[0].filter(card => !selectedCardIds.includes(card.id));
+      
+      const newAllHands = [...prev];
+      newAllHands[0] = myNewHand; // อัปเดตมือเรา
+      return newAllHands;
+    });
+
+    // เคลียร์สถานะการเลือก และ รีเซ็ตเวลา
+    setSelectedCardIds([]);
+    setTimeLeft(15);
+  }
 
   function handleDrawCard() {
     if (deck.length === 0) return;
@@ -45,9 +61,16 @@ export default function MainGame() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#2a2a2a] font-sans">
-      {/* Background */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#3a6186] to-[#89253e] opacity-80" />
-
+      {/* Background Image */}
+      <div className="absolute inset-0 blur-[3px] opacity-25">
+        <CldImage
+          src="hpspfzupmdw8bh3crszn"
+          width={1920}
+          height={1080}
+          className="w-full h-full object-cover"
+          alt="background"
+        />
+      </div>
       {/* Central Pile */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
         <div className="transform -translate-y-8 scale-110">
