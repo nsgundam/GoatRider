@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from "react";
-import { makeSimpleDeck } from "../utils/deck";
-import PlayerHand from "../components/PlayerHand";
-import CentralPile from "../components/CentralPile";
-import StealModal from "../components/StealModal";
+import { makeSimpleDeck } from "../../utils/deck";
+import PlayerHand from "../../components/PlayerHand";
+import CentralPile from "../../components/CentralPile";
+import StealModal from "../../components/StealModal";
 
 const samplePlayers = [
   { id: "p0", name: "You" },

@@ -235,16 +235,20 @@ export default function MenuPage() {
       {/* Logo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <CldImage
-          src="namegamegoat"
+          src="glndvl5nezxptcnvqpwq"
           width={1920}
           height={1080}
-          className="object-contain scale-75 md:scale-100"
+          className="object-contain object-contain w-[900px]
+           md:scale-90 
+           absolute
+    left-[30%]
+    top-[6%]"
           alt="game logo"
         />
       </div>
 
       {/* Top Right Info Capsule */}
-      <div className="absolute top-6 right-6 flex items-center gap-3 
+      <div className="absolute top-6 right-6 flex items-center gap-3
         bg-[#FBAF22] hover:bg-[#eedebf] px-4 py-2 rounded-full max-w-[320px] 
         shadow-[0_10px_0_#a52424] transition-all z-20"
       >
