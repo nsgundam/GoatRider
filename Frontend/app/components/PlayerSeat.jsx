@@ -1,4 +1,3 @@
-// app/components/PlayerSeat.jsx
 "use client";
 import React from "react";
 import PlayerHand from "./PlayerHand";
@@ -7,76 +6,69 @@ export default function PlayerSeat({
   player,       // { id, name, tokens }
   cards = [],   // array of cards
   isSelf = false,
-  layout = "bottom", // 'bottom', 'top', 'left', 'right', 'top-left', 'top-right'
+  layout = "bottom", // 'bottom', 'top', 'left', 'right'
   containerSize = 600,
   onCardClick,
   selectedCards = [],
 }) {
   const cardCount = cards.length;
 
-  // --- จัด Layout ของ Seat (Info vs Hand) ---
-  // เราจะใช้ Flexbox เพื่อเรียง Info กับ Hand ให้สัมพันธ์กันตามตำแหน่ง
-  let flexDirection = "flex-col"; // default (Top/Bottom)
-  let infoOrder = "order-last";   // default: Hand ก่อน, Info ทีหลัง (สำหรับ Top)
+  // --- จัด Layout ของ Seat (Badge vs Hand) ---
+  let flexDirection = "flex-col"; 
+  let infoOrder = "order-last";   
   let alignment = "items-center";
 
+  // กำหนดทิศทาง Flexbox ตามตำแหน่งที่นั่ง
   if (layout === "bottom") {
     flexDirection = "flex-col";
-    infoOrder = "order-last"; // Hand บน, Info ล่าง
-  } else if (layout === "top" || layout === "top-left" || layout === "top-right") {
+    infoOrder = "order-last"; // Hand บน, Badge ล่าง
+  } else if (layout === "top") {
     flexDirection = "flex-col";
-    infoOrder = "order-first"; // Info บน, Hand ล่าง (หมุนมือ)
+    infoOrder = "order-first"; // Badge บน, Hand ล่าง
   } else if (layout === "left") {
     flexDirection = "flex-row";
-    infoOrder = "order-first"; // Info ซ้าย, Hand ขวา
+    infoOrder = "order-first"; // Badge ซ้าย, Hand ขวา
   } else if (layout === "right") {
     flexDirection = "flex-row";
-    infoOrder = "order-last"; // Hand ซ้าย, Info ขวา
+    infoOrder = "order-last"; // Hand ซ้าย, Badge ขวา
   }
 
   return (
-    <div className={`flex ${flexDirection} ${alignment} gap-2 relative`}>
+    <div className={`flex ${flexDirection} ${alignment} gap-3 relative`}>
       
-      {/* --- ส่วนข้อมูลผู้เล่น (Profile + Card Count) --- */}
-      {/* นี่คือ "ก้อนเดียว" ที่คุณต้องการ รวมชื่อ+เหรียญ+จำนวนไพ่ */}
+      {/* --- ส่วนป้ายชื่อ (Badge) : เป็นแนวนอนทั้งหมด --- */}
       <div className={`
         ${infoOrder} z-20 transition-transform duration-300
         ${isSelf ? "scale-110" : "scale-100"}
       `}>
         <div className={`
-          relative flex flex-col items-center justify-center
-          bg-white/90 backdrop-blur-sm border-2 border-black rounded-2xl shadow-lg
-          px-4 py-2 min-w-[100px] select-none
-          ${isSelf ? "bg-[#FBAF22]/90 border-[#8B4513]" : ""}
+          rounded-full px-4 py-2 shadow-[0_4px_0_#000] border-2 border-black 
+          flex items-center gap-3 min-w-[140px]
+          ${isSelf ? "bg-white" : "bg-[#ffb449] shadow-[0_4px_0_#b45309]"}
         `}>
-          {/* Avatar (ใส่รูปได้) */}
-          <div className="absolute -top-6 w-10 h-10 rounded-full bg-gray-200 border-2 border-black flex items-center justify-center text-lg shadow-sm">
-            {isSelf ? "😎" : "👤"}
+          {/* Avatar / Card Count */}
+          <div className="w-10 h-10 rounded-full bg-gray-100 border-2
+           border-gray-300 flex items-center justify-center text-black font-bold 
+           text-sm shadow-inner shrink-0">
+            {isSelf ? "😎" : cardCount}
           </div>
-
-          {/* Name & Tokens */}
-          <div className="mt-3 text-center">
-            <div className="font-bold text-sm text-black leading-tight">{player.name}</div>
-            <div className="text-[10px] font-semibold text-gray-600 bg-gray-200/50 px-2 py-0.5 rounded-full mt-1">
-              🪙 {player.tokens}
-            </div>
+          
+          {/* Info Text */}
+          <div className="flex flex-col leading-tight overflow-hidden">
+            <span className="text-sm font-bold text-black truncate max-w-[100px]">{player.name}</span>
+            <span className="text-[10px] font-semibold text-black/60 bg-black/5 px-2 py-0.5 rounded-full w-fit mt-0.5">
+              Tokens: {player.tokens}
+            </span>
           </div>
-
-          {/* Card Count Badge (รวมอยู่ในก้อน Profile แล้ว) */}
-          {!isSelf && (
-            <div className="absolute -right-2 -top-2 bg-red-600 text-white text-xs font-bold w-6 h-6 flex items-center justify-center rounded-full border border-white shadow-md animate-pulse">
-              {cardCount}
-            </div>
-          )}
         </div>
       </div>
 
       {/* --- ส่วนกองไพ่ (Hand) --- */}
-      <div className={layout.includes("top") ? "transform rotate-180" : ""}>
+      <div className={layout === "top" ? "transform rotate-180" : ""}>
         <PlayerHand 
           cards={cards}
           isSelf={isSelf}
-          layout={layout.includes("left") || layout.includes("right") ? (layout.includes("left") ? "left" : "right") : "bottom"}
+          layout={layout}
           containerSize={containerSize}
           onCardClick={onCardClick}
           selectedCards={selectedCards}

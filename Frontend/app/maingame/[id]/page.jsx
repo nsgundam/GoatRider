@@ -21,8 +21,8 @@ export default function MainGame() {
   useEffect(() => {
     const d = makeSimpleDeck();
     const copy = [...d];
-    // แจกคนละ 7 ใบ
-    const newHands = playersData.map(() => copy.splice(0, 7));
+    // แจกคนละ 5 ใบ
+    const newHands = playersData.map(() => copy.splice(0, 5));
     setDeck(copy);
     setHands(newHands);
   }, []);
@@ -68,22 +68,22 @@ export default function MainGame() {
       </div>
 
       {/* 2. ผู้เล่นบนซ้าย (TOP LEFT) */}
-      <div className="absolute top-8 left-[18%] z-10">
+      <div className="absolute top-5 left-[300px] z-10">
         <PlayerSeat 
             player={playersData[2]} 
             cards={hands[2]} 
-            layout="top-left" 
-            containerSize={250} 
+            layout="top-top" 
+            containerSize={320} 
         />
       </div>
 
       {/* 3. ผู้เล่นบนขวา (TOP RIGHT) */}
-      <div className="absolute top-8 right-[18%] z-10">
+      <div className="absolute top-5 right-[300px] z-10">
         <PlayerSeat 
-            player={playersData[3]} 
-            cards={hands[3]} 
-            layout="top-right" 
-            containerSize={250} 
+            player={playersData[2]} 
+            cards={hands[2]} 
+            layout="top-top" 
+            containerSize={320} 
         />
       </div>
 
@@ -98,14 +98,17 @@ export default function MainGame() {
       </div>
 
       {/* 5. ตัวเรา (BOTTOM) - ย้ายเข้ามาอยู่ใน div หลักให้ถูกต้อง */}
-      <div className="absolute bottom-4 left-0 right-0 z-20 flex flex-col items-center">
+      <div className="absolute bottom-10 left-0.5 right-0 z-20 
+      flex flex-col items-center">
          
          {/* ปุ่ม Play (จะโชว์เมื่อเลือกไพ่) */}
          {selectedCardIds.length > 0 && (
-            <div className="mb-2 animate-bounce absolute -top-16 z-30">
+            <div className="mb-2 animate-bounce absolute -top-2 z-20">
                 <button 
                     onClick={() => setSelectedCardIds([])}
-                    className="bg-[#FBAF22] text-white text-lg font-bold px-6 py-2 rounded-full shadow-lg border-2 border-orange-300"
+                    className="bg-[#FBAF22] text-white text-lg 
+                    font-bold px-6 py-2 rounded-full shadow-lg border-2
+                     border-orange-300"
                 >
                     PLAY {selectedCardIds.length} CARDS
                 </button>
