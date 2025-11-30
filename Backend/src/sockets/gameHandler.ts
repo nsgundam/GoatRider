@@ -26,9 +26,11 @@ export const gameHandler = (io: Server, socket: Socket) => {
             // 2. เตรียมข้อมูลเกม
             const playersData = playersDB.map(p => ({
                 wallet: p.walletAddress,
-                username: p.user.username
+                username: p.user.username,
+                socketId: "" 
             }));
 
+        
             // 3. สับไพ่
             const { deck, players } = initializeGame(playersData);
 
@@ -63,7 +65,7 @@ export const gameHandler = (io: Server, socket: Socket) => {
 
             // 8. บอกตาเริ่ม
             io.to(roomId).emit('turn_change', {
-                currentTurnWallet: players[0].walletAddress,
+                currentTurnWallet: players[0]?.walletAddress,
                 timeLeft: 30
             });
 

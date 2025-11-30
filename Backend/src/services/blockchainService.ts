@@ -81,7 +81,7 @@ export const initBlockchainListener = (io: Server) => {
 
                 // D. เช็คว่าเริ่มเกมได้หรือยัง
                 const allReady = players.every(p => p.isReady);
-                if (allReady && players.length >= 2) {
+                if (allReady && players.length >= 1) {
                     console.log(`🚀 Room ${roomId} is ready to start!`);
                     io.to(roomId).emit('can_start_game', true);
                 }

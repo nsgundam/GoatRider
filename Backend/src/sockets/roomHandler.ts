@@ -119,7 +119,7 @@ export const roomHandler = (io: Server, socket: Socket) => {
             
             // เช็คว่าพร้อมครบทุกคนหรือยัง?
             const allReady = players.every(p => p.isReady);
-            if (allReady && players.length >= 2) {
+            if (allReady && players.length >= 1) {
                  io.to(roomId).emit('can_start_game', true);
             }
 
