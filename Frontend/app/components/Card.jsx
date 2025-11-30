@@ -1,3 +1,4 @@
+"use client";
 // app/components/Card.jsx
 import React from "react";
 
@@ -8,7 +9,7 @@ import React from "react";
   - width: number (px)
   - onClick
 */
-export default function Card({ card, isFaceUp = true, width = 110, onClick }) {
+export default function Card({ card, isFaceUp = true, width = 200, onClick }) {
   const h = Math.round(width * 1.35);
   return (
     <button
