@@ -11,6 +11,7 @@ import roomRoutes from './routes/roomRoutes';
 import userRoutes from './routes/userRoutes';
 import { roomHandler } from './sockets/roomHandler';
 import { initBlockchainListener } from './services/blockchainService';
+import { gameHandler } from './sockets/gameHandler';
 
 dotenv.config();
 
@@ -49,6 +50,7 @@ io.on('connection', (socket) => {
 
     // เรียกใช้ Logic ห้องแยกออกมา
     roomHandler(io, socket);
+    gameHandler(io, socket);
 
     // ลองรับ Event Join Room
     socket.on('join_room', (roomId) => {
