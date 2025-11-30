@@ -7,8 +7,18 @@ const prisma = new PrismaClient();
 export const roomHandler = (io: Server, socket: Socket) => {
     
     // Event: ผู้เล่นขอเข้าห้อง
-    socket.on('join_room', async ({ roomId, walletAddress }) => {
+    socket.on('join_room', async (data: { roomId: string, walletAddress: string }) => {
+        const { roomId, walletAddress } = data;
         console.log(`🔌 Socket ${socket.id} requesting to join room: ${roomId}`);
+
+        if (!roomId || typeof roomId !== 'string') {
+            socket.emit('error', 'Invalid Room ID');
+            return;
+        }
+        if (!walletAddress || typeof walletAddress !== 'string') {
+            socket.emit('error', 'Invalid Wallet Address');
+            return;
+        }
 
         try {
             // 1. เช็คว่าห้องมีอยู่จริงไหม และสถานะ WAITING ไหม
@@ -28,7 +38,6 @@ export const roomHandler = (io: Server, socket: Socket) => {
             }
 
             if (room.players.length >= room.maxPlayers) {
-                // เช็คว่าคนนี้เคยอยู่ในห้องอยู่แล้วหรือเปล่า (Re-join)
                 const isMember = room.players.some(p => p.walletAddress === walletAddress);
                 if (!isMember) {
                     socket.emit('error', 'Room is full');
@@ -36,8 +45,7 @@ export const roomHandler = (io: Server, socket: Socket) => {
                 }
             }
 
-            // 2. บันทึกคนเข้าห้องลง DB (PlayerRoomState)
-            // ใช้ upsert เพื่อป้องกันการ insert ซ้ำถ้าเขากด join รัวๆ
+            // 2. บันทึกคนเข้าห้องลง DB
             await prisma.playerRoomState.upsert({
                 where: {
                     roomId_walletAddress: {
@@ -45,7 +53,7 @@ export const roomHandler = (io: Server, socket: Socket) => {
                         walletAddress: walletAddress
                     }
                 },
-                update: {}, // ถ้ามีแล้วไม่ต้องทำอะไร
+                update: {},
                 create: {
                     roomId: roomId,
                     walletAddress: walletAddress,
@@ -56,16 +64,18 @@ export const roomHandler = (io: Server, socket: Socket) => {
             // 3. ดึง Socket เข้าห้อง
             socket.join(roomId);
 
-            // 4. ดึงข้อมูลผู้เล่นล่าสุดในห้อง เพื่อส่งให้ทุกคนดู
+            // 4. ดึงข้อมูลผู้เล่นล่าสุดในห้อง
             const playersInRoom = await prisma.playerRoomState.findMany({
                 where: { roomId },
-                include: { user: true } // เอาชื่อ Username มาด้วย
+                include: { user: true }
             });
 
-            // 5. แจ้งเตือนทุกคนในห้อง (รวมตัวเราด้วย)
+            // 5. แจ้งเตือนทุกคนในห้อง
+            // ✅ UPDATE: ส่ง requiredStake ไปด้วย (เอามาจากตัวแปร room ด้านบน)
             io.to(roomId).emit('room_update', {
                 roomId,
-                players: playersInRoom
+                players: playersInRoom,
+                requiredStake: room.requiredStake 
             });
 
             console.log(`✅ User ${walletAddress} joined room ${roomId}`);
@@ -76,10 +86,13 @@ export const roomHandler = (io: Server, socket: Socket) => {
         }
     });
 
-    // Event: ผู้เล่นกด Ready
-    socket.on('player_ready', async ({ roomId, walletAddress }) => {
+    // Event: ผู้เล่นกด Ready (หรือ Backend แจ้งว่าจ่ายเงินแล้ว)
+    socket.on('player_ready', async (data: { roomId: string, walletAddress: string }) => {
+        const { roomId, walletAddress } = data;
+
+        if (!roomId || !walletAddress) return;
+
         try {
-            // อัปเดตสถานะ Ready ใน DB
             await prisma.playerRoomState.update({
                 where: {
                     roomId_walletAddress: { roomId, walletAddress }
@@ -87,17 +100,26 @@ export const roomHandler = (io: Server, socket: Socket) => {
                 data: { isReady: true }
             });
 
-            // แจ้งทุกคนว่าคนนี้พร้อมแล้ว
             const players = await prisma.playerRoomState.findMany({
                 where: { roomId },
                 include: { user: true }
             });
 
-            io.to(roomId).emit('room_update', { roomId, players });
+            // ✅ UPDATE: ต้อง Query ห้องมาเพื่อเอา requiredStake ก่อนส่งกลับ
+            const roomInfo = await prisma.room.findUnique({
+                where: { roomId },
+                select: { requiredStake: true } // เลือกมาแค่ field เดียวเพื่อความเร็ว
+            });
+
+            io.to(roomId).emit('room_update', { 
+                roomId, 
+                players,
+                requiredStake: roomInfo?.requiredStake || 0 
+            });
             
-            // เช็คว่าพร้อมครบทุกคนหรือยัง? (ถ้าครบ -> ส่งสัญญาณให้เจ้าของห้องเห็นปุ่ม Start)
+            // เช็คว่าพร้อมครบทุกคนหรือยัง?
             const allReady = players.every(p => p.isReady);
-            if (allReady && players.length >= 2) { // อย่างน้อย 2 คน
+            if (allReady && players.length >= 2) {
                  io.to(roomId).emit('can_start_game', true);
             }
 

@@ -2,11 +2,7 @@
   {
     "inputs": [
       { "internalType": "address", "name": "initialOwner", "type": "address" },
-      {
-        "internalType": "contract IERC20",
-        "name": "_token",
-        "type": "address"
-      },
+      { "internalType": "address", "name": "_tokenAddress", "type": "address" },
       { "internalType": "address", "name": "_feeWallet", "type": "address" }
     ],
     "stateMutability": "nonpayable",
@@ -26,25 +22,7 @@
     "name": "OwnableUnauthorizedAccount",
     "type": "error"
   },
-  {
-    "anonymous": false,
-    "inputs": [
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "oldWallet",
-        "type": "address"
-      },
-      {
-        "indexed": true,
-        "internalType": "address",
-        "name": "newWallet",
-        "type": "address"
-      }
-    ],
-    "name": "FeeWalletChanged",
-    "type": "event"
-  },
+  { "inputs": [], "name": "ReentrancyGuardReentrantCall", "type": "error" },
   {
     "anonymous": false,
     "inputs": [
@@ -68,7 +46,7 @@
     "anonymous": false,
     "inputs": [
       {
-        "indexed": true,
+        "indexed": false,
         "internalType": "string",
         "name": "roomId",
         "type": "string"
@@ -78,6 +56,12 @@
         "internalType": "address",
         "name": "player",
         "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
       }
     ],
     "name": "PlayerJoined",
@@ -150,16 +134,6 @@
   {
     "inputs": [
       { "internalType": "string", "name": "roomId", "type": "string" },
-      { "internalType": "uint256", "name": "betAmount", "type": "uint256" }
-    ],
-    "name": "createRoom",
-    "outputs": [],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "string", "name": "roomId", "type": "string" },
       { "internalType": "address", "name": "winner", "type": "address" }
     ],
     "name": "distributeReward",
@@ -178,24 +152,12 @@
     "inputs": [
       { "internalType": "string", "name": "roomId", "type": "string" }
     ],
-    "name": "getPlayers",
-    "outputs": [
-      { "internalType": "address[]", "name": "", "type": "address[]" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      { "internalType": "string", "name": "roomId", "type": "string" }
-    ],
     "name": "getRoomInfo",
     "outputs": [
       { "internalType": "uint256", "name": "betAmount", "type": "uint256" },
       { "internalType": "uint256", "name": "totalPool", "type": "uint256" },
       { "internalType": "bool", "name": "isActive", "type": "bool" },
       { "internalType": "bool", "name": "isFinished", "type": "bool" },
-      { "internalType": "address", "name": "winner", "type": "address" },
       { "internalType": "uint256", "name": "playerCount", "type": "uint256" }
     ],
     "stateMutability": "view",
@@ -203,8 +165,8 @@
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "roomId", "type": "string" },
-      { "internalType": "address", "name": "player", "type": "address" }
+      { "internalType": "string", "name": "", "type": "string" },
+      { "internalType": "address", "name": "", "type": "address" }
     ],
     "name": "hasJoined",
     "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
@@ -213,7 +175,8 @@
   },
   {
     "inputs": [
-      { "internalType": "string", "name": "roomId", "type": "string" }
+      { "internalType": "string", "name": "roomId", "type": "string" },
+      { "internalType": "uint256", "name": "betAmount", "type": "uint256" }
     ],
     "name": "joinAndBet",
     "outputs": [],
@@ -235,8 +198,21 @@
     "type": "function"
   },
   {
+    "inputs": [{ "internalType": "string", "name": "", "type": "string" }],
+    "name": "rooms",
+    "outputs": [
+      { "internalType": "uint256", "name": "betAmount", "type": "uint256" },
+      { "internalType": "uint256", "name": "totalPool", "type": "uint256" },
+      { "internalType": "bool", "name": "isActive", "type": "bool" },
+      { "internalType": "bool", "name": "isFinished", "type": "bool" },
+      { "internalType": "address", "name": "winner", "type": "address" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
     "inputs": [
-      { "internalType": "address", "name": "_feeWallet", "type": "address" }
+      { "internalType": "address", "name": "_newFeeWallet", "type": "address" }
     ],
     "name": "setFeeWallet",
     "outputs": [],
