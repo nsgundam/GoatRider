@@ -167,7 +167,7 @@ export default function Welcomepage() {
 {/* LOGO (อยู่ซ้าย) */}
 <div className="absolute top-[15%] left-[8%] z-20 pointer-events-none">
   <CldImage
-    src="namegamegoat"
+    src="glndvl5nezxptcnvqpwq"
     width={1980}
     height={1020}
     className="object-contain w-[900px] select-none"
@@ -182,9 +182,10 @@ export default function Welcomepage() {
   className="
     absolute
     left-[25%]
-    top-[50%]
+    top-[70%]
     z-30
     px-10 py-4
+    
     text-xl font-bold
     rounded-full
     shadow-[0_6px_0_#a52424]
