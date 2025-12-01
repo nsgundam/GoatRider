@@ -1,130 +1,111 @@
-// app/components/PlayerHand.jsx
-import React, { useMemo } from "react";
+"use client";
+import React, { useMemo, useState } from "react";
 import Card from "./Card";
 
-/**
- Props:
-  - cards: array
-  - isSelf: boolean
-  - onCardClick(playerIndex, card)
-  - playerIndex: integer
-  - layout: 'top'|'left'|'right'|'bottom' (affects stacking direction)
-  - containerWidth: number (px)
-*/
 export default function PlayerHand({
   cards = [],
   isSelf = false,
   onCardClick,
   playerIndex = 0,
   layout = "bottom",
-  containerWidth = 800,
+  containerSize = 600,
+  selectedCards = [],
 }) {
+  const [hoveredIndex, setHoveredIndex] = useState(null);
   const cardCount = cards.length;
 
-  const cardWidth = useMemo(() => {
-    const max = 140;
-    const min = 64;
-    const reservedVisible = 24;
-    const maxVisible = Math.max(160, containerWidth);
-    const w = Math.floor((maxVisible + (cardCount - 1) * reservedVisible) / Math.max(1, cardCount));
-    return Math.max(min, Math.min(max, w));
-  }, [cardCount, containerWidth]);
+  // --- ปรับให้เป็นแนวนอนทั้งหมด (Horizontal Only) ---
+  // บังคับไม่ให้เป็นแนวตั้งเลย ไม่ว่าจะ layout ไหน
+  const isVertical = false; 
 
-  const overlap = Math.round(cardWidth * 0.6);
-  const visibleOffset = cardWidth - overlap;
+  // --- คำนวณขนาดและการซ้อนทับ ---
+  const { cardSize, offset, startPos } = useMemo(() => {
+    // ขนาดการ์ด: เราใหญ่ (120), คนอื่นเล็ก (100)
+    const baseWidth = isSelf ? 120 : 100;
+    
+    // เนื่องจากเป็นแนวนอนหมด itemSize จึงเท่ากับความกว้าง (baseWidth) เสมอ
+    const itemSize = baseWidth;
 
-  // render for other players: stacked back cards (horizontal for top / right, vertical for left)
-  if (!isSelf) {
-    if (layout === "left" || layout === "right") {
-      // vertical stack
-      return (
-        <div className="relative w-full h-[160px] flex items-center">
-          <div className="relative w-full h-full overflow-visible">
-            {cards.map((c, i) => {
-              const top = i * 14;
-              const z = 100 + i;
-              return (
-                <div key={c.id ?? i} style={{ position: "absolute", top: `${top}px`, right: layout === "right" ? 0 : undefined, left: layout === "left" ? 0 : undefined, zIndex: z }}>
-                  <div className="transform transition-transform duration-150 hover:-translate-y-2">
-                    <Card card={c} isFaceUp={false} width={80} onClick={() => onCardClick && onCardClick(playerIndex, c)} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className={`absolute ${layout === "right" ? "-right-8" : "-left-8"} -top-5`}>
-            <div className="bg-yellow-400 text-xs px-2 py-1 rounded-full shadow-sm">
-              {cardCount}
-            </div>
-          </div>
-        </div>
-      );
-    } else {
-      // top / top-center / right-top: horizontal stacked
-      return (
-        <div className="relative w-full h-[110px]">
-          <div className="relative h-full overflow-hidden">
-            {cards.map((c, i) => {
-              const left = i * (cardWidth * 0.35);
-              const z = 100 + i;
-              return (
-                <div key={c.id ?? i} style={{ position: "absolute", left: `${left}px`, zIndex: z }}>
-                  <div className="transform transition-transform duration-150 hover:-translate-y-2">
-                    <Card card={c} isFaceUp={false} width={cardWidth} onClick={() => onCardClick && onCardClick(playerIndex, c)} />
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="absolute -top-6 right-0">
-            <div className="bg-yellow-400 text-xs px-2 py-1 rounded shadow-sm">
-              {cardCount} cards
-            </div>
-          </div>
-        </div>
-      );
+    const availableSpace = containerSize - 40; 
+    const defaultOffset = isSelf ? 50 : 35; // ระยะห่างปกติ
+    const maxTotalSize = (cardCount - 1) * defaultOffset + itemSize;
+    
+    let finalOffset = defaultOffset;
+    if (maxTotalSize > availableSpace) {
+      // สูตรบีบไพ่ (Squeeze) ถ้าพื้นที่ไม่พอ
+      finalOffset = (availableSpace - itemSize) / Math.max(1, cardCount - 1);
     }
-  }
 
-  // isSelf: render bottom hand as white rounded slots (face-up)
+    const actualTotalSize = (cardCount - 1) * finalOffset + itemSize;
+    const start = (containerSize - actualTotalSize) / 2;
+
+    return { cardSize: baseWidth, offset: finalOffset, startPos: start };
+  }, [cardCount, containerSize, isSelf]); // ตัด layout ออกจาก dependency เพราะไม่ได้ใช้คำนวณขนาดแล้ว
+
   return (
-    <div className="relative w-full">
-      <div className="relative overflow-hidden" style={{ width: "100%" }}>
-        <div style={{ height: `${Math.round(cardWidth * 1.35)}px` }} className="relative">
-          {cards.map((card, i) => {
-            const left = i * Math.max(24, cardWidth * 0.46);
-            const z = 200 + i;
-            return (
-              <div key={card.id ?? `${playerIndex}-${i}`} style={{ position: "absolute", left: `${left}px`, zIndex: z }}>
-                <div
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = "translateY(-16px)";
-                    e.currentTarget.style.zIndex = 9999;
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = "translateY(0)";
-                    e.currentTarget.style.zIndex = z;
-                  }}
-                  className="transition-transform duration-120"
-                >
-                  <div style={{ width: `${cardWidth}px` }}>
-                    {/* white rounded slot style */}
-                    <div className="bg-white rounded-2xl shadow-lg p-0 overflow-hidden" style={{ height: `${Math.round(cardWidth * 1.35)}px` }}>
-                      <Card card={card} isFaceUp={true} width={cardWidth - 10} onClick={() => onCardClick && onCardClick(playerIndex, card)} />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
+    <div 
+      className="relative pointer-events-none"
+      style={{
+        // ปรับขนาด Container ให้รองรับแนวนอนทั้งหมด
+        width: "100%", 
+        height: isSelf ? "180px" : "140px", // ความสูงเผื่อการ์ดเด้งนิดหน่อย
+        overflow: "visible", 
+      }}
+    >
+      {cards.map((card, i) => {
+        const posValue = startPos + i * offset;
+        const isHovered = hoveredIndex === i;
+        const isSelected = selectedCards.includes(card.id);
+        
+        let z = 100 + i;
+        if (isSelf && (isHovered || isSelected)) z = 500;
 
-      <div className="absolute -top-6 right-4 bg-yellow-400 text-xs px-2 py-1 rounded shadow-sm">
-        {cardCount} cards
-      </div>
+        // บังคับ Style เป็นแนวนอน (ใช้ left)
+        const style = { 
+            position: "absolute", 
+            left: `${posValue}px`, 
+            zIndex: z 
+        };
+
+        // Animation Classes
+        let animClass = "transition-all duration-300 ease-out origin-bottom";
+        if (isSelf) {
+          animClass += " cursor-pointer pointer-events-auto";
+          if (isSelected) animClass += " -translate-y-12 scale-110 z-[600]";
+          else if (isHovered) animClass += " -translate-y-8 scale-110";
+          else animClass += " translate-y-0 scale-100";
+        } else {
+          animClass += " translate-y-0 scale-100";
+        }
+
+        return (
+          <div
+            key={card.id ?? i}
+            style={style}
+            className={animClass}
+            onMouseEnter={() => isSelf && setHoveredIndex(i)}
+            onMouseLeave={() => isSelf && setHoveredIndex(null)}
+            onClick={() => isSelf && onCardClick && onCardClick(playerIndex, card)}
+          >
+            {/* White Frame Wrapper */}
+            <div className={`
+              bg-white p-1.5 rounded-xl shadow-lg border border-gray-200
+              ${isSelf && isSelected ? "ring-4 ring-[#FBAF22] ring-offset-2" : ""}
+            `}
+            style={{
+                width: `${cardSize}px`,
+                height: `${Math.round((cardSize - 12) * 1.4) + 12}px` 
+            }}
+            >
+              <Card 
+                card={card} 
+                isFaceUp={isSelf} 
+                width={cardSize - 12}
+              />
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
