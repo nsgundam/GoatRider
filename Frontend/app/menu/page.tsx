@@ -241,8 +241,8 @@ export default function MenuPage() {
           className="object-contain object-contain w-[900px]
            md:scale-90 
            absolute
-    left-[30%]
-    top-[6%]"
+          left-[30%]
+          top-[6%]"
           alt="game logo"
         />
       </div>
@@ -321,6 +321,7 @@ export default function MenuPage() {
           </Button>
         </div>
       </div>
+
 
       {/* --- POPUPS --- */}
 
