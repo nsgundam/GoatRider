@@ -1,159 +1,178 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { makeSimpleDeck } from "../../utils/deck";
+import { makeSimpleDeck } from "../../utils/deck"; // ต้องสร้าง utils/deck.js
 import PlayerSeat from "../../components/PlayerSeat"; 
 import CentralPile from "../../components/CentralPile";
 import { CldImage } from "next-cloudinary";
 
 const playersData = [
-  { id: "me", name: "Me (You)", tokens: 100 },
-  { id: "p1", name: "Player Left", tokens: 20 },
-  { id: "p2", name: "Player Top-L", tokens: 50 },
-  { id: "p3", name: "Player Top-R", tokens: 15 },
-  { id: "p4", name: "Player Right", tokens: 99 },
+    { id: "p0", name: "Me (You)", tokens: 100, isSelf: true, layout: "bottom" },
+    { id: "p1", name: "Top-L", tokens: 50, layout: "top" },
+    { id: "p2", name: "Left", tokens: 20, layout: "left" },
+    { id: "p3", name: "Top-R", tokens: 50, layout: "top" },
+    { id: "p4", name: "Right", tokens: 30, layout: "right" },
 ];
 
 export default function MainGame() {
-  const [deck, setDeck] = useState([]);
-  const [hands, setHands] = useState([[], [], [], [], []]);
-  const [selectedCardIds, setSelectedCardIds] = useState([]);
+    const [deck, setDeck] = useState([]);
+    // hands: [มือเรา (index 0), มือ p1 (index 1), มือ p2 (index 2), มือ p3 (index 3), มือ p4 (index 4)]
+    const [hands, setHands] = useState([[], [], [], [], []]); 
+    const [selectedCardIds, setSelectedCardIds] = useState([]);
+    const [timeLeft, setTimeLeft] = useState(15); 
 
-  useEffect(() => {
-    const d = makeSimpleDeck();
-    const copy = [...d];
-    // แจกคนละ 5 ใบ
-    const newHands = playersData.map(() => copy.splice(0, 5));
-    setDeck(copy);
-    setHands(newHands);
-  }, []);
+    useEffect(() => {
+        const d = makeSimpleDeck();
+        const copy = [...d];
+        // แจกไพ่ 
+        const newHands = playersData.map((p, index) => 
+            // ให้ p0 มีไพ่ 11 ใบ และคนอื่น 5 ใบ 
+            copy.splice(0, p.isSelf ? 5 : 5).map((card, i) => ({
+                ...card,
+                id: `${p.id}-c${i}-${Math.random().toFixed(2)}`,
+            }))
+        );
+        setDeck(copy);
+        setHands(newHands);
+    }, []);
 
-  function handleMyCardClick(playerIndex, card) {
-    if (playerIndex !== 0) return;
-    setSelectedCardIds(prev => {
-      if (prev.includes(card.id)) return prev.filter(id => id !== card.id);
-      if (prev.length < 3) return [...prev, card.id];
-      return prev;
+    function handleMyCardClick(playerIndex, card) {
+        // playerIndex คือ index ใน Array hands
+        if (playerIndex !== 0) return; 
+        setSelectedCardIds(prev => {
+            if (prev.includes(card.id)) return prev.filter(id => id !== card.id);
+            if (prev.length < 3) return [...prev, card.id]; 
+            return prev;
+        });
+    }
+
+    // ฟังก์ชัน: เล่นไพ่ (ลบไพ่ที่เลือกออกจากมือ)
+    function handlePlayCards() {
+        setHands(prev => {
+            const myNewHand = prev[0].filter(card => !selectedCardIds.includes(card.id));
+            const newAllHands = [...prev];
+            newAllHands[0] = myNewHand; 
+            return newAllHands;
+        });
+
+        setSelectedCardIds([]);
+        setTimeLeft(15);
+    }
+
+    function handleDrawCard() {
+        if (deck.length === 0) return;
+        const newCard = { ...deck[0], id: `draw-c-${Math.random().toString()}` };
+        setDeck(d => d.slice(1));
+        
+        // เพิ่มการ์ดใหม่เข้ามือเรา (มือที่ 0)
+        setHands(prev => {
+            const newAllHands = [...prev];
+            newAllHands[0] = [...newAllHands[0], newCard];
+            return newAllHands;
+        });
+    }
+    
+    // Helper function เพื่อรวมข้อมูลผู้เล่นและมือไพ่เข้าด้วยกัน
+    const getPlayerProps = (index) => ({
+        ...playersData[index],
+        cards: hands[index] || [],
+        playerIndex: index,
+        // Props เหล่านี้จะถูกใช้แค่กับตัวเอง (index 0)
+        onCardClick: playersData[index].isSelf ? handleMyCardClick : undefined,
+        selectedCards: playersData[index].isSelf ? selectedCardIds : [],
     });
-  }
-  // ✅ ฟังก์ชันใหม่: เล่นไพ่ (ลบไพ่ที่เลือกออกจากมือ)
-  function handlePlayCards() {
-    setHands(prev => {
-      // กรองเอาเฉพาะใบที่ "ไม่ได้ถูกเลือก" เก็บไว้ (ใบที่เลือกจะหายไป) ใส่เพิ่มเติมเกี่ยวกับการกรองไพ่ อะไรเลือกแล้วต้องลบอะไรไม่ต้องลบ
-      const myNewHand = prev[0].filter(card => !selectedCardIds.includes(card.id));
-      
-      const newAllHands = [...prev];
-      newAllHands[0] = myNewHand; // อัปเดตมือเรา
-      return newAllHands;
-    });
 
-    // เคลียร์สถานะการเลือก และ รีเซ็ตเวลา
-    setSelectedCardIds([]);
-    setTimeLeft(15);
-  }
+//-----------------------------------------ทำไมมันยากจังว้าาาาาาาาาาาาา-----------ห๋าาาาาาา-----------------------------------------------------------//
+    return (
+        <div className="relative w-screen h-screen overflow-hidden bg-[#2a2a2a] font-sans">
+            {/* Background Image */}
+            <div className="absolute inset-0 blur-[3px] opacity-25">
+                <CldImage
+                    src="hpspfzupmdw8bh3crszn"
+                    width={1920}
+                    height={1080}
+                    className="w-full h-full object-cover"
+                    alt="background"
+                />
+            </div>
+            
+            {/* Central Pile */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                <div className="transform -translate-y-8 scale-110">
+                    <CentralPile topCard={null} />
+                </div>
+            </div>
+{/* //----------------------------------------------------ห๋าาาาาาา-----------------------------------------------------------// */}
 
-  function handleDrawCard() {
-    if (deck.length === 0) return;
-    const newCard = { ...deck[0], id: Math.random().toString() };
-    setDeck(d => d.slice(1));
-    setHands(prev => prev.map(h => [...h, newCard]));
-  }
+            {/* --- Player Seats --- */}
+            {/* 1. ผู้เล่นบนซ้าย (TOP LEFT) - p1 */}
+            <div className="absolute top-5 left-[15%] z-10">
+                <PlayerSeat 
+                    {...getPlayerProps(1)} 
+                    layout="top" // ใช้ layout="top" แทน "top-top"
+                    containerSize={320} 
+                />
+            </div>
 
-  return (
-    <div className="relative w-screen h-screen overflow-hidden bg-[#2a2a2a] font-sans">
-      {/* Background Image */}
-      <div className="absolute inset-0 blur-[3px] opacity-25">
-        <CldImage
-          src="hpspfzupmdw8bh3crszn"
-          width={1920}
-          height={1080}
-          className="w-full h-full object-cover"
-          alt="background"
-        />
-      </div>
-      {/* Central Pile */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-        <div className="transform -translate-y-8 scale-110">
-            <CentralPile topCard={null} />
-        </div>
-      </div>
+            {/* 2. ผู้เล่นซ้าย (LEFT) - p2 */}
+            <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
+                <PlayerSeat 
+                    {...getPlayerProps(2)} 
+                    layout="left" 
+                    containerSize={400} 
+                />
+            </div>
 
-      {/* --- Player Seats --- */}
+            {/* 3. ผู้เล่นบนขวา (TOP RIGHT) - p3 */}
+            <div className="absolute top-5 right-[15%] z-10">
+                <PlayerSeat 
+                    {...getPlayerProps(3)} 
+                    layout="top" // ใช้ layout="top" แทน "top-top"
+                    containerSize={320} 
+                />
+            </div>
 
-      {/* 1. ผู้เล่นซ้าย (LEFT) */}
-      <div className="absolute left-8 top-1/2 transform -translate-y-1/2 z-10">
-        <PlayerSeat 
-            player={playersData[1]} 
-            cards={hands[1]} 
-            layout="left" 
-            containerSize={400} 
-        />
-      </div>
+            {/* 4. ผู้เล่นขวา (RIGHT) - p4 */}
+            <div className="absolute right-[300] top-1/2 transform -translate-y-[100] z-10">
+                <PlayerSeat 
+                    {...getPlayerProps(4)} 
+                    layout="right" 
+                    containerSize={300} 
+                />
+            </div>
 
-      {/* 2. ผู้เล่นบนซ้าย (TOP LEFT) */}
-      <div className="absolute top-5 left-[300px] z-10">
-        <PlayerSeat 
-            player={playersData[2]} 
-            cards={hands[2]} 
-            layout="top-top" 
-            containerSize={320} 
-        />
-      </div>
+            {/* 5. ตัวเรา (BOTTOM) - p0 */}
+            <div className="absolute bottom-10 left-0.5 right-0 z-20 
+            flex flex-col items-center">
+                 
+                 {/* ปุ่ม Play (จะโชว์เมื่อเลือกไพ่) */}
+                 {selectedCardIds.length > 0 && (
+                    <div className="mb-2 animate-bounce absolute -top-2 z-20 pointer-events-auto">
+                        <button 
+                            onClick={handlePlayCards} // 💡 แก้ไขให้เรียก handlePlayCards ที่ลบไพ่จริง
+                            className="bg-[#FBAF22] text-white text-lg 
+                            font-bold px-6 py-2 rounded-full shadow-lg border-2
+                             border-orange-300"
+                        >
+                            PLAY {selectedCardIds.length} CARDS
+                        </button>
+                    </div>
+                )}
 
-      {/* 3. ผู้เล่นบนขวา (TOP RIGHT) */}
-      <div className="absolute top-5 right-[300px] z-10">
-        <PlayerSeat 
-            player={playersData[2]} 
-            cards={hands[2]} 
-            layout="top-top" 
-            containerSize={320} 
-        />
-      </div>
-
-      {/* 4. ผู้เล่นขวา (RIGHT) */}
-      <div className="absolute right-8 top-1/2 transform -translate-y-1/2 z-10">
-        <PlayerSeat 
-            player={playersData[4]} 
-            cards={hands[4]} 
-            layout="right" 
-            containerSize={400} 
-        />
-      </div>
-
-      {/* 5. ตัวเรา (BOTTOM) - ย้ายเข้ามาอยู่ใน div หลักให้ถูกต้อง */}
-      <div className="absolute bottom-10 left-0.5 right-0 z-20 
-      flex flex-col items-center">
-         
-         {/* ปุ่ม Play (จะโชว์เมื่อเลือกไพ่) */}
-         {selectedCardIds.length > 0 && (
-            <div className="mb-2 animate-bounce absolute -top-2 z-20">
+                <PlayerSeat 
+                    {...getPlayerProps(0)} // Pass all props for self
+                    containerSize={800}
+                />
+                
+                {/* ปุ่ม Test Draw */}
                 <button 
-                    onClick={() => setSelectedCardIds([])}
-                    className="bg-[#FBAF22] text-white text-lg 
-                    font-bold px-6 py-2 rounded-full shadow-lg border-2
-                     border-orange-300"
+                    onClick={handleDrawCard} 
+                    className="absolute bottom-4 right-4 bg-blue-600 text-white px-3 py-1 rounded text-xs opacity-50 hover:opacity-100"
                 >
-                    PLAY {selectedCardIds.length} CARDS
+                    + Draw (Deck: {deck.length})
                 </button>
             </div>
-        )}
 
-        <PlayerSeat 
-            player={playersData[0]} 
-            cards={hands[0]} 
-            isSelf={true} 
-            layout="bottom" 
-            containerSize={800}
-            onCardClick={handleMyCardClick}
-            selectedCards={selectedCardIds}
-        />
-        
-        {/* ปุ่ม Test Draw */}
-        <button onClick={handleDrawCard} className="absolute bottom-4 right-4 bg-blue-600 text-white px-3 py-1 rounded text-xs opacity-50 hover:opacity-100">
-            + Draw
-        </button>
-      </div>
-
-    </div>
-  );
+        </div>
+    );
 }

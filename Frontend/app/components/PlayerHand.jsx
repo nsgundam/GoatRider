@@ -14,25 +14,18 @@ export default function PlayerHand({
   const [hoveredIndex, setHoveredIndex] = useState(null);
   const cardCount = cards.length;
 
-  // --- ปรับให้เป็นแนวนอนทั้งหมด (Horizontal Only) ---
-  // บังคับไม่ให้เป็นแนวตั้งเลย ไม่ว่าจะ layout ไหน
   const isVertical = false; 
 
-  // --- คำนวณขนาดและการซ้อนทับ ---
   const { cardSize, offset, startPos } = useMemo(() => {
-    // ขนาดการ์ด: เราใหญ่ (120), คนอื่นเล็ก (100)
     const baseWidth = isSelf ? 120 : 100;
-    
-    // เนื่องจากเป็นแนวนอนหมด itemSize จึงเท่ากับความกว้าง (baseWidth) เสมอ
     const itemSize = baseWidth;
 
     const availableSpace = containerSize - 40; 
-    const defaultOffset = isSelf ? 50 : 35; // ระยะห่างปกติ
+    const defaultOffset = isSelf ? 50 : 35; 
     const maxTotalSize = (cardCount - 1) * defaultOffset + itemSize;
     
     let finalOffset = defaultOffset;
     if (maxTotalSize > availableSpace) {
-      // สูตรบีบไพ่ (Squeeze) ถ้าพื้นที่ไม่พอ
       finalOffset = (availableSpace - itemSize) / Math.max(1, cardCount - 1);
     }
 
@@ -40,49 +33,66 @@ export default function PlayerHand({
     const start = (containerSize - actualTotalSize) / 2;
 
     return { cardSize: baseWidth, offset: finalOffset, startPos: start };
-  }, [cardCount, containerSize, isSelf]); // ตัด layout ออกจาก dependency เพราะไม่ได้ใช้คำนวณขนาดแล้ว
+  }, [cardCount, containerSize, isSelf]);
 
   return (
     <div 
       className="relative pointer-events-none"
       style={{
-        // ปรับขนาด Container ให้รองรับแนวนอนทั้งหมด
         width: "100%", 
-        height: isSelf ? "180px" : "140px", // ความสูงเผื่อการ์ดเด้งนิดหน่อย
+        height: isSelf ? "180px" : "140px", 
         overflow: "visible", 
       }}
     >
       {cards.map((card, i) => {
         const posValue = startPos + i * offset;
         const isHovered = hoveredIndex === i;
-        const isSelected = selectedCards.includes(card.id);
+        const isSelected = selectedCards.includes(card.id); 
         
         let z = 100 + i;
         if (isSelf && (isHovered || isSelected)) z = 500;
 
-        // บังคับ Style เป็นแนวนอน (ใช้ left)
+        // 💡 แก้ไข: ใช้ transform: translateX แทน left
+        // เปลี่ยนการใช้ left เป็น transform: translateX()
+        const transformValue = `translateX(${posValue}px)`;
+
         const style = { 
             position: "absolute", 
-            left: `${posValue}px`, 
+            // ❌ ลบ left: `${posValue}px`, 
+            transform: transformValue, // 💡 ใช้ transform แทน left
             zIndex: z 
         };
 
-        // Animation Classes
-        let animClass = "transition-all duration-300 ease-out origin-bottom";
+        // Animation Classes: เปลี่ยนให้ transition แค่ transform
+        let animClass = "transition-[transform,filter] duration-300 ease-out origin-bottom"; // 💡 จำกัด transition ให้เหลือแค่ transform
+        
+        // เพิ่ม transform สำหรับการยกไพ่ (Hover/Selected)
+        let translateY = 0;
+        let scale = 100;
+        
         if (isSelf) {
           animClass += " cursor-pointer pointer-events-auto";
-          if (isSelected) animClass += " -translate-y-12 scale-110 z-[600]";
-          else if (isHovered) animClass += " -translate-y-8 scale-110";
-          else animClass += " translate-y-0 scale-100";
-        } else {
-          animClass += " translate-y-0 scale-100";
-        }
+          if (isSelected) {
+            translateY = -48; // -translate-y-12 * 4px = -48px
+            scale = 110;
+          } else if (isHovered) {
+            translateY = -32; // -translate-y-8 * 4px = -32px
+            scale = 110;
+          }
+        } 
+        
+        // 💡 รวม transform และ scale เข้ากับ style
+        style.transform = `${transformValue} translateY(${translateY}px) scale(${scale / 100})`;
+        
+        // ❌ ลบการใช้ animClass สำหรับ translate-y และ scale ออกจากโค้ด
+        // เนื่องจากเราใส่ค่าเหล่านี้เข้าไปใน style.transform แล้ว
 
         return (
           <div
             key={card.id ?? i}
-            style={style}
-            className={animClass}
+            // 💡 นำ transform logic ที่คำนวณแล้วมาใช้
+            style={style} 
+            className={animClass} // ใช้แค่เพื่อกำหนด transition
             onMouseEnter={() => isSelf && setHoveredIndex(i)}
             onMouseLeave={() => isSelf && setHoveredIndex(null)}
             onClick={() => isSelf && onCardClick && onCardClick(playerIndex, card)}
