@@ -2,7 +2,7 @@
 import React from "react";
 import PlayerHand from "./PlayerHand"; 
 
-export default function PlayerSeat({
+function PlayerSeatInternal({
   player,       // { id, name, tokens, playerIndex }
   cards = [],   // array of cards
   isSelf = false,
@@ -13,22 +13,41 @@ export default function PlayerSeat({
 }) {
   const cardCount = Array.isArray(cards) ? cards.length : 0;
 
-  // --- จัด Layout ตามความต้องการ ---
-  // 1. ผู้เล่นอื่น (Top, Left, Right) : Badge บน Hand, ชิดขวา
-  let flexDirection = "flex-col"; 
-  let infoOrder = "order-first"; // Badge อยู่บน Hand เสมอ
-  let alignment = "items-end";   // จัดวางองค์ประกอบทั้งหมดชิดขวา
+  // --- จัด Layout: Badge บน Hand, ชิดขวา/กลาง ---
+let flexDirection = "flex-col"; 
+let infoOrder = "order-first"; 
+let alignment = "items-center"; 
 
-  // 2. ผู้เล่นเรา (isSelf) : Badge ล่าง Hand, จัดกึ่งกลาง (UX มาตรฐาน)
-  if (isSelf) {
-    alignment = "items-center"; // จัดตรงกลาง
-    infoOrder = "order-last";   // Badge อยู่ล่าง Hand
-  } 
-
-  return (
-    // ใช้ alignment และ flexDirection ใหม่ที่กำหนด
-    <div className={`flex ${flexDirection} ${alignment} gap-3 relative`}>
-      
+if (isSelf) {
+  alignment = "items-center"; // ผู้เล่นเราต้องอยู่ตรงกลาง
+  infoOrder = "order-last";   // Badge อยู่ล่าง Hand
+} else {
+  // 💡 โค้ดที่เพิ่ม/แก้ไข: สำหรับผู้เล่นคนอื่นรอบโต๊ะ
+  switch (layout) {
+    case 'left':
+      flexDirection = "flex-row-reverse"; // Badge อยู่ขวาของ Hand
+      infoOrder = "order-last"; // Badge อยู่ขวา
+      alignment = "items-center";
+      break;
+    case 'right':
+      flexDirection = "flex-row-reverse"; // Badge อยู่ซ้ายของ Hand
+      infoOrder = "order-last"; // Badge อยู่ซ้าย
+      alignment = "items-center";
+      break;
+    case 'top':
+      flexDirection = "flex-col-reverse"; // Badge อยู่ล่างของ Hand
+      infoOrder = "order-last";
+      alignment = "items-center";
+      break;
+    case 'bottom': // ผู้เล่นคนอื่น (ด้านล่าง) หรือค่าเริ่มต้น
+    default:
+      // ค่าเริ่มต้น: flex-col, order-first (Badge อยู่บน Hand)
+      break;
+  }
+} 
+// สำหรับผู้เล่นคนอื่น: alignment จะเป็น items-center (เพื่อให้ badge อยู่เหนือ hand)
+return (
+  <div className={`flex ${flexDirection} ${alignment} gap-3 relative`}>      
       {/* --- ส่วนป้ายชื่อ (Badge) --- */}
       <div className={`
         ${infoOrder} z-20 transition-transform duration-300
@@ -57,7 +76,6 @@ export default function PlayerSeat({
       </div>
 
       {/* --- ส่วนกองไพ่ (Hand) --- */}
-      {/* 💡 ลบคลาสการหมุนออกอย่างถาวร: `className={layout === "top" || layout === "top-top" ? "transform rotate-180" : ""}` */}
       <div className=""> 
         <PlayerHand 
           cards={cards}
@@ -73,3 +91,4 @@ export default function PlayerSeat({
     </div>
   );
 }
+export default React.memo(PlayerSeatInternal);

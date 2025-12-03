@@ -26,7 +26,7 @@ export default function MainGame() {
         const copy = [...d];
         // แจกไพ่ 
         const newHands = playersData.map((p, index) => 
-            // ให้ p0 มีไพ่ 11 ใบ และคนอื่น 5 ใบ 
+            // เริ่มจาก 5 ใบทุกคน
             copy.splice(0, p.isSelf ? 5 : 5).map((card, i) => ({
                 ...card,
                 id: `${p.id}-c${i}-${Math.random().toFixed(2)}`,
@@ -59,18 +59,19 @@ export default function MainGame() {
         setTimeLeft(15);
     }
 
+    // ฟังก์ชัน Draw Card
     function handleDrawCard() {
         if (deck.length === 0) return;
         const newCard = { ...deck[0], id: `draw-c-${Math.random().toString()}` };
         setDeck(d => d.slice(1));
         
-        // เพิ่มการ์ดใหม่เข้ามือเรา (มือที่ 0)
         setHands(prev => {
             const newAllHands = [...prev];
             newAllHands[0] = [...newAllHands[0], newCard];
             return newAllHands;
         });
     }
+    
     
     // Helper function เพื่อรวมข้อมูลผู้เล่นและมือไพ่เข้าด้วยกัน
     const getPlayerProps = (index) => ({
@@ -97,16 +98,19 @@ export default function MainGame() {
             </div>
             
             {/* Central Pile */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                <div className="transform -translate-y-8 scale-110">
-                    <CentralPile topCard={null} />
-                </div>
+            <div className="absolute inset-0 flex items-center justify-center z-0">
+                <CentralPile 
+                    topCard={null} 
+                    onDrawClick={handleDrawCard} 
+                    deckCount={deck.length}
+                />
             </div>
+            
 {/* //----------------------------------------------------ห๋าาาาาาา-----------------------------------------------------------// */}
 
             {/* --- Player Seats --- */}
             {/* 1. ผู้เล่นบนซ้าย (TOP LEFT) - p1 */}
-            <div className="absolute top-5 left-[15%] z-10">
+            <div className="absolute top-5 left-[20%] z-10">
                 <PlayerSeat 
                     {...getPlayerProps(1)} 
                     layout="top" // ใช้ layout="top" แทน "top-top"
@@ -124,7 +128,7 @@ export default function MainGame() {
             </div>
 
             {/* 3. ผู้เล่นบนขวา (TOP RIGHT) - p3 */}
-            <div className="absolute top-5 right-[15%] z-10">
+            <div className="absolute top-5 right-[20%] z-10">
                 <PlayerSeat 
                     {...getPlayerProps(3)} 
                     layout="top" // ใช้ layout="top" แทน "top-top"
@@ -147,7 +151,7 @@ export default function MainGame() {
                  
                  {/* ปุ่ม Play (จะโชว์เมื่อเลือกไพ่) */}
                  {selectedCardIds.length > 0 && (
-                    <div className="mb-2 animate-bounce absolute -top-2 z-20 pointer-events-auto">
+                    <div className="mb-2 animate-bounce absolute -top-15 z-20 pointer-events-auto">
                         <button 
                             onClick={handlePlayCards} // 💡 แก้ไขให้เรียก handlePlayCards ที่ลบไพ่จริง
                             className="bg-[#FBAF22] text-white text-lg 
@@ -164,13 +168,6 @@ export default function MainGame() {
                     containerSize={800}
                 />
                 
-                {/* ปุ่ม Test Draw */}
-                <button 
-                    onClick={handleDrawCard} 
-                    className="absolute bottom-4 right-4 bg-blue-600 text-white px-3 py-1 rounded text-xs opacity-50 hover:opacity-100"
-                >
-                    + Draw (Deck: {deck.length})
-                </button>
             </div>
 
         </div>
