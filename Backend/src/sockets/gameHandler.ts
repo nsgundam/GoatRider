@@ -1,40 +1,38 @@
-// src/sockets/gameHandler.ts
 import { Server, Socket } from 'socket.io';
 import { PrismaClient } from '@prisma/client';
-import { setGame } from '../utils/gameStore';
+import { setGame, getGame, deleteGame, GameState } from '../utils/gameStore';
 import { initializeGame } from '../utils/gameLogic';
 
 const prisma = new PrismaClient();
 
 export const gameHandler = (io: Server, socket: Socket) => {
 
-    // ✅ รับคำสั่ง Start Game ตรงนี้
+    // ==========================================
+    // 🎮 START GAME
+    // ==========================================
     socket.on('start_game', async ({ roomId }) => {
         try {
             console.log(`🎮 Start Game Requested: ${roomId}`);
 
-            // 1. ดึงข้อมูลผู้เล่น
             const playersDB = await prisma.playerRoomState.findMany({
                 where: { roomId },
                 include: { user: true },
                 orderBy: { walletAddress: 'asc' }
             });
 
-            // (Optional) เช็คจำนวนคน
-            if (playersDB.length < 1) return; // แก้เป็น 2 ถ้าต้องการบังคับ
+            if (playersDB.length < 1) {
+                 console.warn("⚠️ Warning: Starting with < 2 players.");
+                 // return; // Uncomment ถ้าจะบังคับ 2 คน
+            }
 
-            // 2. เตรียมข้อมูลเกม
             const playersData = playersDB.map(p => ({
                 wallet: p.walletAddress,
                 username: p.user.username,
                 socketId: "" 
             }));
 
-        
-            // 3. สับไพ่
             const { deck, players } = initializeGame(playersData);
 
-            // 4. เก็บสถานะเกมเข้า Memory
             setGame(roomId, {
                 roomId,
                 players,
@@ -46,16 +44,13 @@ export const gameHandler = (io: Server, socket: Socket) => {
                 gameStatus: 'PLAYING'
             });
 
-            // 5. อัปเดต DB
             await prisma.room.update({
                 where: { roomId },
                 data: { status: 'IN_GAME' }
             });
 
-            // 6. 🚀 ส่งสัญญาณ Game Started (Frontend จะ Redirect ตอนนี้)
             io.to(roomId).emit('game_started', { timestamp: Date.now() });
 
-            // 7. แจกไพ่เข้ามือ
             players.forEach(p => {
                 io.to(roomId).emit('update_hand', {
                     walletAddress: p.walletAddress,
@@ -63,11 +58,14 @@ export const gameHandler = (io: Server, socket: Socket) => {
                 });
             });
 
-            // 8. บอกตาเริ่ม
-            io.to(roomId).emit('turn_change', {
-                currentTurnWallet: players[0]?.walletAddress,
-                timeLeft: 30
-            });
+            // ✅ FIX: เช็คว่า players[0] มีจริงไหมก่อนส่ง
+            const firstPlayer = players[0];
+            if (firstPlayer) {
+                io.to(roomId).emit('turn_change', {
+                    currentTurnWallet: firstPlayer.walletAddress,
+                    timeLeft: 30
+                });
+            }
 
         } catch (error) {
             console.error("Start Game Error:", error);
@@ -75,142 +73,226 @@ export const gameHandler = (io: Server, socket: Socket) => {
     });
 
     // ==========================================
-    // 🃏 DRAW CARD Logic
+    // 🔄 SYNC STATE
     // ==========================================
-    socket.on('draw_card', ({ roomId, walletAddress }) => { // รับ walletAddress มาด้วย
+    socket.on('request_game_state', ({ roomId, walletAddress }) => {
+        const game = getGame(roomId);
+        if (!game) return;
+
+        const player = game.players.find(p => p.walletAddress === walletAddress);
+        if (!player) return;
+
+        socket.emit('update_hand', {
+            walletAddress: player.walletAddress,
+            hand: player.hand
+        });
+
+        // ✅ FIX: เช็ค currentPlayer ก่อนใช้
+        const currentPlayer = game.players[game.turnIndex];
+        if (currentPlayer) {
+            socket.emit('turn_change', {
+                currentTurnWallet: currentPlayer.walletAddress,
+                timeLeft: 30
+            });
+        }
+    });
+
+    // ==========================================
+    // 💥 PLAY CARD
+    // ==========================================
+    socket.on('play_card', ({ roomId, walletAddress, card }) => {
         const game = getGame(roomId);
         if (!game || game.gameStatus !== 'PLAYING') return;
 
+        // ✅ FIX: เช็ค currentPlayer
         const currentPlayer = game.players[game.turnIndex];
+        if (!currentPlayer) return;
 
-        // 1. Validation: ใช่ตาของคนนี้ไหม?
+        // 1. Validation
         if (currentPlayer.walletAddress !== walletAddress) {
             socket.emit('error', 'Not your turn!');
             return;
         }
 
-        // 2. จั่วไพ่ใบแรกจากกอง (Pop)
-        const drawnCard = game.deck.pop();
+        const cardIndex = currentPlayer.hand.indexOf(card);
+        if (cardIndex === -1) return; 
 
-        if (!drawnCard) {
-            // กองหมด (ไม่น่าเกิดขึ้นในแมวระเบิด ถ้า Logic ถูก)
-            return;
-        }
+        console.log(`💥 ${currentPlayer.username} played: ${card}`);
 
-        console.log(`🃏 ${currentPlayer.username} drew: ${drawnCard}`);
+        // 2. ลบไพ่ออก
+        currentPlayer.hand.splice(cardIndex, 1);
+        game.discardPile.push(card);
 
-        // แจ้งทุกคนว่ามีการจั่ว (Animation ไพ่บิน)
-        io.to(roomId).emit('player_action', {
-            username: currentPlayer.username,
-            action: 'DRAW_CARD',
-            card: null // ไม่บอกคนอื่นว่าได้ไพ่อะไร (ความลับ)
+        io.to(roomId).emit('update_hand', {
+            walletAddress: currentPlayer.walletAddress,
+            hand: currentPlayer.hand
         });
 
-        // ==========================================
-        // 💣 กรณี: จั่วได้ระเบิด (EXPLODE)
-        // ==========================================
+        io.to(roomId).emit('player_action', {
+            username: currentPlayer.username,
+            action: `PLAYED ${card}`
+        });
+
+        // 3. Process Effect
+        switch (card) {
+            case 'skip':
+                game.attackTurns--;
+                if (game.attackTurns <= 0) {
+                    game.attackTurns = 1;
+                    advanceTurn(game);
+                }
+                io.to(roomId).emit('game_log', `${currentPlayer.username} used SKIP! ⏭️`);
+                break;
+
+            case 'attack':
+                io.to(roomId).emit('game_log', `${currentPlayer.username} ATTACKED next player! ⚔️`);
+                advanceTurn(game);
+                game.attackTurns = 2; 
+                break;
+
+            case 'shuffle':
+                game.deck = game.deck.sort(() => Math.random() - 0.5);
+                io.to(roomId).emit('game_log', 'Deck Shuffled! 🔀');
+                break;
+
+            case 'see_future':
+                const top3 = game.deck.slice(-3).reverse();
+                socket.emit('game_log', `Future: ${top3.join(', ')} 👁️`);
+                break;
+            
+            default:
+                io.to(roomId).emit('game_log', `${currentPlayer.username} played ${card}`);
+                break;
+        }
+
+        // ✅ FIX: เช็ค nextPlayer ก่อนส่ง turn_change
+        const nextPlayer = game.players[game.turnIndex];
+        if (nextPlayer) {
+            io.to(roomId).emit('turn_change', {
+                currentTurnWallet: nextPlayer.walletAddress,
+                timeLeft: 30
+            });
+        }
+    });
+
+    // ==========================================
+    // 🃏 DRAW CARD
+    // ==========================================
+    socket.on('draw_card', ({ roomId, walletAddress }) => {
+        const game = getGame(roomId);
+        if (!game || game.gameStatus !== 'PLAYING') return;
+
+        // ✅ FIX: เช็ค currentPlayer
+        const currentPlayer = game.players[game.turnIndex];
+        if (!currentPlayer) return;
+
+        if (currentPlayer.walletAddress !== walletAddress) return;
+
+        const drawnCard = game.deck.pop();
+        if (!drawnCard) return;
+
+        console.log(`🃏 ${currentPlayer.username} drew a card`);
+        
+        io.to(roomId).emit('player_action', {
+            username: currentPlayer.username,
+            action: 'DRAW_CARD'
+        });
+
         if (drawnCard === 'explode') {
             const hasDefuse = currentPlayer.hand.includes('defuse');
 
             if (hasDefuse) {
-                // ✅ รอด: มี Defuse
-                console.log(`😅 ${currentPlayer.username} defused the bomb!`);
-                
-                // หัก Defuse ออกจากมือ
+                // รอด
+                console.log(`😅 ${currentPlayer.username} defused!`);
                 const defuseIndex = currentPlayer.hand.indexOf('defuse');
-                currentPlayer.hand.splice(defuseIndex, 1);
+                if (defuseIndex > -1) currentPlayer.hand.splice(defuseIndex, 1);
 
-                // ส่งไพ่คืนกอง (Logic แบบง่าย: ใส่กลับไปสุ่มๆ หรือบนสุด)
-                // ของจริงต้องให้ User เลือกตำแหน่ง แต่ตอนนี้เอาแบบ Random Index ไปก่อน
                 const randomIndex = Math.floor(Math.random() * (game.deck.length + 1));
                 game.deck.splice(randomIndex, 0, 'explode');
 
                 io.to(roomId).emit('game_log', `${currentPlayer.username} defused a Bomb! 💣🔧`);
                 
-                // อัปเดตมือเจ้าตัว (Defuse หายไป)
                 io.to(roomId).emit('update_hand', {
                     walletAddress: currentPlayer.walletAddress,
                     hand: currentPlayer.hand
                 });
 
+                game.attackTurns--;
+
             } else {
-                // 💥 ตาย: ไม่มี Defuse
+                // ตาย
                 console.log(`💀 ${currentPlayer.username} exploded!`);
                 currentPlayer.isAlive = false;
                 
                 io.to(roomId).emit('game_log', `${currentPlayer.username} EXPLODED! 💥💀`);
                 io.to(roomId).emit('player_exploded', { walletAddress: currentPlayer.walletAddress });
 
-                // เช็คว่าจบเกมหรือยัง (เหลือผู้รอดชีวิตคนเดียว)
                 const survivors = game.players.filter(p => p.isAlive);
                 if (survivors.length === 1) {
+                    // ✅ FIX: เช็ค survivors[0] ก่อนใช้
                     const winner = survivors[0];
-                    endGame(io, roomId, winner.walletAddress);
+                    if (winner) endGame(io, roomId, winner.walletAddress);
                     return;
                 }
+                
+                game.attackTurns = 0; 
             }
-        } 
-        // ==========================================
-        // 🛡️ กรณี: ได้ไพ่ปลอดภัย (Safe Card)
-        // ==========================================
-        else {
-            // เก็บเข้ามือ
+        } else {
+            // ไพ่ปกติ
             currentPlayer.hand.push(drawnCard);
-            
-            // อัปเดตมือเจ้าตัว
             io.to(roomId).emit('update_hand', {
                 walletAddress: currentPlayer.walletAddress,
                 hand: currentPlayer.hand
             });
+            game.attackTurns--;
         }
 
-        // ==========================================
-        // 🔄 จบเทิร์น (Next Turn Logic)
-        // ==========================================
-        // ถ้าตาย หรือ จั่วไพ่ปลอดภัย -> เปลี่ยนตา
-        // (ถ้า Defuse ได้ ปกติก็เปลี่ยนตา หรือตามกฎคือต้องจั่วให้ครบ Attack turn)
-        
-        // ลดจำนวนตาที่ต้องเล่น (กรณีโดน Attack)
-        game.attackTurns--;
-
         if (game.attackTurns <= 0) {
-            // เปลี่ยนคนเล่นถัดไป
-            game.attackTurns = 1; // รีเซ็ต
+            game.attackTurns = 1;
             advanceTurn(game);
         }
 
-        // อัปเดตสถานะล่าสุดให้ทุกคน
+        // ✅ FIX: เช็ค nextPlayer
         const nextPlayer = game.players[game.turnIndex];
-        io.to(roomId).emit('turn_change', {
-            currentTurnWallet: nextPlayer.walletAddress,
-            timeLeft: 30
-        });
+        if (nextPlayer) {
+            io.to(roomId).emit('turn_change', {
+                currentTurnWallet: nextPlayer.walletAddress,
+                timeLeft: 30
+            });
+        }
     });
 };
 
 // --- Helper Functions ---
 
+// --- Helper Functions ---
+
 function advanceTurn(game: GameState) {
     let nextIndex = game.turnIndex;
+    let attempts = 0;
     
-    // วนหาคนถัดไปที่ยังรอดชีวิต (isAlive = true)
     do {
+        // ขยับ Index ไปคนถัดไป
         nextIndex = (nextIndex + game.turnDirection + game.players.length) % game.players.length;
-    } while (!game.players[nextIndex].isAlive && nextIndex !== game.turnIndex);
+        attempts++;
 
+        // ดึงตัวผู้เล่นออกมาเช็คก่อน
+        const nextPlayer = game.players[nextIndex];
+
+        // ถ้าเจอผู้เล่น และผู้เล่น "ยังรอดชีวิต" (isAlive = true) -> ให้หยุดวนลูป (เจอคนเล่นแล้ว)
+        if (nextPlayer && nextPlayer.isAlive) {
+            break;
+        }
+
+    // วนลูปต่อไปถ้ายังหาคนเป็นไม่เจอ และยังวนไม่ครบทุกคน
+    } while (attempts < game.players.length);
+
+    // อัปเดต Turn
     game.turnIndex = nextIndex;
 }
 
 function endGame(io: Server, roomId: string, winnerAddress: string) {
     console.log(`🏆 GAME OVER! Winner: ${winnerAddress}`);
-    
     io.to(roomId).emit('game_over', { winner: winnerAddress });
-    
-    // TODO: เรียก Blockchain Service เพื่อจ่ายเงินรางวัลที่นี่
-    // import { payoutWinner } from '../services/blockchainService';
-    // payoutWinner(roomId, winnerAddress);
-
-    deleteGame(roomId); // ลบเกมออกจาก Memory
-
-
-};
+    deleteGame(roomId); 
+}
