@@ -16,7 +16,7 @@ export default function RootLayout({
   return (
 <html lang="en" className={baloo.className}>
       <body>
-        {/* โครงหน้าเว็บทั่วไป เช่น header, footer */}
+
         <main>{children}</main>
       </body>
     </html>
