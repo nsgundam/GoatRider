@@ -2,6 +2,7 @@ import { Server, Socket } from 'socket.io';
 import { PrismaClient } from '@prisma/client';
 import { setGame, getGame, deleteGame, GameState } from '../utils/gameStore';
 import { initializeGame } from '../utils/gameLogic';
+import { payoutWinner } from '../services/blockchainService';
 
 const prisma = new PrismaClient();
 
@@ -100,82 +101,123 @@ export const gameHandler = (io: Server, socket: Socket) => {
     // ==========================================
     // 💥 PLAY CARD
     // ==========================================
-    socket.on('play_card', ({ roomId, walletAddress, card }) => {
+    // ==========================================
+    // 💥 PLAY CARD (รองรับ Multi-Card + Cat Logic)
+    // ==========================================
+    socket.on('play_card', ({ roomId, walletAddress, cards, targetWallet, wantedCard }) => {
+        // ** cards รับมาเป็น Array: ['cat_1', 'cat_1']
         const game = getGame(roomId);
         if (!game || game.gameStatus !== 'PLAYING') return;
 
-        // ✅ FIX: เช็ค currentPlayer
         const currentPlayer = game.players[game.turnIndex];
         if (!currentPlayer) return;
 
-        // 1. Validation
         if (currentPlayer.walletAddress !== walletAddress) {
             socket.emit('error', 'Not your turn!');
             return;
         }
 
-        const cardIndex = currentPlayer.hand.indexOf(card);
-        if (cardIndex === -1) return; 
+        // 1. ตรวจสอบไพ่ในมือ
+        const cardToPlay = cards[0]; // ใช้ใบแรกเป็นตัวกำหนดประเภท (เพราะต้องเหมือนกัน)
+        // Check ว่ามีไพ่ครบจริงไหม
+        const hasCards = cards.every((c: any) => currentPlayer.hand.includes(c));
+        if (!hasCards) return;
 
-        console.log(`💥 ${currentPlayer.username} played: ${card}`);
+        console.log(`💥 ${currentPlayer.username} played: ${cards.join(', ')}`);
 
-        // 2. ลบไพ่ออก
-        currentPlayer.hand.splice(cardIndex, 1);
-        game.discardPile.push(card);
-
-        io.to(roomId).emit('update_hand', {
-            walletAddress: currentPlayer.walletAddress,
-            hand: currentPlayer.hand
+        // 2. ลบไพ่ออก (Remove played cards)
+        cards.forEach((c: any) => {
+            const idx = currentPlayer.hand.indexOf(c);
+            if (idx > -1) currentPlayer.hand.splice(idx, 1);
+            game.discardPile.push(c);
         });
 
-        io.to(roomId).emit('player_action', {
-            username: currentPlayer.username,
-            action: `PLAYED ${card}`
-        });
+        // Broadcast การเล่น
+        io.to(roomId).emit('update_hand', { walletAddress: currentPlayer.walletAddress, hand: currentPlayer.hand });
+        io.to(roomId).emit('player_action', { username: currentPlayer.username, action: `PLAYED ${cards.length > 1 ? 'COMBO' : cardToPlay}` });
 
-        // 3. Process Effect
-        switch (card) {
-            case 'skip':
-                game.attackTurns--;
-                if (game.attackTurns <= 0) {
-                    game.attackTurns = 1;
+        // 3. Process Effects
+        if (cards.length === 1) {
+            // --- Single Card Action ---
+            switch (cardToPlay) {
+                case 'skip':
+                    game.attackTurns--;
+                    if (game.attackTurns <= 0) {
+                        game.attackTurns = 1;
+                        advanceTurn(game);
+                    }
+                    io.to(roomId).emit('game_log', `${currentPlayer.username} used SKIP! ⏭️`);
+                    break;
+                case 'attack':
+                    io.to(roomId).emit('game_log', `${currentPlayer.username} ATTACKED next player! ⚔️`);
                     advanceTurn(game);
+                    game.attackTurns = 2; // Next person takes 2 turns
+                    break;
+                case 'shuffle':
+                    game.deck.sort(() => Math.random() - 0.5);
+                    io.to(roomId).emit('game_log', 'Deck Shuffled! 🔀');
+                    break;
+                case 'see_future':
+                    const top3 = game.deck.slice(-3).reverse();
+                    socket.emit('game_log', `Future: ${top3.join(', ')} 👁️`);
+                    break;
+                default:
+                    // ถ้าเล่นไพ่แมวใบเดียว = ไม่มีผล (เสียเปล่า)
+                    if (cardToPlay.startsWith('cat')) {
+                        io.to(roomId).emit('game_log', `${currentPlayer.username} wasted a Cat card...`);
+                    }
+                    break;
+            }
+        } else if (cards.length === 2 && cardToPlay.startsWith('cat')) {
+            // --- 2 Cats (Random Steal) ---
+            if (targetWallet) {
+                const targetPlayer = game.players.find(p => p.walletAddress === targetWallet);
+                if (targetPlayer && targetPlayer.hand.length > 0) {
+                    const randomIdx = Math.floor(Math.random() * targetPlayer.hand.length);
+                    const stolenCard = targetPlayer.hand.splice(randomIdx, 1)[0];
+                    currentPlayer.hand.push(stolenCard);
+
+                    io.to(roomId).emit('game_log', `${currentPlayer.username} stole a card from ${targetPlayer.username}! 🦝`);
+                    // Update hands
+                    io.to(roomId).emit('update_hand', { walletAddress: currentPlayer.walletAddress, hand: currentPlayer.hand });
+                    io.to(roomId).emit('update_hand', { walletAddress: targetPlayer.walletAddress, hand: targetPlayer.hand });
+                } else {
+                    io.to(roomId).emit('game_log', `Target has no cards to steal!`);
                 }
-                io.to(roomId).emit('game_log', `${currentPlayer.username} used SKIP! ⏭️`);
-                break;
-
-            case 'attack':
-                io.to(roomId).emit('game_log', `${currentPlayer.username} ATTACKED next player! ⚔️`);
-                advanceTurn(game);
-                game.attackTurns = 2; 
-                break;
-
-            case 'shuffle':
-                game.deck = game.deck.sort(() => Math.random() - 0.5);
-                io.to(roomId).emit('game_log', 'Deck Shuffled! 🔀');
-                break;
-
-            case 'see_future':
-                const top3 = game.deck.slice(-3).reverse();
-                socket.emit('game_log', `Future: ${top3.join(', ')} 👁️`);
-                break;
-            
-            default: 
-                if (card.startsWith('cat')) {
-                     io.to(roomId).emit('game_log', `${currentPlayer.username} played a Cat card (need pair to steal!)`);
+            }
+        } else if (cards.length === 3 && cardToPlay.startsWith('cat')) {
+            // --- 3 Cats (Named Steal) ---
+            if (targetWallet && wantedCard) {
+                const targetPlayer = game.players.find(p => p.walletAddress === targetWallet);
+                if (targetPlayer) {
+                    const idx = targetPlayer.hand.findIndex(c => c === wantedCard);
+                    if (idx > -1) {
+                        // เจอ! ขโมยมาเลย
+                        const stolenCard = targetPlayer.hand.splice(idx, 1)[0];
+                        currentPlayer.hand.push(stolenCard);
+                        io.to(roomId).emit('game_log', `${currentPlayer.username} stole ${wantedCard} from ${targetPlayer.username}! 🎯`);
+                    } else {
+                        // ไม่เจอ! หน้าแหก
+                        io.to(roomId).emit('game_log', `${currentPlayer.username} tried to find ${wantedCard} but failed! ❌`);
+                    }
+                    // Update hands
+                    io.to(roomId).emit('update_hand', { walletAddress: currentPlayer.walletAddress, hand: currentPlayer.hand });
+                    io.to(roomId).emit('update_hand', { walletAddress: targetPlayer.walletAddress, hand: targetPlayer.hand });
                 }
-                break;
+            }
         }
 
-        // ✅ FIX: เช็ค nextPlayer ก่อนส่ง turn_change
-        const nextPlayer = game.players[game.turnIndex];
-        if (nextPlayer) {
-            io.to(roomId).emit('turn_change', {
-                currentTurnWallet: nextPlayer.walletAddress,
-                timeLeft: 30
-            });
+        // Update Turn (ยกเว้นเล่น Attack/Skip ที่จัดการ Turn ไปแล้ว)
+        if (cardToPlay !== 'skip' && cardToPlay !== 'attack') {
+        } else {
+             const nextPlayer = game.players[game.turnIndex];
+             if(nextPlayer) {
+                io.to(roomId).emit('turn_change', { currentTurnWallet: nextPlayer.walletAddress, timeLeft: 30 });
+             }
         }
+        
     });
+
 
     // ==========================================
     // 🃏 DRAW CARD
@@ -267,8 +309,6 @@ export const gameHandler = (io: Server, socket: Socket) => {
 
 // --- Helper Functions ---
 
-// --- Helper Functions ---
-
 function advanceTurn(game: GameState) {
     let nextIndex = game.turnIndex;
     let attempts = 0;
@@ -293,8 +333,28 @@ function advanceTurn(game: GameState) {
     game.turnIndex = nextIndex;
 }
 
-function endGame(io: Server, roomId: string, winnerAddress: string) {
+async function endGame(io: Server, roomId: string, winnerAddress: string) {
     console.log(`🏆 GAME OVER! Winner: ${winnerAddress}`);
+    
+    // แจ้ง Frontend ก่อน
     io.to(roomId).emit('game_over', { winner: winnerAddress });
+
+    // สั่งโอนเงินรางวัล 80% ผ่าน Blockchain
+    try {
+        await payoutWinner(roomId, winnerAddress);
+        console.log(`💰 Reward distributed for Room ${roomId}`);
+    } catch (err) {
+        console.error(`❌ Failed to distribute reward:`, err);
+        // อาจจะต้องมีระบบ log ลง DB ว่าจ่ายไม่สำเร็จเพื่อมา retry ทีหลัง
+    }
+
+    // อัปเดต DB ว่าจบเกม
+    try {
+        await prisma.room.update({
+            where: { roomId },
+            data: { status: 'FINISHED' }
+        });
+    } catch(e) { console.error(e); }
+
     deleteGame(roomId); 
 }
