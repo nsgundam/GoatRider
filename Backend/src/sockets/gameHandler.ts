@@ -160,8 +160,10 @@ export const gameHandler = (io: Server, socket: Socket) => {
                 socket.emit('game_log', `Future: ${top3.join(', ')} 👁️`);
                 break;
             
-            default:
-                io.to(roomId).emit('game_log', `${currentPlayer.username} played ${card}`);
+            default: 
+                if (card.startsWith('cat')) {
+                     io.to(roomId).emit('game_log', `${currentPlayer.username} played a Cat card (need pair to steal!)`);
+                }
                 break;
         }
 
