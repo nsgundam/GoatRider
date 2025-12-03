@@ -150,9 +150,7 @@ export default function MenuPage() {
     }
   }
 
-  //-------------------------------------------------------------------------------//
   // 3. สร้างห้อง (API: POST /api/rooms)
-  //-------------------------------------------------------------------------------//
   async function handleConfirmCreateRoom() {
     const token = localStorage.getItem("token");
     if (!token) return;
@@ -188,9 +186,7 @@ export default function MenuPage() {
     }
   }
 
-  //-------------------------------------------------------------------------------//
   // 4. เข้าร่วมห้อง (Redirect ไป Lobby)
-  //-------------------------------------------------------------------------------//
   function handleJoinConfirm() {
     setJoinError("");
     if (!joinRoomId.trim()) {
@@ -208,19 +204,15 @@ export default function MenuPage() {
     }, 500);
   }
 
-  //-------------------------------------------------------------------------------//
   // Logout
-  //-------------------------------------------------------------------------------//
   function handleExitGame() {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     router.push("/");
   }
 
-  //-------------------------------------------------------------------------------//
   // UI RENDER
-  //-------------------------------------------------------------------------------//
-  return (
+ return (
     <div className="relative w-full min-h-screen">
       {/* Background + Blur */}
       <div className="absolute inset-0 blur-[3px] opacity-25">
