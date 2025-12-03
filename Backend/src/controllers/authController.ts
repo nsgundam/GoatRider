@@ -18,7 +18,7 @@ const generateToken = (walletAddress: string) => {
   );
 };
 
-// 1. LOGIN: เช็คว่ามี User ไหม
+// 1. LOGIN
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
     const { walletAddress, signature } = req.body;
@@ -42,10 +42,8 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     // 3. เงื่อนไขการตอบกลับ
     if (user) {
-      // A. เจอชื่อ -> ล็อกอินสำเร็จ -> ส่ง Token กลับไป
       const token = generateToken(user.walletAddress);
 
-      // อัปเดตเวลา Login ล่าสุด
       await prisma.user.update({
         where: { walletAddress },
         data: { lastLogin: new Date() },
@@ -58,11 +56,9 @@ export const login = async (req: Request, res: Response): Promise<void> => {
         user,
       });
     } else {
-      // B. ไม่เจอชื่อ -> แจ้งกลับไปว่าต้องลงทะเบียนก่อน
       res.json({
         status: "REGISTER_REQUIRED",
         isRegistered: false,
-        // ยังไม่ให้ Token จนกว่าจะ Register เสร็จ
       });
     }
   } catch (error) {
@@ -71,7 +67,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-// 2. REGISTER: ลงทะเบียนพร้อมชื่อ
+// 2. REGISTER
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
     const { walletAddress, signature, username } = req.body;
@@ -81,14 +77,14 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       return;
     }
 
-    // 1. ตรวจสอบลายเซ็นอีกรอบ (เพื่อความปลอดภัย ป้องกันคนแอบอ้างสวมรอยมาสมัคร)
+    // 1. ตรวจสอบลายเซ็น
     const recoveredAddress = ethers.verifyMessage(SIGN_MESSAGE, signature);
     if (recoveredAddress.toLowerCase() !== walletAddress.toLowerCase()) {
       res.status(401).json({ error: "Invalid signature" });
       return;
     }
 
-    // 2. ตรวจสอบว่าชื่อซ้ำไหม?
+    // 2. ตรวจสอบว่าชื่อซ้ำไหม
     const existingName = await prisma.user.findUnique({
       where: { username: username },
     });
@@ -107,7 +103,7 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 
     //แจกเหรียญฟรี 100 GRD
     try {
-      // เช็คว่ามี Config ครบไหม ถ้าไม่ครบข้ามไป (จะได้ไม่ Error จนสมัครไม่ได้)
+      // เช็ค Config 
       if (
         process.env.ADMIN_PRIVATE_KEY &&
         process.env.TOKEN_CONTRACT_ADDRESS &&
@@ -124,12 +120,10 @@ export const register = async (req: Request, res: Response): Promise<void> => {
           adminWallet
         );
 
-        // จำนวน 100 tokens (สมมติเหรียญมีทศนิยม 18 หลัก)
         const amount = ethers.parseUnits("100", 18);
 
         console.log(`🎁 Faucet: Sending 100 GRD to ${walletAddress}...`);
 
-        // สั่งโอน 
         const tx = await (tokenContract as any).adminTransfer(walletAddress, amount);
         await tx.wait();
 
@@ -139,11 +133,8 @@ export const register = async (req: Request, res: Response): Promise<void> => {
       }
     } catch (faucetError) {
       console.error("❌ Faucet Error:", faucetError);
-      // ไม่ต้อง throw error ปล่อยให้สมัครผ่านไป แม้โอนเงินไม่สำเร็จ
     }
-    // =========================================================
 
-    // 4. สมัครเสร็จ -> ให้ Token เลย (จะได้เข้าเมนูต่อได้ทันที)
     const token = generateToken(newUser.walletAddress);
 
     res.json({

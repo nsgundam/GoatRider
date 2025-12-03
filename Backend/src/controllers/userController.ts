@@ -15,7 +15,7 @@ export const getUserProfile = async (req: AuthRequest, res: Response): Promise<v
             return;
         }
 
-        // 1. ดึงข้อมูลพื้นฐานจาก DB (Username)
+        // 1. ดึงข้อมูลพื้นฐานจาก DB 
         const user = await prisma.user.findUnique({
             where: { walletAddress }
         });
@@ -30,7 +30,6 @@ export const getUserProfile = async (req: AuthRequest, res: Response): Promise<v
         const tokenAddress = process.env.TOKEN_CONTRACT_ADDRESS;
 
         if (!rpcUrl || !tokenAddress) {
-             // ถ้า config ไม่สมบูรณ์ ให้ส่งแค่ DB data กลับไป
              res.json({ user, tokenBalance: 'N/A' }); 
              return;
         }
@@ -38,13 +37,9 @@ export const getUserProfile = async (req: AuthRequest, res: Response): Promise<v
         const provider = new ethers.JsonRpcProvider(rpcUrl);
         const tokenContract = new ethers.Contract(tokenAddress, TOKEN_ABI, provider);
 
-        // เรียกฟังก์ชัน balanceOf(address) บน Smart Contract
         const balanceBigInt = await (tokenContract as any).balanceOf(walletAddress);
-
-        // แปลง BigInt ให้เป็นหน่วยที่อ่านได้ (เช่น 100.00 GRD)
         const balanceString = ethers.formatUnits(balanceBigInt, 18); 
 
-        // 3. ส่งข้อมูลทั้งหมดรวมกันกลับไป
         res.json({
             username: user.username,
             walletAddress: user.walletAddress,

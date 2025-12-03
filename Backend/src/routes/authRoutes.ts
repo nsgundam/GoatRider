@@ -1,4 +1,3 @@
-// src/routes/authRoutes.ts
 import { Router } from 'express';
 import { login, register } from '../controllers/authController'; // import register เพิ่ม
 

@@ -1,4 +1,3 @@
-// src/middlewares/authMiddleware.ts
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 
@@ -19,8 +18,8 @@ export const authenticateToken = (req: AuthRequest, res: Response, next: NextFun
     // 2. ตรวจสอบ Token
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET || "default_secret_key") as { walletAddress: string };
-        req.user = decoded; // แปะข้อมูล user ไว้ใน request
-        next(); // ปล่อยผ่านไปทำงานต่อ
+        req.user = decoded; 
+        next(); 
     } catch (error) {
         res.status(403).json({ error: "Invalid token." });
     }
