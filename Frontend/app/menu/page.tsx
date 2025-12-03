@@ -107,19 +107,19 @@ export default function MenuPage() {
     setLoadingBuy(true);
 
     try {
-      const provider = new ethers.BrowserProvider(window.ethereum);
-      const signer = await provider.getSigner();
+      const provider = new ethers.BrowserProvider(window.ethereum); //ไปดึง sepolia จาก MetaMask
+      const signer = await provider.getSigner(); 
 
       // ✅ ใช้ Address และ ABI จาก contracts.js
       // ใช้ as any เพื่อเลี่ยง Type check ชั่วคราว
       const contract = new ethers.Contract(
         CONTRACTS.TOKEN.ADDRESS!, 
-        CONTRACTS.TOKEN.ABI,
+        CONTRACTS.TOKEN.ABI,//เก็บ ใหม่ที่มีฟังก์ชัน buyToken นะ
         signer
       ) as any; 
 
       // 🔴 แก้ไข: เรียก buyToken โดยตรง (ตาม Smart Contract ใหม่)
-      // ส่ง ETH ไป 0.001 (ปรับค่านี้ตามต้องการ)
+      // ส่ง ETH ไป 0.001 เพื่อซื้อ 100 Token ของเรานิ
       const ethAmount = "0.001";
       console.log(`Buying tokens with ${ethAmount} ETH...`);
 
@@ -128,7 +128,7 @@ export default function MenuPage() {
       });
 
       console.log("Transaction sent:", tx.hash);
-      
+      //ไปเรียกที่ gamepool contract เพื่อดูว่ามีการยืนยันหรือยัง
       if (tx && typeof tx.wait === "function") {
         await tx.wait(); // รอ Transaction ยืนยัน
       }
@@ -307,7 +307,7 @@ export default function MenuPage() {
             }}
             className="w-60 md:w-64 lg:w-80 py-3 md:py-4 
             text-lg md:text-xl font-bold active:scale-95 
-            text-black rounded-full shadow-[0_10px_0_#a52424] bg-white hover:bg-[#FBAF22] hover:text-white transition-all"
+            text-black rounded-full shadow-[0_10px_0_#a52424] bg-white hover:bg-[#FBAF22] hover:text-black transition-all"
           >
             Join Room
           </Button>
@@ -425,7 +425,7 @@ export default function MenuPage() {
       {/* 3. Join Room Popup */}
       {showJoinPopup && (
         <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 backdrop-blur-sm">
-          <div className="bg-white rounded-2xl shadow-2xl p-6 w-[90%] max-w-sm text-center border-4 border-[#FBAF22]">
+          <div className="bg-white rounded-2xl shadow-2xl text-black p-6 w-[90%] max-w-sm text-center border-4 border-[#FBAF22]">
             <h3 className="text-2xl font-bold mb-4 text-gray-800">Join Room</h3>
             <input
               type="text"

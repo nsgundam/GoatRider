@@ -368,7 +368,7 @@ export default function LobbyPage() {
                       ${
                         isProcessing
                           ? "bg-gray-400"
-                          : "bg-[#FBAF22] hover:bg-[#e49c20] text-white"
+                          : "bg-[#FBAF22] hover:bg-[#e49c20] text-black animate-pulse"
                       }`}
                     >
                       {isProcessing
@@ -384,8 +384,8 @@ export default function LobbyPage() {
                       className={`px-8 py-3 font-bold rounded-full text-xl shadow-[0_4px_0_#000]
                       ${
                         canStart
-                          ? "bg-green-600 hover:bg-green-700 text-white animate-pulse"
-                          : "bg-gray-400 text-gray-200 cursor-not-allowed"
+                          ? "bg-green-600 hover:bg-green-700 text-black animate-pulse"
+                          : "bg-gray-400 text-black cursor-not-allowed"
                       }`}
                     >
                       START GAME 🚀
