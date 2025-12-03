@@ -62,6 +62,39 @@ export const getRooms = async (req: AuthRequest, res: Response): Promise<void> =
 };
 
 // ==========================================
+// 3. Get Single Room (ดึงข้อมูลห้องเดียว)
+// ==========================================
+export const getRoom = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        const { roomId } = req.params;
+
+        if(!roomId){
+            res.status(400).json({ error: "Room ID is required" });
+            return;
+        }
+
+        const room = await prisma.room.findUnique({
+            where: { roomId },
+            include: {
+                players: {
+                    include: { user: true } // ดึงข้อมูลผู้เล่นในห้องด้วย
+                }
+            }
+        });
+
+        if (!room) {
+            res.status(404).json({ error: "Room not found" });
+            return;
+        }
+
+        res.json(room); // ส่งข้อมูลห้อง (รวม requiredStake) กลับไป
+    } catch (error) {
+        console.error("Get Room Error:", error);
+        res.status(500).json({ error: "Failed to fetch room" });
+    }
+};
+
+// ==========================================
 // [TEST ONLY] จำลองการจ่ายเงิน (Mock Payment)
 // ==========================================
 export const mockPayment = async (req: AuthRequest, res: Response): Promise<void> => {
