@@ -176,7 +176,7 @@ export default function LobbyPage() {
       setPlayers((prevPlayers) =>
         prevPlayers.map((p) =>
           p.walletAddress.toLowerCase() ===
-          currentUser.walletAddress.toLowerCase()
+            currentUser.walletAddress.toLowerCase()
             ? { ...p, isReady: true }
             : p
         )
@@ -197,7 +197,6 @@ export default function LobbyPage() {
     if (!socket) return;
     socket.emit("start_game", { roomId });
   }
-
   // Helpers
   const amIHost =
     players.length > 0 &&
@@ -206,6 +205,24 @@ export default function LobbyPage() {
     (p) => p.walletAddress === currentUser?.walletAddress
   );
   const isMyReady = myPlayerStatus?.isReady || false;
+//-------------------------------เช็ค CanStart--จากfrontend อีกรอบ ไม่งั้นมันจะกดเริ่มไม่ได้อะ------------------------------//
+  // 🟢 เพิ่ม Logic การคำนวณ CanStart (ก่อน useEffect ด้านล่าง)
+  const MIN_PLAYERS_REQUIRED = 2; // *** กำหนดจำนวนผู้เล่นขั้นต่ำที่ต้องการ ***
+  const allPlayersReady = players.every((p) => p.isReady);
+
+  // --- 2. Logic: อัปเดต CanStart เมื่อข้อมูลผู้เล่นเปลี่ยน ---
+  useEffect(() => {
+    // เงื่อนไขในการเริ่มเกม
+    const calculatedCanStart =
+      amIHost && // 1. ต้องเป็น Host
+      players.length >= MIN_PLAYERS_REQUIRED && // 2. ผู้เล่นต้องถึงขั้นต่ำ
+      allPlayersReady; // 3. ผู้เล่นทุกคนต้องพร้อม (Ready = true)
+
+    // อัปเดต State ถ้าค่าเปลี่ยน
+    if (calculatedCanStart !== canStart) {
+      setCanStart(calculatedCanStart);
+    }
+  }, [players.length, allPlayersReady, amIHost, canStart]); // Dependency Array
 
   // UI helpers
   const cardBase =
@@ -365,11 +382,10 @@ export default function LobbyPage() {
                       onClick={handlePayAndReady}
                       disabled={isProcessing || requiredStake === 0}
                       className={`px-8 py-3 font-bold rounded-full text-xl shadow-[0_4px_0_#000]
-                      ${
-                        isProcessing
+                      ${isProcessing
                           ? "bg-gray-400"
-                          : "bg-[#FBAF22] hover:bg-[#e49c20] text-white"
-                      }`}
+                          : "bg-[#FBAF22] hover:bg-[#e49c20] text-black animate-pulse"
+                        }`}
                     >
                       {isProcessing
                         ? "Processing..."
@@ -382,11 +398,10 @@ export default function LobbyPage() {
                       onClick={handleStartGame}
                       disabled={!canStart}
                       className={`px-8 py-3 font-bold rounded-full text-xl shadow-[0_4px_0_#000]
-                      ${
-                        canStart
-                          ? "bg-green-600 hover:bg-green-700 text-white animate-pulse"
-                          : "bg-gray-400 text-gray-200 cursor-not-allowed"
-                      }`}
+                      ${canStart
+                          ? "bg-green-600 hover:bg-green-700 text-black animate-pulse"
+                          : "bg-gray-400 text-black cursor-not-allowed"
+                        }`}
                     >
                       START GAME 🚀
                     </Button>

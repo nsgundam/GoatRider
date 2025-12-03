@@ -1,16 +1,12 @@
+//-->maingame/page.jsx
 "use client";
 
 import React, { useEffect, useState } from "react";
-<<<<<<< HEAD:Frontend/app/maingame/page.jsx
 import { makeSimpleDeck } from "../utils/deck"; // ต้องสร้าง utils/deck.js
-import PlayerSeat from "../components/PlayerSeat"; 
+import PlayerSeat from "../components/PlayerSeat";
 import CentralPile from "../components/CentralPile";
-=======
-import { makeSimpleDeck } from "../../utils/deck"; // ต้องสร้าง utils/deck.js
-import PlayerSeat from "../../components/PlayerSeat";
-import CentralPile from "../../components/CentralPile";
->>>>>>> ee9d2b477358ebbe306a20160b7c32cac9273b18:Frontend/app/maingame/[id]/page.jsx
 import { CldImage } from "next-cloudinary";
+
 
 const playersData = [
   { id: "p0", name: "Me (You)", tokens: 100, isSelf: true, layout: "bottom" },
@@ -25,6 +21,9 @@ export default function MainGame() {
   const [hands, setHands] = useState([[], [], [], [], []]);
   const [selectedCardIds, setSelectedCardIds] = useState([]);
   const [timeLeft, setTimeLeft] = useState(15);
+  //อนิเมชั่นจั้ว handleDrawCard
+  const [drawingCard, setDrawingCard] = useState(null);
+
 
   useEffect(() => {
     const d = makeSimpleDeck();
@@ -79,6 +78,7 @@ export default function MainGame() {
     });
   }
 
+  
   // Helper function เพื่อรวมข้อมูลผู้เล่นและมือไพ่เข้าด้วยกัน
   const getPlayerProps = (index) => ({
     ...playersData[index],
@@ -142,12 +142,12 @@ export default function MainGame() {
 
       {/* 5. ตัวเรา (BOTTOM) - p0 */}
       <div
-        className="absolute bottom-10 left-0.5 right-0 z-20 
-            flex flex-col items-center"
+        className="absolute bottom-10 left-0 right-200 z-20 
+         flex flex-col items-center **w-full**"
       >
         {/* ปุ่ม Play (จะโชว์เมื่อเลือกไพ่) */}
         {selectedCardIds.length > 0 && (
-          <div className="mb-2 animate-bounce absolute -top-15 z-20 pointer-events-auto">
+          <div className="mb-2 animate-bounce absolute -top-50 right-44 z-20 pointer-events-auto">
             <button
               onClick={handlePlayCards} // 💡 แก้ไขให้เรียก handlePlayCards ที่ลบไพ่จริง
               className="bg-[#FBAF22] text-white text-lg 
