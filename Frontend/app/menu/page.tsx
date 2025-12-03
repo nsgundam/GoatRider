@@ -286,7 +286,7 @@ export default function MenuPage() {
       </div>
 
       {/* Center Menu Buttons */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-5 px-4 z-10 pt-[300px]">
+      <div className="absolute inset-0 flex flex-col items-center justify-center text-center gap-5 px-4 z-10 pt-[400px]">
         <div className="flex flex-col gap-6 md:gap-10">
           <Button
             onClick={() => setShowCreatePopup(true)}
@@ -431,7 +431,7 @@ export default function MenuPage() {
               value={joinRoomId}
               onChange={(e) => setJoinRoomId(e.target.value)}
               placeholder="Paste Room ID here..."
-              className="w-full border-2 border-gray-300 rounded-xl p-3 mb-2 text-lg focus:outline-none focus:border-[#FBAF22] text-center font-mono"
+              className="w-full border-2 border-gray-300 text-black rounded-xl p-3 mb-2 text-lg focus:outline-none focus:border-[#FBAF22] text-center font-mono"
             />
             {joinError && (
               <p className="text-sm text-red-500 mb-4 font-bold bg-red-50 p-2 rounded">{joinError}</p>

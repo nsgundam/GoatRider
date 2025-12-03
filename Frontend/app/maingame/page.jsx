@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { makeSimpleDeck } from "../../utils/deck"; // ต้องสร้าง utils/deck.js
-import PlayerSeat from "../../components/PlayerSeat"; 
-import CentralPile from "../../components/CentralPile";
+import { makeSimpleDeck } from "../utils/deck"; // ต้องสร้าง utils/deck.js
+import PlayerSeat from "../components/PlayerSeat"; 
+import CentralPile from "../components/CentralPile";
 import { CldImage } from "next-cloudinary";
 
 const playersData = [
