@@ -1,12 +1,49 @@
-1. npm install
-2. npm install ethers
-3. npm install next-cloudinary 
-4. create foder .env.local  and pass 
-    NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=
-    NEXT_PUBLIC_CLOUDINARY_API_KEY=
-    CLOUDINARY_API_SECRET= 
+# 🐐 GoatRider - Frontend
 
-    Obtain the required key/code from the Discord channel.
-    add ".env.local" to .gitignore
+Frontend ของโปรเจกต์ **GoatRider** พัฒนาด้วย **Next.js 16** และ **React 19** [1]
 
-[if dont have .env.local] na  
+## 1. 👾 Environment ที่ต้องมี (Prerequisites)
+
+เนื่องจากโปรเจกต์ใช้ Tech Stack เวอร์ชันล่าสุด นักพัฒนาจำเป็นต้องเตรียมเครื่องมือดังนี้:
+
+*   **Node.js**: เวอร์ชัน **20.x** หรือใหม่กว่า (จำเป็นสำหรับ Next.js 16 และ React 19)
+*   **Package Manager**: `npm` หรือ `yarn`
+*   **Wallet**: MetaMask หรือ Web3 Wallet อื่นๆ สำหรับทดสอบระบบ Blockchain
+
+## 2. ⚙️ การตั้งค่า Environment Variables
+
+**สำคัญ:** ก่อนเริ่มรันโปรเจกต์ ต้องตั้งค่าตัวแปรระบบให้ครบถ้วนตามขั้นตอนด้านล่าง
+
+1.  สร้างไฟล์ชื่อ `.env.local` ไว้ในโฟลเดอร์ `Frontend/` (ระดับเดียวกับ `package.json`)
+2.  **contact [PAT] เพื่อขอ Keys ** 🔑
+3.  คัดลอกโค้ดด้านล่างไปใส่ในไฟล์ `.env.local` และเติมค่าที่ได้รับมา:
+
+```env
+# --- 1. Cloudinary Setup (จัดการรูปภาพ/Cloud) ---
+# จำเป็นสำหรับ library 'next-cloudinary' เพื่อใช้อัปโหลดและแสดงผลรูปภาพ
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=...
+NEXT_PUBLIC_CLOUDINARY_API_KEY=...
+NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET=...
+
+# --- 2. Socket Server (Real-time) ---
+# URL ของ Backend Server ที่รัน Socket.io สำหรับการสื่อสาร Real-time
+NEXT_PUBLIC_SOCKET_URL=http://localhost:4000 
+
+# --- 3. Blockchain Configuration ---
+# Address ของ Smart Contract หรือ RPC URL สำหรับเชื่อมต่อ Blockchain
+NEXT_PUBLIC_CONTRACT_ADDRESS=0x...
+```
+## 3. 🚀 การติดตั้งและรันโปรเจกต์ (Installation & Run)
+เมื่อตั้งค่า Environment เสร็จเรียบร้อยแล้ว ให้ทำตามขั้นตอนดังนี้:
+1. ติดตั้ง Dependencies
+npm install
+หรือ
+yarn install
+2. รันโปรเจกต์ (Development Mode)
+npm run dev
+จากนั้นเปิด Browser ไปที่ http://localhost:3000
+📂 โครงสร้างโปรเจกต์ (Repository Structure)
+  Repository หลัก nsgundam/GoatRider:
+* /Frontend - ส่วนหน้าเว็บ (Current Directory)
+* /Backend - ส่วนจัดการ Server และ Socket
+* /blockchain - ส่วนจัดการ Smart Contracts
